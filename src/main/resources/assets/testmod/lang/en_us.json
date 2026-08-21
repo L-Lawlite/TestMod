@@ -1,7 +1,7 @@
 {
-  "itemGroup.testmod": "Example Mod Tab",
-  "block.testmod.example_block": "Example Block",
-  "item.testmod.example_item": "Example Item",
+  "itemGroup.testmod": "Test Mod Tab",
+  "item.testmod.azurite": "Azurite",
+  "item.testmod.raw_azurite": "Raw Azurite",
 
   "testmod.configuration.title": "TestMod Configs",
   "testmod.configuration.section.testmod.common.toml": "TestMod Configs",
@@ -9,5 +9,7 @@
   "testmod.configuration.items": "Item List",
   "testmod.configuration.logDirtBlock": "Log Dirt Block",
   "testmod.configuration.magicNumberIntroduction": "Magic Number Text",
-  "testmod.configuration.magicNumber": "Magic Number"
+  "testmod.configuration.magicNumber": "Magic Number",
+  "creativetab.testmod.test_items": "Test Items",
+  "creativetab.testmod.test_blocks": "Test Blocks"
 }
