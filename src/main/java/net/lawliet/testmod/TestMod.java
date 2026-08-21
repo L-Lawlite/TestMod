@@ -1,6 +1,6 @@
 package net.lawliet.testmod;
 
-import net.lawliet.block.TestBlocks;
+import net.lawliet.testmod.block.TestBlocks;
 import net.lawliet.testmod.creativemodetab.TestCreativeModeTabs;
 import net.lawliet.testmod.item.TestItems;
 import org.slf4j.Logger;

@@ -1,7 +1,15 @@
 {
-  "itemGroup.testmod": "Test Mod Tab",
   "item.testmod.azurite": "Azurite",
   "item.testmod.raw_azurite": "Raw Azurite",
+
+
+  "block.testmod.azurite_block": "Azurite Block",
+  "block.testmod.raw_azurite_block": "Raw Azurite Block",
+  "block.testmod.azurite_ore": "Azurite Ore",
+  "block.testmod.azurite_deepslate_ore":  "Azurite Deepslate Ore",
+  "block.testmod.azurite_nether_ore": "Azurite Nether Ore",
+  "block.testmod.azurite_end_ore":  "Azurite End Ore",
+
 
   "testmod.configuration.title": "TestMod Configs",
   "testmod.configuration.section.testmod.common.toml": "TestMod Configs",
@@ -10,6 +18,6 @@
   "testmod.configuration.logDirtBlock": "Log Dirt Block",
   "testmod.configuration.magicNumberIntroduction": "Magic Number Text",
   "testmod.configuration.magicNumber": "Magic Number",
-  "creativetab.testmod.test_items": "Test Items",
-  "creativetab.testmod.test_blocks": "Test Blocks"
+  "itemGroup.testmod.test_items": "Test Items",
+  "itemGroup.testmod.test_blocks": "Test Blocks"
 }

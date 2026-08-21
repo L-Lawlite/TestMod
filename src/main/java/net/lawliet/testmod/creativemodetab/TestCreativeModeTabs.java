@@ -1,5 +1,6 @@
 package net.lawliet.testmod.creativemodetab;
 
+import net.lawliet.testmod.block.TestBlocks;
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.item.TestItems;
 import net.minecraft.core.registries.Registries;
@@ -17,15 +18,15 @@ public class TestCreativeModeTabs {
     public static final Supplier<CreativeModeTab> AZURITE_ITEMS_TAB = CREATIVE_MODE_TABS.register("azurite_items_tab",
             () -> CreativeModeTab.builder()
                     .icon(() -> new ItemStack(TestItems.AZURITE.get()))
-                    .title(Component.translatable("creativetab.testmod.test_items"))
+                    .title(Component.translatable("itemGroup.testmod.test_items"))
                     .displayItems(TestItems::addToTestItemTab)
                     .build());
 
     public static final Supplier<CreativeModeTab> AZURITE_BLOCKS_TAB = CREATIVE_MODE_TABS.register("azurite_blocks_tab",
             () -> CreativeModeTab.builder()
                     .icon(() -> new ItemStack(TestItems.RAW_AZURITE.get()))
-                    .title(Component.translatable("creativetab.testmod.test_blocks"))
-                    .displayItems(TestItems::addToTestItemTab)
+                    .title(Component.translatable("itemGroup.testmod.test_blocks"))
+                    .displayItems(TestBlocks::addToTestBlockTab)
                     .build());
 
     public static void register(IEventBus eventBus) {
