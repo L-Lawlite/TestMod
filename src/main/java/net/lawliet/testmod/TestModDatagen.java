@@ -1,9 +1,6 @@
 package net.lawliet.testmod;
 
-import net.lawliet.testmod.datagen.TestBlockLootProvider;
-import net.lawliet.testmod.datagen.TestBlockTagProvider;
-import net.lawliet.testmod.datagen.TestItemTagProvider;
-import net.lawliet.testmod.datagen.TestModelProvider;
+import net.lawliet.testmod.datagen.*;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -28,5 +25,6 @@ public class TestModDatagen {
                 ),
                 lookupProvider
         )));
+        event.createProvider(TestRecipeProvider.Runner::new);
     }
 }
