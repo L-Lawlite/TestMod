@@ -1,6 +1,7 @@
 {
   "item.testmod.azurite": "Azurite",
   "item.testmod.raw_azurite": "Raw Azurite",
+  "item.testmod.metal_detector": "Metal Detector",
 
 
   "block.testmod.azurite_block": "Azurite Block",
@@ -19,5 +20,7 @@
   "testmod.configuration.magicNumberIntroduction": "Magic Number Text",
   "testmod.configuration.magicNumber": "Magic Number",
   "itemGroup.testmod.test_items": "Test Items",
-  "itemGroup.testmod.test_blocks": "Test Blocks"
+  "itemGroup.testmod.test_blocks": "Test Blocks",
+  "item.testmod.message.metal_detector.no_valuables": "No Valuables found",
+  "item.testmod.message.metal_detector.valuable_found": "Valuables Found: %1$s at (%2$s, %3$s, %4$s)"
 }

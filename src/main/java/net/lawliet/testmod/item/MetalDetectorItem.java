@@ -1,0 +1,74 @@
+package net.lawliet.testmod.item;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+
+
+public class MetalDetectorItem extends Item {
+    protected int range = 64;
+
+    public MetalDetectorItem(Properties properties) {
+        super(properties);
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos positionClicked = context.getClickedPos();
+        Player player = context.getPlayer();
+
+        if (!level.isClientSide()) {
+            boolean foundBlock = false;
+            for(int i=0; i <= positionClicked.getY() + range; i++) {
+                BlockPos blockPos = positionClicked.below(i);
+                BlockState state = level.getBlockState(blockPos);
+                if (isValuableBlock(state)) {
+                    outputValueCoordinates(blockPos, player, state.getBlock());
+                    foundBlock = true;
+                    //Perform other logic
+                    level.playSound(null, positionClicked, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.5f, 1f);
+                    spawnFoundParticle(level, positionClicked, state);
+                    break;
+                }
+            }
+            if(!foundBlock) {
+                outputNoValuablesFound(player);
+            }
+            context.getItemInHand().hurtAndBreak(1, player, context.getHand());
+
+        }
+        return InteractionResult.SUCCESS;
+    }
+
+    protected void spawnFoundParticle(Level level, BlockPos positionClicked, BlockState state) {
+        ServerLevel serverLevel = (ServerLevel) level;
+        for (int i=0; i< 20; i++) {
+            serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state), positionClicked.getX() + 0.5, positionClicked.getY() + 1, positionClicked.getZ() + 0.5, 1, Math.cos(i*18) * 0.15, 0.15, Math.sin(i*18) * 0.15, 0.1);
+        }
+    }
+
+    protected void outputNoValuablesFound(Player player) {
+        player.sendSystemMessage(Component.translatable("item.testmod.message.metal_detector.no_valuables"));
+    }
+
+    protected void outputValueCoordinates(BlockPos position, Player player, Block block) {
+        player.sendSystemMessage(Component.translatable("item.testmod.message.metal_detector.valuable_found", block.getName(), position.getX(), position.getY(), position.getZ()));
+    }
+
+    protected boolean isValuableBlock(BlockState state) {
+        return state.is(BlockTags.IRON_ORES) || state.is(BlockTags.COPPER_ORES);
+    }
+}

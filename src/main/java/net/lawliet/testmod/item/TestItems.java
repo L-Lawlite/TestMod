@@ -15,6 +15,7 @@ public class TestItems {
 
     public static final DeferredItem<Item> AZURITE = ITEMS.registerSimpleItem("azurite");
     public static final DeferredItem<Item> RAW_AZURITE = ITEMS.registerSimpleItem("raw_azurite");
+    public static final DeferredItem<Item> METAL_DETECTOR = ITEMS.registerItem("metal_detector", MetalDetectorItem::new, properties -> properties.durability(64));
 
 
     public static final DeferredItem<BlockItem> AZURITE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem(TestBlocks.AZURITE_BLOCK);

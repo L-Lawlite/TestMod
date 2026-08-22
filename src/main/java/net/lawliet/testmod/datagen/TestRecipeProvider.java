@@ -17,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class TestRecipeProvider extends ModdedRecipeProvider {
     public TestRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-        super(registries, output, TestMod.MODID);
+        super(registries, output);
     }
 
     @Override
@@ -37,8 +37,8 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
                 TestBlocks.AZURITE_NETHER_ORE,
                 TestBlocks.AZURITE_END_ORE
         );
-        oreSmelting(AZURITE_SMELTING, RecipeCategory.MISC, CookingBookCategory.MISC, TestItems.AZURITE, 0.25f, 200, "azurite");
-        oreBlasting(AZURITE_SMELTING, RecipeCategory.MISC, CookingBookCategory.MISC, TestItems.AZURITE, 0.25f, 100, "azurite");
+        oreSmelting(AZURITE_SMELTING, RecipeCategory.MISC, CookingBookCategory.MISC, TestItems.AZURITE, 0.25f, 200, "azurite", TestMod.MODID);
+        oreBlasting(AZURITE_SMELTING, RecipeCategory.MISC, CookingBookCategory.MISC, TestItems.AZURITE, 0.25f, 100, "azurite", TestMod.MODID);
     }
 
 

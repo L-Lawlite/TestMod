@@ -5,17 +5,19 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import org.jspecify.annotations.Nullable;
 
-public abstract class ModdedRecipeProvider extends RecipeProvider {
-    protected final String modId;
+import java.util.List;
 
-    protected ModdedRecipeProvider(HolderLookup.Provider registries, RecipeOutput output, String modId) {
+public abstract class ModdedRecipeProvider extends RecipeProvider {
+
+    protected ModdedRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
         super(registries, output);
-        this.modId = modId;
     }
 
     /*
@@ -70,7 +72,7 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
                 .requires(packedForm)
                 .group(unpackingRecipeGroup)
                 .unlockedBy(getHasName(packedForm), this.has(packedForm))
-                .save(this.output, ResourceKey.create(Registries.RECIPE, Identifier.parse(unpackingRecipeId)));
+                .save(this.output, ResourceKey.create(Registries.RECIPE, Identifier.fromNamespaceAndPath(modId, unpackingRecipeId)));
         this.shaped(packedFormCategory, packedForm)
                 .define('#', unpackedForm)
                 .pattern("###")
@@ -78,6 +80,45 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .group(packingRecipeGroup)
                 .unlockedBy(getHasName(unpackedForm), this.has(unpackedForm))
-                .save(this.output, ResourceKey.create(Registries.RECIPE, Identifier.fromNamespaceAndPath(packingRecipeId, modId)));
+                .save(this.output, ResourceKey.create(Registries.RECIPE, Identifier.fromNamespaceAndPath(modId, packingRecipeId)));
+    }
+
+    protected void oreSmelting(List<ItemLike> smeltables, RecipeCategory craftingCategory, CookingBookCategory cookingCategory, ItemLike result, float experience, int cookingTime, String group, String modId) {
+        this.oreCooking(SmeltingRecipe::new, smeltables, craftingCategory, cookingCategory, result, experience, cookingTime, group, "_from_smelting", modId);
+
+    }
+
+
+    protected void oreBlasting(
+            List<ItemLike> smeltables,
+            RecipeCategory craftingCategory,
+            CookingBookCategory cookingCategory,
+            ItemLike result,
+            float experience,
+            int cookingTime,
+            String group,
+            String modId
+    ) {
+        this.oreCooking(BlastingRecipe::new, smeltables, craftingCategory, cookingCategory, result, experience, cookingTime, group, "_from_blasting", modId);
+    }
+
+    protected <T extends AbstractCookingRecipe> void oreCooking(
+            AbstractCookingRecipe.Factory<T> factory,
+            List<ItemLike> smeltables,
+            RecipeCategory craftingCategory,
+            CookingBookCategory cookingCategory,
+            ItemLike result,
+            float experience,
+            int cookingTime,
+            String group,
+            String fromDesc,
+            String modId
+    ) {
+        for (ItemLike item : smeltables) {
+            SimpleCookingRecipeBuilder.generic(Ingredient.of(item), craftingCategory, cookingCategory, result, experience, cookingTime, factory)
+                    .group(group)
+                    .unlockedBy(getHasName(item), this.has(item))
+                    .save(this.output, ResourceKey.create(Registries.RECIPE, Identifier.fromNamespaceAndPath(modId, getItemName(result) + fromDesc + "_" + getItemName(item))));
+        }
     }
 }
