@@ -1,9 +1,11 @@
 package net.lawliet.testmod.item;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -65,7 +67,9 @@ public class MetalDetectorItem extends Item {
     }
 
     protected void outputValueCoordinates(BlockPos position, Player player, Block block) {
-        player.sendSystemMessage(Component.translatable("item.testmod.message.metal_detector.valuable_found", block.getName(), position.getX(), position.getY(), position.getZ()));
+        Component coordinates = ComponentUtils.wrapInSquareBrackets(Component.translatable("chat.coordinates", position.getX(), position.getY(), position.getZ())).withStyle(s -> s.withColor(ChatFormatting.GREEN));
+        Component blockName =  block.getName().withStyle(s -> s.withColor(ChatFormatting.AQUA));
+        player.sendSystemMessage(Component.translatable("item.testmod.message.metal_detector.valuable_found", blockName, coordinates));
     }
 
     protected boolean isValuableBlock(BlockState state) {
