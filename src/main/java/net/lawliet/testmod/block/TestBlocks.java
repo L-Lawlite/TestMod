@@ -44,6 +44,12 @@ public class TestBlocks {
             .sound(SoundType.STONE)
     ));
 
+    public static final DeferredBlock<Block> MAGIC_BLOCK = BLOCKS.registerBlock("magic_block", MagicBlock::new, properties ->
+            properties.strength(4f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.AMETHYST)
+            );
+
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
@@ -55,6 +61,7 @@ public class TestBlocks {
         output.accept(AZURITE_DEEPSLATE_ORE);
         output.accept(AZURITE_NETHER_ORE);
         output.accept(AZURITE_END_ORE);
+        output.accept(MAGIC_BLOCK);
 
     }
 }

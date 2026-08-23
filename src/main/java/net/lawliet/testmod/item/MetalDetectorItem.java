@@ -63,7 +63,7 @@ public class MetalDetectorItem extends Item {
     }
 
     protected void outputNoValuablesFound(Player player) {
-        player.sendSystemMessage(Component.translatable("item.testmod.message.metal_detector.no_valuables"));
+        player.sendSystemMessage(Component.translatable("item.testmod.message.metal_detector.no_valuables").withStyle(style -> style.withColor(ChatFormatting.RED)));
     }
 
     protected void outputValueCoordinates(BlockPos position, Player player, Block block) {

@@ -24,6 +24,7 @@ public class TestItems {
     public static final DeferredItem<BlockItem> AZURITE_DEEPSLATE_ORE_ITEM = ITEMS.registerSimpleBlockItem(TestBlocks.AZURITE_DEEPSLATE_ORE);
     public static final DeferredItem<BlockItem> AZURITE_NETHER_ORE_ITEM = ITEMS.registerSimpleBlockItem(TestBlocks.AZURITE_NETHER_ORE);
     public static final DeferredItem<BlockItem> AZURITE_END_ORE_ITEM = ITEMS.registerSimpleBlockItem(TestBlocks.AZURITE_END_ORE);
+    public static final DeferredItem<BlockItem> MAGIC_BLOCK_ITEM = ITEMS.registerSimpleBlockItem(TestBlocks.MAGIC_BLOCK);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
@@ -37,5 +38,6 @@ public class TestItems {
     public static void addToTestItemTab(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
         output.accept(AZURITE);
         output.accept(RAW_AZURITE);
+        output.accept(METAL_DETECTOR);
     }
 }

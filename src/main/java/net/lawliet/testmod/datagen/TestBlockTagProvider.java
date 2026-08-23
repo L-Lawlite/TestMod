@@ -22,12 +22,17 @@ public class TestBlockTagProvider extends BlockTagsProvider {
                 .add(TestBlocks.AZURITE_ORE.get())
                 .add(TestBlocks.AZURITE_DEEPSLATE_ORE.get())
                 .add(TestBlocks.AZURITE_NETHER_ORE.get())
-                .add(TestBlocks.AZURITE_END_ORE.get());
+                .add(TestBlocks.AZURITE_END_ORE.get())
+                .add(TestBlocks.MAGIC_BLOCK.get())
+        ;
 
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(TestBlocks.AZURITE_ORE.get())
                 .add(TestBlocks.AZURITE_DEEPSLATE_ORE.get())
                 .add(TestBlocks.AZURITE_NETHER_ORE.get())
                 .add(TestBlocks.AZURITE_END_ORE.get());
+
+        tag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(TestBlocks.MAGIC_BLOCK.get());
     }
 }

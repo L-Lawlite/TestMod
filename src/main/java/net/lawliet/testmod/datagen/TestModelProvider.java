@@ -32,5 +32,6 @@ public class TestModelProvider extends ModelProvider {
         blockModels.createTrivialCube(TestBlocks.AZURITE_DEEPSLATE_ORE.get());
         blockModels.createTrivialCube(TestBlocks.AZURITE_NETHER_ORE.get());
         blockModels.createTrivialCube(TestBlocks.AZURITE_END_ORE.get());
+        blockModels.createTrivialCube(TestBlocks.MAGIC_BLOCK.get());
     }
 }
