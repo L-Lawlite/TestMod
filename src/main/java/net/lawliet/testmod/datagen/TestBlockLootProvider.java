@@ -1,7 +1,7 @@
 package net.lawliet.testmod.datagen;
 
-import net.lawliet.testmod.block.TestBlocks;
-import net.lawliet.testmod.item.TestItems;
+import net.lawliet.testmod.registries.TestBlocks;
+import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;

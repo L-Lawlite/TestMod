@@ -1,8 +1,6 @@
-package net.lawliet.testmod.creativemodetab;
+package net.lawliet.testmod.registries;
 
-import net.lawliet.testmod.block.TestBlocks;
 import net.lawliet.testmod.TestMod;
-import net.lawliet.testmod.item.TestItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;

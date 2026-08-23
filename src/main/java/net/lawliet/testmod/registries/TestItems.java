@@ -1,8 +1,9 @@
-package net.lawliet.testmod.item;
+package net.lawliet.testmod.registries;
 
-import net.lawliet.testmod.block.TestBlocks;
 import net.lawliet.testmod.TestMod;
-import net.minecraft.world.item.BlockItem;
+import net.lawliet.testmod.food.TestConsumables;
+import net.lawliet.testmod.food.TestFoods;
+import net.lawliet.testmod.item.MetalDetectorItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
@@ -16,15 +17,7 @@ public class TestItems {
     public static final DeferredItem<Item> AZURITE = ITEMS.registerSimpleItem("azurite");
     public static final DeferredItem<Item> RAW_AZURITE = ITEMS.registerSimpleItem("raw_azurite");
     public static final DeferredItem<Item> METAL_DETECTOR = ITEMS.registerItem("metal_detector", MetalDetectorItem::new, properties -> properties.durability(64));
-
-
-    public static final DeferredItem<BlockItem> AZURITE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem(TestBlocks.AZURITE_BLOCK);
-    public static final DeferredItem<BlockItem> RAW_AZURITE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem(TestBlocks.RAW_AZURITE_BLOCK);
-    public static final DeferredItem<BlockItem> AZURITE_ORE_ITEM = ITEMS.registerSimpleBlockItem(TestBlocks.AZURITE_ORE);
-    public static final DeferredItem<BlockItem> AZURITE_DEEPSLATE_ORE_ITEM = ITEMS.registerSimpleBlockItem(TestBlocks.AZURITE_DEEPSLATE_ORE);
-    public static final DeferredItem<BlockItem> AZURITE_NETHER_ORE_ITEM = ITEMS.registerSimpleBlockItem(TestBlocks.AZURITE_NETHER_ORE);
-    public static final DeferredItem<BlockItem> AZURITE_END_ORE_ITEM = ITEMS.registerSimpleBlockItem(TestBlocks.AZURITE_END_ORE);
-    public static final DeferredItem<BlockItem> MAGIC_BLOCK_ITEM = ITEMS.registerSimpleBlockItem(TestBlocks.MAGIC_BLOCK);
+    public static final DeferredItem<Item> ONION = ITEMS.registerSimpleItem("onion", properties -> properties.food(TestFoods.ONION, TestConsumables.ONION));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
@@ -38,6 +31,7 @@ public class TestItems {
     public static void addToTestItemTab(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
         output.accept(AZURITE);
         output.accept(RAW_AZURITE);
+        output.accept(ONION);
         output.accept(METAL_DETECTOR);
     }
 }

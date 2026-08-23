@@ -1,6 +1,6 @@
 package net.lawliet.testmod.block;
 
-import net.lawliet.testmod.item.TestItems;
+import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;

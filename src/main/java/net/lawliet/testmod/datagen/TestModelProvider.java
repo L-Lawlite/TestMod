@@ -1,8 +1,8 @@
 package net.lawliet.testmod.datagen;
 
 import net.lawliet.testmod.TestMod;
-import net.lawliet.testmod.block.TestBlocks;
-import net.lawliet.testmod.item.TestItems;
+import net.lawliet.testmod.registries.TestBlocks;
+import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -25,6 +25,7 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateFlatItem(TestItems.AZURITE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.RAW_AZURITE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.METAL_DETECTOR.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(TestItems.ONION.get(), ModelTemplates.FLAT_ITEM);
 
         blockModels.createTrivialCube(TestBlocks.AZURITE_BLOCK.get());
         blockModels.createTrivialCube(TestBlocks.RAW_AZURITE_BLOCK.get());

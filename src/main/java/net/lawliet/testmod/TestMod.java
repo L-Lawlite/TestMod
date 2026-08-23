@@ -1,8 +1,8 @@
 package net.lawliet.testmod;
 
-import net.lawliet.testmod.block.TestBlocks;
-import net.lawliet.testmod.creativemodetab.TestCreativeModeTabs;
-import net.lawliet.testmod.item.TestItems;
+import net.lawliet.testmod.registries.TestBlocks;
+import net.lawliet.testmod.registries.TestCreativeModeTabs;
+import net.lawliet.testmod.registries.TestItems;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;

@@ -1,9 +1,9 @@
 package net.lawliet.testmod.datagen;
 
 import net.lawliet.testmod.TestMod;
-import net.lawliet.testmod.block.TestBlocks;
+import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.datagen.advancedRecipeProvider.ModdedRecipeProvider;
-import net.lawliet.testmod.item.TestItems;
+import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
