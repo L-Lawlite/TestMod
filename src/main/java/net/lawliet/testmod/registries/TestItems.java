@@ -18,6 +18,7 @@ public class TestItems {
     public static final DeferredItem<Item> RAW_AZURITE = ITEMS.registerSimpleItem("raw_azurite");
     public static final DeferredItem<Item> METAL_DETECTOR = ITEMS.registerItem("metal_detector", MetalDetectorItem::new, properties -> properties.durability(64));
     public static final DeferredItem<Item> ONION = ITEMS.registerSimpleItem("onion", properties -> properties.food(TestFoods.ONION, TestConsumables.ONION));
+    public static final DeferredItem<Item> END_FIRE_STARTER = ITEMS.registerSimpleItem("end_fire_starter");
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
@@ -33,5 +34,6 @@ public class TestItems {
         output.accept(RAW_AZURITE);
         output.accept(ONION);
         output.accept(METAL_DETECTOR);
+        output.accept(END_FIRE_STARTER);
     }
 }

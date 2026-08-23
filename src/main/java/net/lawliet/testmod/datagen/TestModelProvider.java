@@ -26,6 +26,7 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateFlatItem(TestItems.RAW_AZURITE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.METAL_DETECTOR.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.ONION.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(TestItems.END_FIRE_STARTER.get(), ModelTemplates.FLAT_ITEM);
 
         blockModels.createTrivialCube(TestBlocks.AZURITE_BLOCK.get());
         blockModels.createTrivialCube(TestBlocks.RAW_AZURITE_BLOCK.get());

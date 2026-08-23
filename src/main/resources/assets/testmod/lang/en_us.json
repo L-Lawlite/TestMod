@@ -3,6 +3,7 @@
   "item.testmod.raw_azurite": "Raw Azurite",
   "item.testmod.metal_detector": "Metal Detector",
   "item.testmod.onion": "Onion",
+  "item.testmod.end_fire_starter": "End Fire Starter",
 
 
   "block.testmod.azurite_block": "Azurite Block",
@@ -24,5 +25,8 @@
   "itemGroup.testmod.test_items": "Test Items",
   "itemGroup.testmod.test_blocks": "Test Blocks",
   "item.testmod.message.metal_detector.no_valuables": "No Valuables found",
-  "item.testmod.message.metal_detector.valuable_found": "Valuables Found: %s at %s"
+  "item.testmod.message.metal_detector.valuable_found": "Valuables Found: %s at %s",
+  "tooltip.testmod.magic_block": "This block is magical.",
+  "tooltip.testmod.metal_detector": "Can be used to find valuable items",
+  "tooltip.testmod.expansion": "Press %s to see further details"
 }

@@ -1,6 +1,7 @@
 package net.lawliet.testmod.item;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -13,10 +14,15 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.function.Consumer;
 
 
 public class MetalDetectorItem extends Item {
@@ -74,5 +80,16 @@ public class MetalDetectorItem extends Item {
 
     protected boolean isValuableBlock(BlockState state) {
         return state.is(BlockTags.IRON_ORES) || state.is(BlockTags.COPPER_ORES);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
+        if (Minecraft.getInstance().hasShiftDown()) {
+            builder.accept(Component.translatable("tooltip.testmod.metal_detector"));
+        } else {
+            builder.accept(Component.translatable("tooltip.testmod.expansion", Component.translatable("key.keyboard.left.shift").withStyle(ChatFormatting.YELLOW)));
+        }
+        super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
     }
 }
