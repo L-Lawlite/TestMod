@@ -73,8 +73,8 @@ public class MetalDetectorItem extends Item {
     }
 
     protected void outputValueCoordinates(BlockPos position, Player player, Block block) {
-        Component coordinates = ComponentUtils.wrapInSquareBrackets(Component.translatable("chat.coordinates", position.getX(), position.getY(), position.getZ())).withStyle(s -> s.withColor(ChatFormatting.GREEN));
-        Component blockName =  block.getName().withStyle(s -> s.withColor(ChatFormatting.AQUA));
+        Component coordinates = ComponentUtils.wrapInSquareBrackets(Component.translatable("chat.coordinates", position.getX(), position.getY(), position.getZ())).withStyle(ChatFormatting.GREEN);
+        Component blockName =  block.getName().withStyle(ChatFormatting.AQUA);
         player.sendSystemMessage(Component.translatable("item.testmod.message.metal_detector.valuable_found", blockName, coordinates));
     }
 
@@ -88,7 +88,8 @@ public class MetalDetectorItem extends Item {
         if (Minecraft.getInstance().hasShiftDown()) {
             builder.accept(Component.translatable("tooltip.testmod.metal_detector"));
         } else {
-            builder.accept(Component.translatable("tooltip.testmod.expansion", Component.translatable("key.keyboard.left.shift").withStyle(ChatFormatting.YELLOW)));
+            Component shift_key = Component.translatable("key.keyboard.shift").withStyle(ChatFormatting.YELLOW);
+            builder.accept(Component.translatable("tooltip.testmod.expansion", shift_key));
         }
         super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
     }

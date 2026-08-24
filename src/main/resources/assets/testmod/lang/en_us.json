@@ -29,5 +29,6 @@
   "item.testmod.message.metal_detector.valuable_found": "Valuables Found: %s at %s",
   "tooltip.testmod.magic_block": "This block is magical.",
   "tooltip.testmod.metal_detector": "Can be used to find valuable items",
-  "tooltip.testmod.expansion": "Press %s to see further details"
+  "tooltip.testmod.expansion": "Press %s to see further details",
+  "key.keyboard.shift": "Shift"
 }
