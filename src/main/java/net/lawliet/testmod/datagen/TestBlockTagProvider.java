@@ -2,9 +2,11 @@ package net.lawliet.testmod.datagen;
 
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.registries.TestBlocks;
+import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 
 import java.util.concurrent.CompletableFuture;
@@ -19,20 +21,30 @@ public class TestBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(TestBlocks.AZURITE_BLOCK.get())
                 .add(TestBlocks.RAW_AZURITE_BLOCK.get())
-                .add(TestBlocks.AZURITE_ORE.get())
-                .add(TestBlocks.AZURITE_DEEPSLATE_ORE.get())
-                .add(TestBlocks.AZURITE_NETHER_ORE.get())
-                .add(TestBlocks.AZURITE_END_ORE.get())
+                .addTag(TestTags.Blocks.AZURITE_ORES)
                 .add(TestBlocks.MAGIC_BLOCK.get())
         ;
 
         tag(BlockTags.NEEDS_IRON_TOOL)
-                .add(TestBlocks.AZURITE_ORE.get())
-                .add(TestBlocks.AZURITE_DEEPSLATE_ORE.get())
-                .add(TestBlocks.AZURITE_NETHER_ORE.get())
-                .add(TestBlocks.AZURITE_END_ORE.get());
+                .addTag(TestTags.Blocks.AZURITE_ORES);
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(TestBlocks.MAGIC_BLOCK.get());
+
+        tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(TestBlocks.TEST_SHELF.get());
+
+        tag(TestTags.Blocks.AZURITE_ORES)
+                .add(TestBlocks.AZURITE_ORE.get())
+                .add(TestBlocks.AZURITE_DEEPSLATE_ORE.get())
+                .add(TestBlocks.AZURITE_NETHER_ORE.get())
+                .add(TestBlocks.AZURITE_END_ORE.get())
+        ;
+
+        tag(TestTags.Blocks.METAL_DETECTABLE)
+                .addTag(Tags.Blocks.ORES_IRON)
+                .addTag(Tags.Blocks.BARS_IRON)
+                .addTag(Tags.Blocks.STORAGE_BLOCKS_IRON)
+                .addTag(Tags.Blocks.STORAGE_BLOCKS_RAW_IRON);
     }
 }

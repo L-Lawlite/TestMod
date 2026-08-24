@@ -8,6 +8,7 @@ import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Blocks;
 
 public class TestModelProvider extends ModelProvider {
     public TestModelProvider(PackOutput output) {
@@ -35,5 +36,6 @@ public class TestModelProvider extends ModelProvider {
         blockModels.createTrivialCube(TestBlocks.AZURITE_NETHER_ORE.get());
         blockModels.createTrivialCube(TestBlocks.AZURITE_END_ORE.get());
         blockModels.createTrivialCube(TestBlocks.MAGIC_BLOCK.get());
+        blockModels.createShelf(TestBlocks.TEST_SHELF.get(), Blocks.STRIPPED_ACACIA_LOG);
     }
 }

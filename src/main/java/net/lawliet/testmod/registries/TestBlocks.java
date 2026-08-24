@@ -9,6 +9,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.ShelfBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
@@ -62,6 +63,8 @@ public class TestBlocks {
                     .sound(SoundType.AMETHYST)
             );
 
+    public static final DeferredBlock<Block> TEST_SHELF = registerBlock("test_shelf", ShelfBlock::new, properties -> properties.strength(2f,3f).ignitedByLava().sound(SoundType.SHELF));
+
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
@@ -75,6 +78,7 @@ public class TestBlocks {
         output.accept(AZURITE_NETHER_ORE);
         output.accept(AZURITE_END_ORE);
         output.accept(MAGIC_BLOCK);
+        output.accept(TEST_SHELF);
 
     }
 

@@ -30,6 +30,7 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
         dropSelf(TestBlocks.AZURITE_BLOCK.get());
         dropSelf(TestBlocks.RAW_AZURITE_BLOCK.get());
         dropSelf(TestBlocks.MAGIC_BLOCK.get());
+        dropSelf(TestBlocks.TEST_SHELF.get());
         add(
                 TestBlocks.AZURITE_ORE.get(),
                 createOreDrop(TestBlocks.AZURITE_ORE.get(), TestItems.RAW_AZURITE.get())

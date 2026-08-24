@@ -2,10 +2,7 @@
   "values": [
     "testmod:azurite_block",
     "testmod:raw_azurite_block",
-    "testmod:azurite_ore",
-    "testmod:azurite_deepslate_ore",
-    "testmod:azurite_nether_ore",
-    "testmod:azurite_end_ore",
+    "#testmod:azurite_ores",
     "testmod:magic_block"
   ]
 }

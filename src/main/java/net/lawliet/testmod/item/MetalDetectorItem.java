@@ -1,5 +1,6 @@
 package net.lawliet.testmod.item;
 
+import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -10,7 +11,6 @@ import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -79,7 +79,7 @@ public class MetalDetectorItem extends Item {
     }
 
     protected boolean isValuableBlock(BlockState state) {
-        return state.is(BlockTags.IRON_ORES) || state.is(BlockTags.COPPER_ORES);
+        return state.is(TestTags.Blocks.METAL_DETECTABLE);
     }
 
     @Override
