@@ -27,5 +27,8 @@ public class TestItemTagProvider extends BlockTagCopyingItemTagProvider {
         copy(BlockTags.STAIRS, ItemTags.STAIRS);
         copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
+        copy(BlockTags.FENCES, Tags.Items.FENCES);
+        copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
+        copy(BlockTags.WALLS, ItemTags.WALLS);
     }
 }

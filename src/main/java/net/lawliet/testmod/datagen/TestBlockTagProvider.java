@@ -63,5 +63,11 @@ public class TestBlockTagProvider extends BlockTagsProvider {
                 .add(TestBlocks.AZURITE_PRESSURE_PLATE.get());
         tag(BlockTags.BUTTONS)
                 .add(TestBlocks.AZURITE_BUTTON.get());
+        tag(BlockTags.FENCES)
+                .add(TestBlocks.AZURITE_FENCE.get());
+        tag(BlockTags.FENCE_GATES)
+                .add(TestBlocks.AZURITE_FENCE_GATE.get());
+        tag(BlockTags.WALLS)
+                .add(TestBlocks.AZURITE_WALLS.get());
     }
 }

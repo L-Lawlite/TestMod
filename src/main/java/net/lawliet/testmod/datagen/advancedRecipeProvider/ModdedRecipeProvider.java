@@ -166,8 +166,39 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
         button(result, base, null);
     }
 
+    protected void fence(ItemLike result, ItemLike base) {
+        fenceBuilder(result, Ingredient.of(base)).unlockedBy(getHasName(base), has(base)).save(output);
+    }
+
+    protected void fence(ItemLike result, ItemLike base, ItemLike base2, int count) {
+        fenceBuilder(result, base, base2, count).unlockedBy(getHasName(base), has(base)).save(output);
+    }
+
+    protected void fenceGate(ItemLike result, ItemLike base) {
+        fenceGateBuilder(result, Ingredient.of(base)).unlockedBy(getHasName(base), has(base)).save(output);
+    }
+
+    protected void fenceGate(ItemLike result, ItemLike base, ItemLike base2, int count) {
+        fenceGateBuilder(result, base, base2, count).unlockedBy(getHasName(base), has(base)).save(output);
+    }
+
+    protected RecipeBuilder fenceGateBuilder(ItemLike result, ItemLike base, ItemLike base2, int count) {
+        return this.shaped(RecipeCategory.DECORATIONS, result, count).define('W', base).define('#', base2).pattern("#W#").pattern("#W#");
+    }
+
+    protected RecipeBuilder fenceBuilder(ItemLike result, ItemLike base, ItemLike base2, int count) {
+        return this.shaped(RecipeCategory.DECORATIONS, result, count).define('W', base).define('#', base2).pattern("W#W").pattern("W#W");
+
+    }
+
     protected SingleItemRecipeBuilder stoneCutterRecipeBuilder(RecipeCategory category, ItemLike result, ItemLike base, int count){
         return SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), category, result, count).unlockedBy(getHasName(base), this.has(base));
+    }
+
+    @Override
+    protected void wall(RecipeCategory category, ItemLike result, ItemLike base) {
+        super.wall(category, result, base);
+        stoneCutterRecipe(category, result, base, 1);
     }
 
     private ResourceKey<Recipe<?>> getResourceKey(String string) {

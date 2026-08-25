@@ -10,6 +10,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -80,6 +81,9 @@ public class TestBlocks {
             2,
             properties.noCollision().pushReaction(PushReaction.DESTROY).strength(0.5f)
     ));
+    public static final DeferredBlock<Block> AZURITE_FENCE = registerBlock("azurite_fence", FenceBlock::new, properties -> properties.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).forceSolidOn());
+    public static final DeferredBlock<Block> AZURITE_FENCE_GATE = registerBlock("azurite_fence_gate", properties -> new FenceGateBlock(new WoodType("azurite", BlockSetType.IRON), properties.forceSolidOn().strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
+    public static final DeferredBlock<Block> AZURITE_WALLS = registerBlock("azurite_walls", WallBlock::new, properties -> properties.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
@@ -99,6 +103,9 @@ public class TestBlocks {
         output.accept(AZURITE_SLAB);
         output.accept(AZURITE_PRESSURE_PLATE);
         output.accept(AZURITE_BUTTON);
+        output.accept(AZURITE_FENCE);
+        output.accept(AZURITE_FENCE_GATE);
+        output.accept(AZURITE_WALLS);
 
     }
 

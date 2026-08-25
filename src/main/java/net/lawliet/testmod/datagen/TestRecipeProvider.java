@@ -43,7 +43,10 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
         solidStair(RecipeCategory.BUILDING_BLOCKS, TestBlocks.AZURITE_STAIRS, TestBlocks.AZURITE_BLOCK);
         solidSlab(RecipeCategory.BUILDING_BLOCKS, TestBlocks.AZURITE_SLAB, TestBlocks.AZURITE_BLOCK);
         pressurePlate(TestBlocks.AZURITE_PRESSURE_PLATE, TestItems.AZURITE);
-        button(TestBlocks.AZURITE_BUTTON, TestItems.AZURITE, "azurite");
+        button(TestBlocks.AZURITE_BUTTON, TestItems.AZURITE);
+        fence(TestBlocks.AZURITE_FENCE, TestItems.AZURITE, TestBlocks.AZURITE_BLOCK, 6);
+        fenceGate(TestBlocks.AZURITE_FENCE_GATE, TestItems.AZURITE,  TestBlocks.AZURITE_BLOCK, 4);
+        wall(RecipeCategory.BUILDING_BLOCKS, TestBlocks.AZURITE_WALLS, TestBlocks.AZURITE_BLOCK);
     }
 
 

@@ -42,6 +42,9 @@ public class TestModelProvider extends ModelProvider {
                 .slab(TestBlocks.AZURITE_SLAB.get())
                 .pressurePlate(TestBlocks.AZURITE_PRESSURE_PLATE.get())
                 .button(TestBlocks.AZURITE_BUTTON.get())
+                .fence(TestBlocks.AZURITE_FENCE.get())
+                .fenceGate(TestBlocks.AZURITE_FENCE_GATE.get())
+                .wall(TestBlocks.AZURITE_WALLS.get())
         ;
     }
 }
