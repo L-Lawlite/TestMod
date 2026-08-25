@@ -40,6 +40,8 @@ public class TestModelProvider extends ModelProvider {
         blockModels.family(TestBlocks.AZURITE_BLOCK.get())
                 .stairs(TestBlocks.AZURITE_STAIRS.get())
                 .slab(TestBlocks.AZURITE_SLAB.get())
+                .pressurePlate(TestBlocks.AZURITE_PRESSURE_PLATE.get())
+                .button(TestBlocks.AZURITE_BUTTON.get())
         ;
     }
 }

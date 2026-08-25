@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "azurite",
+  "ingredients": [
+    "testmod:azurite"
+  ],
+  "result": {
+    "id": "testmod:azurite_button"
+  }
+}

@@ -16,6 +16,8 @@
   "block.testmod.test_shelf":  "Test Shelf",
   "block.testmod.azurite_stairs":  "Azurite Stairs",
   "block.testmod.azurite_slab":  "Azurite Slab",
+  "block.testmod.azurite_pressure_plate":  "Azurite Pressure Plate",
+  "block.testmod.azurite_button":  "Azurite Button",
 
 
   "testmod.configuration.title": "TestMod Configs",

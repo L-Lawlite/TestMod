@@ -25,6 +25,7 @@ public class TestBlockTagProvider extends BlockTagsProvider {
                 .add(TestBlocks.MAGIC_BLOCK.get())
                 .add(TestBlocks.AZURITE_STAIRS.get())
                 .add(TestBlocks.AZURITE_SLAB.get())
+                .add(TestBlocks.AZURITE_PRESSURE_PLATE.get())
         ;
 
         tag(BlockTags.NEEDS_IRON_TOOL)
@@ -48,5 +49,19 @@ public class TestBlockTagProvider extends BlockTagsProvider {
                 .addTag(Tags.Blocks.BARS_IRON)
                 .addTag(Tags.Blocks.STORAGE_BLOCKS_IRON)
                 .addTag(Tags.Blocks.STORAGE_BLOCKS_RAW_IRON);
+
+        tag(BlockTags.STAIRS)
+                .add(TestBlocks.AZURITE_STAIRS.get());
+        tag(BlockTags.SLABS)
+            .add(TestBlocks.AZURITE_SLAB.get());
+        tag(Tags.Blocks.ORES)
+                .addTag(TestTags.Blocks.AZURITE_ORES);
+        tag(Tags.Blocks.STORAGE_BLOCKS)
+                .add(TestBlocks.AZURITE_BLOCK.get())
+                .add(TestBlocks.RAW_AZURITE_BLOCK.get());
+        tag(BlockTags.PRESSURE_PLATES)
+                .add(TestBlocks.AZURITE_PRESSURE_PLATE.get());
+        tag(BlockTags.BUTTONS)
+                .add(TestBlocks.AZURITE_BUTTON.get());
     }
 }

@@ -155,6 +155,17 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
         slab(category, slabBlock, baseBlock);
     }
 
+    protected void button(ItemLike result, ItemLike base, @Nullable String group) {
+        buttonBuilder(result, Ingredient.of(base))
+                .unlockedBy(getHasName(base), has(base))
+                .group(group)
+                .save(output);
+    }
+
+    protected void button(ItemLike result, ItemLike base) {
+        button(result, base, null);
+    }
+
     protected SingleItemRecipeBuilder stoneCutterRecipeBuilder(RecipeCategory category, ItemLike result, ItemLike base, int count){
         return SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), category, result, count).unlockedBy(getHasName(base), this.has(base));
     }
@@ -166,4 +177,5 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
     protected ResourceKey<Recipe<?>> getResourceKey(String modId,String string) {
         return ResourceKey.create(Registries.RECIPE, Identifier.fromNamespaceAndPath(modId, string));
     }
+
 }

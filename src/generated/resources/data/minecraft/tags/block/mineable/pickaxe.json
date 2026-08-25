@@ -5,6 +5,7 @@
     "#testmod:azurite_ores",
     "testmod:magic_block",
     "testmod:azurite_stairs",
-    "testmod:azurite_slab"
+    "testmod:azurite_slab",
+    "testmod:azurite_pressure_plate"
   ]
 }

@@ -9,6 +9,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -65,8 +67,19 @@ public class TestBlocks {
             AZURITE_BLOCK.get().defaultBlockState(),
             properties.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)
     ));
-    public static final DeferredBlock<Block> AZURITE_SLAB = registerBlock("azurite_slab",SlabBlock::new, properties -> properties.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST));
-//    public static final DeferredBlock<Block> AZURITE_P
+    public static final DeferredBlock<Block> AZURITE_SLAB = registerBlock("azurite_slab",SlabBlock::new, properties -> properties.strength(0.5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST));
+    public static final DeferredBlock<Block> AZURITE_PRESSURE_PLATE = registerBlock("azurite_pressure_plate", properties -> new PressurePlateBlock(
+            BlockSetType.IRON,
+            properties.strength(4f)
+                    .requiresCorrectToolForDrops().sound(SoundType.METAL)
+                    .forceSolidOn().noCollision()
+                    .pushReaction(PushReaction.DESTROY)
+    ));
+    public static final DeferredBlock<Block> AZURITE_BUTTON = registerBlock("azurite_button", properties -> new ButtonBlock(
+            BlockSetType.IRON,
+            2,
+            properties.noCollision().pushReaction(PushReaction.DESTROY).strength(0.5f)
+    ));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
@@ -84,6 +97,8 @@ public class TestBlocks {
         output.accept(TEST_SHELF);
         output.accept(AZURITE_STAIRS);
         output.accept(AZURITE_SLAB);
+        output.accept(AZURITE_PRESSURE_PLATE);
+        output.accept(AZURITE_BUTTON);
 
     }
 
