@@ -14,6 +14,8 @@
   "block.testmod.azurite_end_ore":  "Azurite End Ore",
   "block.testmod.magic_block":  "Magic Block",
   "block.testmod.test_shelf":  "Test Shelf",
+  "block.testmod.azurite_stairs":  "Azurite Stairs",
+  "block.testmod.azurite_slab":  "Azurite Slab",
 
 
   "testmod.configuration.title": "TestMod Configs",

@@ -7,10 +7,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.ShelfBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -64,6 +61,12 @@ public class TestBlocks {
             );
 
     public static final DeferredBlock<Block> TEST_SHELF = registerBlock("test_shelf", ShelfBlock::new, properties -> properties.strength(2f,3f).ignitedByLava().sound(SoundType.SHELF));
+    public static final DeferredBlock<Block> AZURITE_STAIRS = registerBlock("azurite_stairs", properties -> new StairBlock(
+            AZURITE_BLOCK.get().defaultBlockState(),
+            properties.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)
+    ));
+    public static final DeferredBlock<Block> AZURITE_SLAB = registerBlock("azurite_slab",SlabBlock::new, properties -> properties.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST));
+//    public static final DeferredBlock<Block> AZURITE_P
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
@@ -79,6 +82,8 @@ public class TestBlocks {
         output.accept(AZURITE_END_ORE);
         output.accept(MAGIC_BLOCK);
         output.accept(TEST_SHELF);
+        output.accept(AZURITE_STAIRS);
+        output.accept(AZURITE_SLAB);
 
     }
 

@@ -1,6 +1,7 @@
 package net.lawliet.testmod.datagen;
 
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.registries.TestItems;
 import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -17,6 +18,7 @@ public class TestItemTagProvider extends BlockTagCopyingItemTagProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         copy(TestTags.Blocks.AZURITE_ORES, TestTags.Items.AZURITE_ORES);
+        tag(TestTags.Items.TRANSFORMABLE_ITEMS).add(TestItems.AZURITE.get());
 
     }
 }

@@ -1,6 +1,6 @@
 package net.lawliet.testmod.block;
 
-import net.lawliet.testmod.registries.TestItems;
+import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
@@ -17,7 +17,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.common.Tags;
 
 public class MagicBlock extends Block {
     public MagicBlock(Properties properties) {
@@ -45,6 +44,6 @@ public class MagicBlock extends Block {
     }
 
     protected boolean isValidItem(ItemStack item) {
-        return item.is(Tags.Items.INGOTS_IRON) || item.is(Tags.Items.DUSTS_REDSTONE) || item.is(TestItems.AZURITE);
+        return item.is(TestTags.Items.TRANSFORMABLE_ITEMS);
     }
 }

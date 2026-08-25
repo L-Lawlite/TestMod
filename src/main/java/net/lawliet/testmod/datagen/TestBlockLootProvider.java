@@ -31,6 +31,8 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
         dropSelf(TestBlocks.RAW_AZURITE_BLOCK.get());
         dropSelf(TestBlocks.MAGIC_BLOCK.get());
         dropSelf(TestBlocks.TEST_SHELF.get());
+        dropSelf(TestBlocks.AZURITE_STAIRS.get());
+        add(TestBlocks.AZURITE_SLAB.get(), this::createSlabItemTable);
         add(
                 TestBlocks.AZURITE_ORE.get(),
                 createOreDrop(TestBlocks.AZURITE_ORE.get(), TestItems.RAW_AZURITE.get())

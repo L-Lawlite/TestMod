@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "testmod:azurite_block",
+  "result": {
+    "id": "testmod:azurite_stairs"
+  }
+}

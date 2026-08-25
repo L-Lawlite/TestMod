@@ -20,6 +20,7 @@ public class TestTags {
     }
     public static class Items {
         public static final TagKey<Item> AZURITE_ORES = createTag("azurite_ores");
+        public static final TagKey<Item> TRANSFORMABLE_ITEMS = createTag("transformable_items");
 
 
 

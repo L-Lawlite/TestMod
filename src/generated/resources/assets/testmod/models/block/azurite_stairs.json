@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "testmod:block/azurite_block",
+    "side": "testmod:block/azurite_block",
+    "top": "testmod:block/azurite_block"
+  }
+}

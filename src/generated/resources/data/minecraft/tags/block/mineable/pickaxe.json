@@ -3,6 +3,8 @@
     "testmod:azurite_block",
     "testmod:raw_azurite_block",
     "#testmod:azurite_ores",
-    "testmod:magic_block"
+    "testmod:magic_block",
+    "testmod:azurite_stairs",
+    "testmod:azurite_slab"
   ]
 }

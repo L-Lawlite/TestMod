@@ -2,10 +2,7 @@ package net.lawliet.testmod.datagen.advancedRecipeProvider;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.crafting.*;
@@ -14,10 +11,14 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public abstract class ModdedRecipeProvider extends RecipeProvider {
 
-    protected ModdedRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
+    private final String modId;
+
+    protected ModdedRecipeProvider(HolderLookup.Provider registries, RecipeOutput output, String modId) {
         super(registries, output);
+        this.modId = modId;
     }
 
     /*
@@ -118,7 +119,51 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
             SimpleCookingRecipeBuilder.generic(Ingredient.of(item), craftingCategory, cookingCategory, result, experience, cookingTime, factory)
                     .group(group)
                     .unlockedBy(getHasName(item), this.has(item))
-                    .save(this.output, ResourceKey.create(Registries.RECIPE, Identifier.fromNamespaceAndPath(modId, getItemName(result) + fromDesc + "_" + getItemName(item))));
+                    .save(this.output, getResourceKey(getItemName(result) + fromDesc + "_" + getItemName(item)));
         }
+    }
+
+    protected void solidStair(RecipeCategory category, ItemLike stairBlock, ItemLike baseBlock) {
+        solidStair(category, stairBlock, baseBlock, null);
+    }
+
+    protected void solidStair(RecipeCategory category, ItemLike stair, ItemLike base, @Nullable String group) {
+        stairBuilder(stair, Ingredient.of(base))
+                .unlockedBy(getHasName(base), has(base))
+                .group(group)
+                .save(output);
+       stoneCutterRecipe(category, stair, base, 1);
+    }
+
+    protected void solidSlab(RecipeCategory category, ItemLike slab, ItemLike base) {
+        slab(category, slab, base);
+        stoneCutterRecipe(category, slab, base, 2);
+    }
+
+    protected void stoneCutterRecipe(RecipeCategory category, ItemLike result, ItemLike base, int count) {
+        stoneCutterRecipeBuilder(category, result, base, count).save(output,getResourceKey(getConversionRecipeName(result, base)));
+    }
+
+    protected void woodenStair(RecipeCategory category, ItemLike stairBlock, ItemLike baseBlock, @Nullable String group) {
+        stairBuilder(stairBlock, Ingredient.of(baseBlock))
+                .unlockedBy(getHasName(baseBlock), has(baseBlock))
+                .group(group)
+                .save(output);
+    }
+
+    protected void woodenSlab(RecipeCategory category, ItemLike slabBlock, ItemLike baseBlock) {
+        slab(category, slabBlock, baseBlock);
+    }
+
+    protected SingleItemRecipeBuilder stoneCutterRecipeBuilder(RecipeCategory category, ItemLike result, ItemLike base, int count){
+        return SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), category, result, count).unlockedBy(getHasName(base), this.has(base));
+    }
+
+    private ResourceKey<Recipe<?>> getResourceKey(String string) {
+        return getResourceKey(modId, string);
+    }
+
+    protected ResourceKey<Recipe<?>> getResourceKey(String modId,String string) {
+        return ResourceKey.create(Registries.RECIPE, Identifier.fromNamespaceAndPath(modId, string));
     }
 }

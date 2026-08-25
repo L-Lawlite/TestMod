@@ -29,7 +29,7 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateFlatItem(TestItems.ONION.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.END_FIRE_STARTER.get(), ModelTemplates.FLAT_ITEM);
 
-        blockModels.createTrivialCube(TestBlocks.AZURITE_BLOCK.get());
+//        blockModels.createTrivialCube(TestBlocks.AZURITE_BLOCK.get());
         blockModels.createTrivialCube(TestBlocks.RAW_AZURITE_BLOCK.get());
         blockModels.createTrivialCube(TestBlocks.AZURITE_ORE.get());
         blockModels.createTrivialCube(TestBlocks.AZURITE_DEEPSLATE_ORE.get());
@@ -37,5 +37,9 @@ public class TestModelProvider extends ModelProvider {
         blockModels.createTrivialCube(TestBlocks.AZURITE_END_ORE.get());
         blockModels.createTrivialCube(TestBlocks.MAGIC_BLOCK.get());
         blockModels.createShelf(TestBlocks.TEST_SHELF.get(), Blocks.STRIPPED_ACACIA_LOG);
+        blockModels.family(TestBlocks.AZURITE_BLOCK.get())
+                .stairs(TestBlocks.AZURITE_STAIRS.get())
+                .slab(TestBlocks.AZURITE_SLAB.get())
+        ;
     }
 }

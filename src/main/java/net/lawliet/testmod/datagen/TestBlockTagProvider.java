@@ -23,6 +23,8 @@ public class TestBlockTagProvider extends BlockTagsProvider {
                 .add(TestBlocks.RAW_AZURITE_BLOCK.get())
                 .addTag(TestTags.Blocks.AZURITE_ORES)
                 .add(TestBlocks.MAGIC_BLOCK.get())
+                .add(TestBlocks.AZURITE_STAIRS.get())
+                .add(TestBlocks.AZURITE_SLAB.get())
         ;
 
         tag(BlockTags.NEEDS_IRON_TOOL)
