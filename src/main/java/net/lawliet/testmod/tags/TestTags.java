@@ -23,6 +23,7 @@ public class TestTags {
     public static class Items {
         public static final TagKey<Item> AZURITE_ORES = createTag("azurite_ores");
         public static final TagKey<Item> TRANSFORMABLE_ITEMS = createTag("transformable_items");
+        public static final TagKey<Item> AZURITE_TOOL_MATERIAL = createTag("azurite_tool_material");
         public static final TagKey<Item> AZURITE_REPAIRABLE = createTag("azurite_repairable");
 
 

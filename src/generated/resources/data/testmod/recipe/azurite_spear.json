@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "#testmod:azurite_tool_material",
+    "S": "minecraft:stick"
+  },
+  "pattern": [
+    "##",
+    " S",
+    " S"
+  ],
+  "result": {
+    "id": "testmod:azurite_spear"
+  }
+}

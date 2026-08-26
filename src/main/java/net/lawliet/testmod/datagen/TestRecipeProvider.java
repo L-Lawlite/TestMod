@@ -4,6 +4,7 @@ import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.datagen.advancedRecipeProvider.ModdedRecipeProvider;
 import net.lawliet.testmod.registries.TestItems;
+import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -46,9 +47,15 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
         fence(TestBlocks.AZURITE_FENCE, TestItems.AZURITE, TestBlocks.AZURITE_BLOCK, 6);
         fenceGate(TestBlocks.AZURITE_FENCE_GATE, TestItems.AZURITE, TestBlocks.AZURITE_BLOCK, 4);
         wall(RecipeCategory.BUILDING_BLOCKS, TestBlocks.AZURITE_WALLS, TestBlocks.AZURITE_BLOCK);
-        createBlockUsingBuilder(TestBlocks.AZURITE_BUTTON, TestItems.AZURITE, this::buttonBuilder);
-        createBlockUsingBuilder(TestBlocks.AZURITE_DOOR, TestItems.AZURITE,  this::doorBuilder);
-        createBlockUsingBuilder(TestBlocks.AZURITE_TRAPDOOR, TestItems.AZURITE, this::trapdoorBuilder);
+        createBlockRecipeUsingBuilder(TestBlocks.AZURITE_BUTTON, TestItems.AZURITE, this::buttonBuilder);
+        createBlockRecipeUsingBuilder(TestBlocks.AZURITE_DOOR, TestItems.AZURITE,  this::doorBuilder);
+        createBlockRecipeUsingBuilder(TestBlocks.AZURITE_TRAPDOOR, TestItems.AZURITE, this::trapdoorBuilder);
+        swordBuilder(TestItems.AZURITE_SWORD, TestTags.Items.AZURITE_TOOL_MATERIAL).save(output);
+        pickaxeBuilder(TestItems.AZURITE_PICKAXE, TestTags.Items.AZURITE_TOOL_MATERIAL).save(output);
+        shovelBuilder(TestItems.AZURITE_SHOVEL, TestTags.Items.AZURITE_TOOL_MATERIAL).save(output);
+        axeBuilder(TestItems.AZURITE_AXE, TestTags.Items.AZURITE_TOOL_MATERIAL).save(output);
+        hoeBuilder(TestItems.AZURITE_HOE, TestTags.Items.AZURITE_TOOL_MATERIAL).save(output);
+        spearBuilder(TestItems.AZURITE_SPEAR, TestTags.Items.AZURITE_TOOL_MATERIAL).save(output);
     }
 
 

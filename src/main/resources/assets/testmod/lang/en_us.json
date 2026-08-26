@@ -4,7 +4,12 @@
   "item.testmod.metal_detector": "Metal Detector",
   "item.testmod.onion": "Onion",
   "item.testmod.end_fire_starter": "End Fire Starter",
-
+  "item.testmod.azurite_sword":  "Azurite Sword",
+  "item.testmod.azurite_pickaxe": "Azurite Pickaxe",
+  "item.testmod.azurite_shovel":  "Azurite Shovel",
+  "item.testmod.azurite_axe": "Azurite Axe",
+  "item.testmod.azurite_hoe":  "Azurite Hoe",
+  "item.testmod.azurite_spear": "Azurite Spear",
 
   "block.testmod.azurite_block": "Azurite Block",
   "block.testmod.raw_azurite_block": "Raw Azurite Block",

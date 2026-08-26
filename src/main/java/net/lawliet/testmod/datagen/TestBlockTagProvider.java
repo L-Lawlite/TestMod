@@ -33,9 +33,6 @@ public class TestBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .addTag(TestTags.Blocks.AZURITE_ORES);
 
-        tag(BlockTags.NEEDS_DIAMOND_TOOL)
-                .add(TestBlocks.MAGIC_BLOCK.get());
-
         tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(TestBlocks.TEST_SHELF.get());
 
@@ -77,5 +74,19 @@ public class TestBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.TRAPDOORS)
                 .add(TestBlocks.AZURITE_TRAPDOOR.get());
+
+        tag(TestTags.Blocks.NEED_AZURITE_TOOLS)
+                .add(TestBlocks.MAGIC_BLOCK.get())
+                .addTag(BlockTags.NEEDS_IRON_TOOL);
+
+        tag(TestTags.Blocks.INCORRECT_FOR_AZURITE_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .remove(TestTags.Blocks.NEED_AZURITE_TOOLS);
+
+        tag(BlockTags.INCORRECT_FOR_IRON_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
+        tag(BlockTags.INCORRECT_FOR_COPPER_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
+        tag(BlockTags.INCORRECT_FOR_GOLD_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
+        tag(BlockTags.INCORRECT_FOR_STONE_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
+        tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
     }
 }

@@ -5,6 +5,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import org.jspecify.annotations.Nullable;
@@ -128,6 +131,8 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
         solidStair(category, stairBlock, baseBlock, null);
     }
 
+
+
     protected void solidStair(RecipeCategory category, ItemLike stair, ItemLike base, @Nullable String group) {
         stairBuilder(stair, Ingredient.of(base))
                 .unlockedBy(getHasName(base), has(base))
@@ -164,7 +169,7 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
         fenceGateBuilder(result, base, base2, count).unlockedBy(getHasName(base), has(base)).save(output);
     }
 
-    protected void createBlockUsingBuilder(ItemLike result, ItemLike base, BiFunction<ItemLike, Ingredient, ? extends RecipeBuilder> recipeBuilder) {
+    protected void createBlockRecipeUsingBuilder(ItemLike result, ItemLike base, BiFunction<ItemLike, Ingredient, ? extends RecipeBuilder> recipeBuilder) {
         recipeBuilder.apply(result,Ingredient.of(base)).unlockedBy(getHasName(base), has(base)).save(output);
     }
 
@@ -179,6 +184,138 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
 
     protected SingleItemRecipeBuilder stoneCutterRecipeBuilder(RecipeCategory category, ItemLike result, ItemLike base, int count){
         return SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), category, result, count).unlockedBy(getHasName(base), this.has(base));
+    }
+
+    protected ShapedRecipeBuilder swordBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("#")
+                .pattern("#")
+                .pattern("S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(base), has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder swordBuilder(ItemLike result, TagKey<Item> base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("#")
+                .pattern("#")
+                .pattern("S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy("has_tool_material",this.has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder pickaxeBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("###")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(base), has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder pickaxeBuilder(ItemLike result, TagKey<Item> base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("###")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy("has_tool_material",this.has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder shovelBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("#")
+                .pattern("S")
+                .pattern("S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(base), has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder shovelBuilder(ItemLike result, TagKey<Item> base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("#")
+                .pattern("S")
+                .pattern("S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy("has_tool_material",this.has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder axeBuilder(ItemLike result, TagKey<Item> base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("##")
+                .pattern("#S")
+                .pattern(" S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy("has_tool_material",this.has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder axeBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("##")
+                .pattern("#S")
+                .pattern(" S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(base), has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder hoeBuilder(ItemLike result, TagKey<Item> base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("##")
+                .pattern(" S")
+                .pattern(" S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy("has_tool_material",this.has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder hoeBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("##")
+                .pattern(" S")
+                .pattern(" S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(base), has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder spearBuilder(ItemLike result, TagKey<Item> base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("##")
+                .pattern(" S")
+                .pattern(" S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy("has_tool_material",this.has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder spearBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("  #")
+                .pattern(" S ")
+                .pattern("S  ")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(base), has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
     }
 
 

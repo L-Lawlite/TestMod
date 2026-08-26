@@ -32,5 +32,13 @@ public class TestItemTagProvider extends BlockTagCopyingItemTagProvider {
         copy(BlockTags.WALLS, ItemTags.WALLS);
         copy(BlockTags.DOORS, ItemTags.DOORS);
         copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
+        tag(TestTags.Items.AZURITE_TOOL_MATERIAL).add(TestItems.AZURITE.get());
+        tag(TestTags.Items.AZURITE_REPAIRABLE).addTag(TestTags.Items.AZURITE_TOOL_MATERIAL);
+        tag(ItemTags.SWORDS).add(TestItems.AZURITE_SWORD.get());
+        tag(ItemTags.PICKAXES).add(TestItems.AZURITE_PICKAXE.get());
+        tag(ItemTags.AXES).add(TestItems.AZURITE_AXE.get());
+        tag(ItemTags.SHOVELS).add(TestItems.AZURITE_SHOVEL.get());
+        tag(ItemTags.HOES).add(TestItems.AZURITE_HOE.get());
+        tag(ItemTags.SPEARS).add(TestItems.AZURITE_SPEAR.get());
     }
 }
