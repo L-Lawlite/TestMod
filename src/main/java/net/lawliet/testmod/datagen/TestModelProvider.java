@@ -45,6 +45,8 @@ public class TestModelProvider extends ModelProvider {
                 .fence(TestBlocks.AZURITE_FENCE.get())
                 .fenceGate(TestBlocks.AZURITE_FENCE_GATE.get())
                 .wall(TestBlocks.AZURITE_WALLS.get())
-        ;
+                .door(TestBlocks.AZURITE_DOOR.get())
+                .trapdoor(TestBlocks.AZURITE_TRAPDOOR.get());
+
     }
 }

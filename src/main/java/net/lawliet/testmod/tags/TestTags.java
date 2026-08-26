@@ -12,6 +12,8 @@ public class TestTags {
     public static class Blocks {
         public static final TagKey<Block> METAL_DETECTABLE = createTag("metal_detectable");
         public static final TagKey<Block> AZURITE_ORES = createTag("azurite_ores");
+        public static final TagKey<Block> NEED_AZURITE_TOOLS = createTag("need_azurite_tools");
+        public static final TagKey<Block> INCORRECT_FOR_AZURITE_TOOL = createTag("incorrect_for_azurite_tool");
 
 
         private static TagKey<Block> createTag(String name) {
@@ -21,7 +23,7 @@ public class TestTags {
     public static class Items {
         public static final TagKey<Item> AZURITE_ORES = createTag("azurite_ores");
         public static final TagKey<Item> TRANSFORMABLE_ITEMS = createTag("transformable_items");
-
+        public static final TagKey<Item> AZURITE_REPAIRABLE = createTag("azurite_repairable");
 
 
         private static TagKey<Item> createTag(String name) {

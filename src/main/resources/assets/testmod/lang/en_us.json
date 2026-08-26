@@ -18,6 +18,11 @@
   "block.testmod.azurite_slab":  "Azurite Slab",
   "block.testmod.azurite_pressure_plate":  "Azurite Pressure Plate",
   "block.testmod.azurite_button":  "Azurite Button",
+  "block.testmod.azurite_fence":  "Azurite Fence",
+  "block.testmod.azurite_fence_gate":  "Azurite Fence Gate",
+  "block.testmod.azurite_wall":  "Azurite Wall",
+  "block.testmod.azurite_door":  "Azurite Door",
+  "block.testmod.azurite_trapdoor":  "Azurite Trapdoor",
 
 
   "testmod.configuration.title": "TestMod Configs",

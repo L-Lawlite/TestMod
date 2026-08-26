@@ -10,6 +10,7 @@ import net.minecraft.world.level.ItemLike;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.BiFunction;
 
 @SuppressWarnings("unused")
 public abstract class ModdedRecipeProvider extends RecipeProvider {
@@ -155,31 +156,16 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
         slab(category, slabBlock, baseBlock);
     }
 
-    protected void button(ItemLike result, ItemLike base, @Nullable String group) {
-        buttonBuilder(result, Ingredient.of(base))
-                .unlockedBy(getHasName(base), has(base))
-                .group(group)
-                .save(output);
-    }
-
-    protected void button(ItemLike result, ItemLike base) {
-        button(result, base, null);
-    }
-
-    protected void fence(ItemLike result, ItemLike base) {
-        fenceBuilder(result, Ingredient.of(base)).unlockedBy(getHasName(base), has(base)).save(output);
-    }
-
     protected void fence(ItemLike result, ItemLike base, ItemLike base2, int count) {
         fenceBuilder(result, base, base2, count).unlockedBy(getHasName(base), has(base)).save(output);
     }
 
-    protected void fenceGate(ItemLike result, ItemLike base) {
-        fenceGateBuilder(result, Ingredient.of(base)).unlockedBy(getHasName(base), has(base)).save(output);
-    }
-
     protected void fenceGate(ItemLike result, ItemLike base, ItemLike base2, int count) {
         fenceGateBuilder(result, base, base2, count).unlockedBy(getHasName(base), has(base)).save(output);
+    }
+
+    protected void createBlockUsingBuilder(ItemLike result, ItemLike base, BiFunction<ItemLike, Ingredient, ? extends RecipeBuilder> recipeBuilder) {
+        recipeBuilder.apply(result,Ingredient.of(base)).unlockedBy(getHasName(base), has(base)).save(output);
     }
 
     protected RecipeBuilder fenceGateBuilder(ItemLike result, ItemLike base, ItemLike base2, int count) {
@@ -194,6 +180,7 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
     protected SingleItemRecipeBuilder stoneCutterRecipeBuilder(RecipeCategory category, ItemLike result, ItemLike base, int count){
         return SingleItemRecipeBuilder.stonecutting(Ingredient.of(base), category, result, count).unlockedBy(getHasName(base), this.has(base));
     }
+
 
     @Override
     protected void wall(RecipeCategory category, ItemLike result, ItemLike base) {

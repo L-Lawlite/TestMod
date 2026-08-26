@@ -84,6 +84,14 @@ public class TestBlocks {
     public static final DeferredBlock<Block> AZURITE_FENCE = registerBlock("azurite_fence", FenceBlock::new, properties -> properties.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).forceSolidOn());
     public static final DeferredBlock<Block> AZURITE_FENCE_GATE = registerBlock("azurite_fence_gate", properties -> new FenceGateBlock(new WoodType("azurite", BlockSetType.IRON), properties.forceSolidOn().strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
     public static final DeferredBlock<Block> AZURITE_WALLS = registerBlock("azurite_walls", WallBlock::new, properties -> properties.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST));
+    public static final DeferredBlock<Block> AZURITE_DOOR = registerBlock("azurite_door", properties -> new DoorBlock(
+            BlockSetType.IRON,
+            properties.strength(2f).noOcclusion().pushReaction(PushReaction.DESTROY).requiresCorrectToolForDrops()
+    ));
+    public static final DeferredBlock<Block> AZURITE_TRAPDOOR = registerBlock("azurite_trapdoor", properties -> new TrapDoorBlock(
+            BlockSetType.IRON,
+            properties.noCollision().pushReaction(PushReaction.DESTROY).strength(2f).requiresCorrectToolForDrops().isValidSpawn(Blocks::never)
+    ));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
@@ -106,6 +114,8 @@ public class TestBlocks {
         output.accept(AZURITE_FENCE);
         output.accept(AZURITE_FENCE_GATE);
         output.accept(AZURITE_WALLS);
+        output.accept(AZURITE_DOOR);
+        output.accept(AZURITE_TRAPDOOR);
 
     }
 

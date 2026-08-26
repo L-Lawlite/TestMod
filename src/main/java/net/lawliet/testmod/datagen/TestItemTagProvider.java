@@ -30,5 +30,7 @@ public class TestItemTagProvider extends BlockTagCopyingItemTagProvider {
         copy(BlockTags.FENCES, Tags.Items.FENCES);
         copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
         copy(BlockTags.WALLS, ItemTags.WALLS);
+        copy(BlockTags.DOORS, ItemTags.DOORS);
+        copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
     }
 }
