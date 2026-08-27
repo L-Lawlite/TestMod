@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "clicked=false": {
+      "model": "testmod:block/azurite_lamp"
+    },
+    "clicked=true": {
+      "model": "testmod:block/azurite_lamp_on"
+    }
+  }
+}

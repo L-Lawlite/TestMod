@@ -10,6 +10,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.level.ItemLike;
 
@@ -60,9 +61,22 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
         chestplateBuilder(TestItems.AZURITE_CHESTPLATE, TestItems.AZURITE).save(output);
         leggingsBuilder(TestItems.AZURITE_LEGGINGS, TestItems.AZURITE).save(output);
         bootsBuilder(TestItems.AZURITE_BOOTS, TestItems.AZURITE).save(output);
+        makeAzuriteLamp();
     }
 
-
+    public void makeAzuriteLamp() {
+        ItemLike item = TestItems.AZURITE;
+        ItemLike lamp = Items.REDSTONE_LAMP;
+        shaped(RecipeCategory.DECORATIONS, TestBlocks.AZURITE_LAMP)
+                .pattern(" A ")
+                .pattern("ALA")
+                .pattern(" A ")
+                .define('A', item)
+                .define('L', lamp)
+                .unlockedBy(getHasName(lamp), has(lamp))
+                .unlockedBy(getHasName(item), has(item))
+                .save(output);
+    }
 
     public static class Runner extends RecipeProvider.Runner {
 

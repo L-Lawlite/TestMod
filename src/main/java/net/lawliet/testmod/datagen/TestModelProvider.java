@@ -1,22 +1,32 @@
 package net.lawliet.testmod.datagen;
 
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.block.blockState.TestBlockStateProperties;
 import net.lawliet.testmod.item.TestEquipmentAssets;
 import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
+import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 public class TestModelProvider extends ModelProvider {
     public TestModelProvider(PackOutput output) {
         super(output, TestMod.MODID);
     }
 
+    @SuppressWarnings("unused")
     private static ItemModelGenerators itemModels;
+    @SuppressWarnings("unused")
     private static BlockModelGenerators blockModels;
 
     @Override
@@ -58,6 +68,18 @@ public class TestModelProvider extends ModelProvider {
                 .wall(TestBlocks.AZURITE_WALLS.get())
                 .door(TestBlocks.AZURITE_DOOR.get())
                 .trapdoor(TestBlocks.AZURITE_TRAPDOOR.get());
+        this.createLamp(TestBlocks.AZURITE_LAMP.get(), TestBlockStateProperties.CLICKED);
 
+    }
+
+    public void createLamp(Block block, BooleanProperty litProperty) {
+        MultiVariant off = BlockModelGenerators.plainVariant(TexturedModel.CUBE.create(block, blockModels.modelOutput));
+        MultiVariant on = BlockModelGenerators.plainVariant(blockModels.createSuffixedVariant(block, "_on", ModelTemplates.CUBE_ALL, TextureMapping::cube));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(BlockModelGenerators.createBooleanModelDispatch(litProperty, on, off)));
+    }
+
+    @SuppressWarnings("usused")
+    public void createLamp(Block block) {
+        createLamp(block, BlockStateProperties.LIT);
     }
 }

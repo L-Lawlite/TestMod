@@ -38,6 +38,7 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
         dropSelf(TestBlocks.AZURITE_FENCE_GATE.get());
         dropSelf(TestBlocks.AZURITE_WALLS.get());
         dropSelf(TestBlocks.AZURITE_TRAPDOOR.get());
+        dropSelf(TestBlocks.AZURITE_LAMP.get());
 
         add(TestBlocks.AZURITE_DOOR.get(), this::createDoorTable);
         add(TestBlocks.AZURITE_SLAB.get(), this::createSlabItemTable);

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "testmod:azurite",
+    "L": "minecraft:redstone_lamp"
+  },
+  "pattern": [
+    " A ",
+    "ALA",
+    " A "
+  ],
+  "result": {
+    "id": "testmod:azurite_lamp"
+  }
+}
