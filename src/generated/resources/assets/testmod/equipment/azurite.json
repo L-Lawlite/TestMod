@@ -1,5 +1,10 @@
 {
   "layers": {
+    "horse_body": [
+      {
+        "texture": "testmod:azurite"
+      }
+    ],
     "humanoid": [
       {
         "texture": "testmod:azurite"

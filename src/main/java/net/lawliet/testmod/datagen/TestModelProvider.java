@@ -39,6 +39,7 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateTrimmableItem(TestItems.AZURITE_CHESTPLATE.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
         itemModels.generateTrimmableItem(TestItems.AZURITE_LEGGINGS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
         itemModels.generateTrimmableItem(TestItems.AZURITE_BOOTS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
+        itemModels.generateFlatItem(TestItems.AZURITE_HORSE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
 
         blockModels.createTrivialCube(TestBlocks.RAW_AZURITE_BLOCK.get());
         blockModels.createTrivialCube(TestBlocks.AZURITE_ORE.get());

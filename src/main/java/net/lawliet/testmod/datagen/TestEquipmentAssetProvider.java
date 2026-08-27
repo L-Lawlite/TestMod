@@ -23,6 +23,7 @@ public class TestEquipmentAssetProvider extends EquipmentAssetProvider {
     protected void bootstrap(BiConsumer<ResourceKey<EquipmentAsset>, EquipmentClientInfo> output) {
         output.accept(TestEquipmentAssets.AZURITE, EquipmentClientInfo.builder()
                         .addHumanoidLayers(TestMod.createIdentifier("azurite"), false)
+                        .addLayers(EquipmentClientInfo.LayerType.HORSE_BODY, new EquipmentClientInfo.Layer(TestMod.createIdentifier("azurite")))
                 .build());
     }
 }

@@ -32,6 +32,7 @@ public class TestItems {
     public static final DeferredItem<Item> AZURITE_CHESTPLATE = ITEMS.registerSimpleItem("azurite_chestplate", properties -> properties.humanoidArmor(TestArmorMaterials.AZURITE, ArmorType.CHESTPLATE));
     public static final DeferredItem<Item> AZURITE_LEGGINGS = ITEMS.registerSimpleItem("azurite_leggings", properties -> properties.humanoidArmor(TestArmorMaterials.AZURITE, ArmorType.LEGGINGS));
     public static final DeferredItem<Item> AZURITE_BOOTS = ITEMS.registerSimpleItem("azurite_boots", properties -> properties.humanoidArmor(TestArmorMaterials.AZURITE, ArmorType.BOOTS));
+    public static final DeferredItem<Item> AZURITE_HORSE_ARMOR = ITEMS.registerSimpleItem("azurite_horse_armor", properties -> properties.horseArmor(TestArmorMaterials.AZURITE));
 
 
     public static void register(IEventBus eventBus) {
@@ -59,5 +60,6 @@ public class TestItems {
         output.accept(AZURITE_CHESTPLATE);
         output.accept(AZURITE_LEGGINGS);
         output.accept(AZURITE_BOOTS);
+        output.accept(AZURITE_HORSE_ARMOR);
     }
 }
