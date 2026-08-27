@@ -1,6 +1,7 @@
 package net.lawliet.testmod.datagen;
 
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.item.TestEquipmentAssets;
 import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -34,8 +35,11 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateFlatItem(TestItems.AZURITE_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(TestItems.AZURITE_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateSpear(TestItems.AZURITE_SPEAR.get());
+        itemModels.generateTrimmableItem(TestItems.AZURITE_HELMET.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
+        itemModels.generateTrimmableItem(TestItems.AZURITE_CHESTPLATE.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
+        itemModels.generateTrimmableItem(TestItems.AZURITE_LEGGINGS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
+        itemModels.generateTrimmableItem(TestItems.AZURITE_BOOTS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
 
-//        blockModels.createTrivialCube(TestBlocks.AZURITE_BLOCK.get());
         blockModels.createTrivialCube(TestBlocks.RAW_AZURITE_BLOCK.get());
         blockModels.createTrivialCube(TestBlocks.AZURITE_ORE.get());
         blockModels.createTrivialCube(TestBlocks.AZURITE_DEEPSLATE_ORE.get());

@@ -40,5 +40,9 @@ public class TestItemTagProvider extends BlockTagCopyingItemTagProvider {
         tag(ItemTags.SHOVELS).add(TestItems.AZURITE_SHOVEL.get());
         tag(ItemTags.HOES).add(TestItems.AZURITE_HOE.get());
         tag(ItemTags.SPEARS).add(TestItems.AZURITE_SPEAR.get());
+        tag(ItemTags.HEAD_ARMOR).add(TestItems.AZURITE_HELMET.get());
+        tag(ItemTags.CHEST_ARMOR).add(TestItems.AZURITE_CHESTPLATE.get());
+        tag(ItemTags.LEG_ARMOR).add(TestItems.AZURITE_LEGGINGS.get());
+        tag(ItemTags.FOOT_ARMOR).add(TestItems.AZURITE_BOOTS.get());
     }
 }

@@ -28,5 +28,6 @@ public class TestModDatagen {
         )));
         event.createProvider(TestRecipeProvider.Runner::new);
         event.createProvider(TestDataMapProvider::new);
+        event.createProvider(TestEquipmentAssetProvider::new);
     }
 }

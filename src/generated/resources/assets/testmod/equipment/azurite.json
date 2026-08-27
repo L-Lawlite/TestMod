@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "testmod:azurite"
+      }
+    ],
+    "humanoid_baby": [
+      {
+        "texture": "testmod:azurite"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "testmod:azurite"
+      }
+    ]
+  }
+}

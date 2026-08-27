@@ -318,6 +318,37 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
     }
 
+    protected ShapedRecipeBuilder helmetBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("###")
+                .pattern("# #")
+                .define('#', base)
+                .unlockedBy(getHasName(base),this.has(base));
+    }
+
+    protected ShapedRecipeBuilder chestplateBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .define('#', base)
+                .unlockedBy(getHasName(base),this.has(base));
+    }
+    protected ShapedRecipeBuilder leggingsBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', base)
+                .unlockedBy(getHasName(base),this.has(base));
+    }
+    protected ShapedRecipeBuilder bootsBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', base)
+                .unlockedBy(getHasName(base),this.has(base));
+    }
 
     @Override
     protected void wall(RecipeCategory category, ItemLike result, ItemLike base) {

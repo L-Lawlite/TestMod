@@ -3,6 +3,7 @@ package net.lawliet.testmod;
 import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.registries.TestCreativeModeTabs;
 import net.lawliet.testmod.registries.TestItems;
+import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -45,6 +46,10 @@ public class TestMod {
         LOGGER.info("{}{}", Config.MAGIC_NUMBER_INTRODUCTION.get(), Config.MAGIC_NUMBER.getAsInt());
 
         Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
+    }
+
+    public static Identifier createIdentifier(String id) {
+        return Identifier.fromNamespaceAndPath(MODID, id);
     }
 
 

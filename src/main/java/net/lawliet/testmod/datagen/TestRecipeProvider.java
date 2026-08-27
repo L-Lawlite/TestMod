@@ -56,7 +56,12 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
         axeBuilder(TestItems.AZURITE_AXE, TestTags.Items.AZURITE_TOOL_MATERIAL).save(output);
         hoeBuilder(TestItems.AZURITE_HOE, TestTags.Items.AZURITE_TOOL_MATERIAL).save(output);
         spearBuilder(TestItems.AZURITE_SPEAR, TestTags.Items.AZURITE_TOOL_MATERIAL).save(output);
+        helmetBuilder(TestItems.AZURITE_HELMET, TestItems.AZURITE).save(output);
+        chestplateBuilder(TestItems.AZURITE_CHESTPLATE, TestItems.AZURITE).save(output);
+        leggingsBuilder(TestItems.AZURITE_LEGGINGS, TestItems.AZURITE).save(output);
+        bootsBuilder(TestItems.AZURITE_BOOTS, TestItems.AZURITE).save(output);
     }
+
 
 
     public static class Runner extends RecipeProvider.Runner {

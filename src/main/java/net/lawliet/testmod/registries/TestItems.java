@@ -4,8 +4,10 @@ import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.food.TestConsumables;
 import net.lawliet.testmod.food.TestFoods;
 import net.lawliet.testmod.item.MetalDetectorItem;
+import net.lawliet.testmod.item.TestArmorMaterials;
 import net.lawliet.testmod.item.TestToolMaterials;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -26,6 +28,10 @@ public class TestItems {
     public static final DeferredItem<Item> AZURITE_HOE = ITEMS.registerItem("azurite_hoe", properties -> new HoeItem( TestToolMaterials.AZURITE, 0, -3.8f, properties));
     public static final DeferredItem<Item> AZURITE_SPEAR = ITEMS.registerSimpleItem("azurite_spear", properties -> properties.spear(TestToolMaterials.AZURITE, 0.95f, 0.7f, 0.7f, 3.5f, 13f, 8.5f, 5.1f, 13.37f, 4.67f));
 
+    public static final DeferredItem<Item> AZURITE_HELMET = ITEMS.registerSimpleItem("azurite_helmet", properties -> properties.humanoidArmor(TestArmorMaterials.AZURITE, ArmorType.HELMET));
+    public static final DeferredItem<Item> AZURITE_CHESTPLATE = ITEMS.registerSimpleItem("azurite_chestplate", properties -> properties.humanoidArmor(TestArmorMaterials.AZURITE, ArmorType.CHESTPLATE));
+    public static final DeferredItem<Item> AZURITE_LEGGINGS = ITEMS.registerSimpleItem("azurite_leggings", properties -> properties.humanoidArmor(TestArmorMaterials.AZURITE, ArmorType.LEGGINGS));
+    public static final DeferredItem<Item> AZURITE_BOOTS = ITEMS.registerSimpleItem("azurite_boots", properties -> properties.humanoidArmor(TestArmorMaterials.AZURITE, ArmorType.BOOTS));
 
 
     public static void register(IEventBus eventBus) {
@@ -49,5 +55,9 @@ public class TestItems {
         output.accept(AZURITE_AXE);
         output.accept(AZURITE_SPEAR);
         output.accept(AZURITE_HOE);
+        output.accept(AZURITE_HELMET);
+        output.accept(AZURITE_CHESTPLATE);
+        output.accept(AZURITE_LEGGINGS);
+        output.accept(AZURITE_BOOTS);
     }
 }

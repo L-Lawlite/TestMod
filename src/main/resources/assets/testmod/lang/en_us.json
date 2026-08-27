@@ -10,6 +10,10 @@
   "item.testmod.azurite_axe": "Azurite Axe",
   "item.testmod.azurite_hoe":  "Azurite Hoe",
   "item.testmod.azurite_spear": "Azurite Spear",
+  "item.testmod.azurite_helmet": "Azurite Helmet",
+  "item.testmod.azurite_chestplate": "Azurite Chestplate",
+  "item.testmod.azurite_leggings": "Azurite Leggings",
+  "item.testmod.azurite_boots": "Azurite Boots",
 
   "block.testmod.azurite_block": "Azurite Block",
   "block.testmod.raw_azurite_block": "Raw Azurite Block",
