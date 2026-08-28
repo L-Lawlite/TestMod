@@ -60,6 +60,7 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateTrimmableItem(TestItems.AZURITE_BOOTS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
         itemModels.generateFlatItem(TestItems.AZURITE_HORSE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
         this.createDataTablet(TestItems.DATA_TABLET.get());
+        this.createBow(TestItems.TEST_BOW.get());
 
         blockModels.createTrivialCube(TestBlocks.RAW_AZURITE_BLOCK.get());
         blockModels.createTrivialCube(TestBlocks.AZURITE_ORE.get());
@@ -98,6 +99,11 @@ public class TestModelProvider extends ModelProvider {
                         ),
                         new ClientItem.Properties(false, false, 1f)
                 ));
+    }
+
+    public void createBow(Item item) {
+        itemModels.createFlatItemModel(item, ModelTemplates.BOW);
+        itemModels.generateBow(item);
     }
 
     @SuppressWarnings("unused")

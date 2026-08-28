@@ -67,9 +67,22 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
         makeAzuriteLamp();
         makeDataTablet();
         makeMetalDetector();
+        makeTestBow();
     }
 
-    public void makeMetalDetector() {
+    private void makeTestBow() {
+        shaped(RecipeCategory.COMBAT, TestItems.TEST_BOW)
+                .pattern("A ")
+                .pattern(" B")
+                .pattern("A ")
+                .define('A', TestItems.AZURITE)
+                .define('B', Tags.Items.TOOLS_BOW)
+                .unlockedBy("has_bow", has(Tags.Items.TOOLS_BOW))
+                .unlockedBy("has_azurite",  has(TestItems.AZURITE))
+                .save(output);
+    }
+
+    private void makeMetalDetector() {
         shaped(RecipeCategory.MISC, TestItems.METAL_DETECTOR)
                 .pattern("  S")
                 .pattern("SI ")
@@ -81,7 +94,7 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
                 .save(output);
     }
 
-    public void makeAzuriteLamp() {
+    private void makeAzuriteLamp() {
         ItemLike item = TestItems.AZURITE;
         ItemLike lamp = Items.REDSTONE_LAMP;
         shaped(RecipeCategory.DECORATIONS, TestBlocks.AZURITE_LAMP)
@@ -95,7 +108,7 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
                 .save(output);
     }
 
-    public void makeDataTablet() {
+    private void makeDataTablet() {
         ItemLike item = TestItems.AZURITE;
         TagKey<Item> glass_pane = Tags.Items.GLASS_PANES;
         shaped(RecipeCategory.MISC, TestItems.DATA_TABLET)
