@@ -83,6 +83,8 @@ public class TestModelProvider extends ModelProvider {
                 .trapdoor(TestBlocks.AZURITE_TRAPDOOR.get());
         this.createLamp(TestBlocks.AZURITE_LAMP.get(), TestBlockStateProperties.CLICKED);
 
+        blockModels.createNonTemplateModelBlock(TestBlocks.PEDESTAL.get());
+
     }
 
     public void createLamp(Block block, BooleanProperty litProperty) {

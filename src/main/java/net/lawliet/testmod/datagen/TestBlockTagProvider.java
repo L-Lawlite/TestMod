@@ -28,6 +28,7 @@ public class TestBlockTagProvider extends BlockTagsProvider {
                 .add(TestBlocks.AZURITE_PRESSURE_PLATE.get())
                 .add(TestBlocks.AZURITE_DOOR.get())
                 .add(TestBlocks.AZURITE_TRAPDOOR.get())
+                .add(TestBlocks.PEDESTAL.get())
         ;
 
         tag(BlockTags.NEEDS_IRON_TOOL)

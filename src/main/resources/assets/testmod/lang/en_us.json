@@ -37,6 +37,7 @@
   "block.testmod.azurite_door":  "Azurite Door",
   "block.testmod.azurite_trapdoor":  "Azurite Trapdoor",
   "block.testmod.azurite_lamp":  "Azurite Lamp",
+  "block.testmod.pedestal":  "Pedestal",
 
 
   "testmod.configuration.title": "TestMod Configs",

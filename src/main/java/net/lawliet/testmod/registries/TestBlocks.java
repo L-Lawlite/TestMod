@@ -3,6 +3,7 @@ package net.lawliet.testmod.registries;
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.block.AzuriteLampBlock;
 import net.lawliet.testmod.block.MagicBlock;
+import net.lawliet.testmod.block.PedestalBlock;
 import net.lawliet.testmod.block.blockState.TestBlockStateProperties;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -99,6 +100,9 @@ public class TestBlocks {
             properties -> properties.strength(3f).sound(SoundType.GLASS).lightLevel(state -> state.getValue(TestBlockStateProperties.CLICKED) ? 15 : 0).isValidSpawn(Blocks::always)
             );
 
+    public static final DeferredBlock<Block> PEDESTAL = registerBlock("pedestal", PedestalBlock::new,
+            properties -> properties.strength(2).requiresCorrectToolForDrops().sound(SoundType.STONE));
+
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
@@ -123,6 +127,7 @@ public class TestBlocks {
         output.accept(AZURITE_DOOR);
         output.accept(AZURITE_TRAPDOOR);
         output.accept(AZURITE_LAMP);
+        output.accept(PEDESTAL);
 
     }
 
