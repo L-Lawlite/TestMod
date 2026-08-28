@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "testmod:saw_them",
+      "required": false
+    },
+    {
+      "id": "testmod:shrimp",
+      "required": false
+    },
+    {
+      "id": "testmod:world",
+      "required": false
+    }
+  ]
+}

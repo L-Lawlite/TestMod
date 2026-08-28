@@ -2,7 +2,7 @@ package net.lawliet.testmod.datagen;
 
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.registries.TestBlocks;
-import net.lawliet.testmod.datagen.advancedRecipeProvider.ModdedRecipeProvider;
+import net.lawliet.testmod.datagen.advancedProvider.ModdedRecipeProvider;
 import net.lawliet.testmod.registries.TestItems;
 import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.core.HolderLookup;

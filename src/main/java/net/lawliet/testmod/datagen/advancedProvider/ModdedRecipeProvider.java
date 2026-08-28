@@ -1,4 +1,4 @@
-package net.lawliet.testmod.datagen.advancedRecipeProvider;
+package net.lawliet.testmod.datagen.advancedProvider;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;

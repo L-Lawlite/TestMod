@@ -1,7 +1,7 @@
 package net.lawliet.testmod;
 
 import net.lawliet.testmod.datagen.*;
-import net.lawliet.testmod.datagen.advancedRecipeProvider.TestDataMapProvider;
+import net.lawliet.testmod.datagen.TestDataMapProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -29,5 +29,7 @@ public class TestModDatagen {
         event.createProvider(TestRecipeProvider.Runner::new);
         event.createProvider(TestDataMapProvider::new);
         event.createProvider(TestEquipmentAssetProvider::new);
+        event.createProvider(TestDatapackProvider::new);
+        event.createProvider(TestPaintingTagsProvider::new);
     }
 }

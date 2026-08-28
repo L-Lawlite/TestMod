@@ -51,8 +51,19 @@
   "itemGroup.testmod.test_blocks": "Test Blocks",
   "item.testmod.message.metal_detector.no_valuables": "No Valuables found",
   "item.testmod.message.metal_detector.valuable_found": "Valuables Found: %s at %s",
+
   "tooltip.testmod.magic_block": "This block is magical.",
   "tooltip.testmod.metal_detector": "Can be used to find valuable items",
   "tooltip.testmod.expansion": "Press %s to see further details",
-  "key.keyboard.shift": "Shift"
+
+  "key.keyboard.shift": "Shift",
+
+  "painting.testmod.shrimp.title": "Shrimp",
+  "painting.testmod.shrimp.author": "NanoAttack",
+  "painting.testmod.world.title": "World",
+  "painting.testmod.world.author": "NanoAttack",
+  "painting.testmod.saw_them.title": "Saw Them",
+  "painting.testmod.saw_them.author": "NanoAttack"
+
+
 }
