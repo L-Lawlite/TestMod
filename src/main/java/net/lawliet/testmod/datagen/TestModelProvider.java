@@ -62,6 +62,8 @@ public class TestModelProvider extends ModelProvider {
         this.createDataTablet(TestItems.DATA_TABLET.get());
         this.createBow(TestItems.TEST_BOW.get());
 
+        itemModels.declareCustomModelItem(TestItems.BLIZZARD_STAFF.get());
+
         blockModels.createTrivialCube(TestBlocks.RAW_AZURITE_BLOCK.get());
         blockModels.createTrivialCube(TestBlocks.AZURITE_ORE.get());
         blockModels.createTrivialCube(TestBlocks.AZURITE_DEEPSLATE_ORE.get());

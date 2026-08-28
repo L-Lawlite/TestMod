@@ -38,6 +38,7 @@ public class TestItems {
     public static final DeferredItem<Item> TEST_BOW = ITEMS.registerItem("test_bow", BowItem::new, properties -> properties.enchantable(1).durability(400));
 
     public static final DeferredItem<Item> DATA_TABLET = ITEMS.registerItem("data_tablet", DataTabletItem::new, properties -> properties.stacksTo(1));
+    public static final DeferredItem<Item> BLIZZARD_STAFF = ITEMS.registerSimpleItem("blizzard_staff", properties -> properties.stacksTo(1));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
@@ -67,5 +68,6 @@ public class TestItems {
         output.accept(AZURITE_HORSE_ARMOR);
         output.accept(DATA_TABLET);
         output.accept(TEST_BOW);
+        output.accept(BLIZZARD_STAFF);
     }
 }
