@@ -10,9 +10,12 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -62,6 +65,20 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
         leggingsBuilder(TestItems.AZURITE_LEGGINGS, TestItems.AZURITE).save(output);
         bootsBuilder(TestItems.AZURITE_BOOTS, TestItems.AZURITE).save(output);
         makeAzuriteLamp();
+        makeDataTablet();
+        makeMetalDetector();
+    }
+
+    public void makeMetalDetector() {
+        shaped(RecipeCategory.MISC, TestItems.METAL_DETECTOR)
+                .pattern("  S")
+                .pattern("SI ")
+                .pattern("B  ")
+                .define('S', Items.STICK)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('B', Tags.Items.STORAGE_BLOCKS_IRON)
+                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
+                .save(output);
     }
 
     public void makeAzuriteLamp() {
@@ -75,6 +92,20 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
                 .define('L', lamp)
                 .unlockedBy(getHasName(lamp), has(lamp))
                 .unlockedBy(getHasName(item), has(item))
+                .save(output);
+    }
+
+    public void makeDataTablet() {
+        ItemLike item = TestItems.AZURITE;
+        TagKey<Item> glass_pane = Tags.Items.GLASS_PANES;
+        shaped(RecipeCategory.MISC, TestItems.DATA_TABLET)
+                .pattern(" A ")
+                .pattern("AGA")
+                .pattern(" A ")
+                .define('A', item)
+                .define('G', glass_pane)
+                .unlockedBy(getHasName(item), has(item))
+                .unlockedBy("has_glass_pane", has(glass_pane))
                 .save(output);
     }
 

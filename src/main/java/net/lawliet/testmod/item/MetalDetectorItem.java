@@ -1,5 +1,8 @@
 package net.lawliet.testmod.item;
 
+import net.lawliet.testmod.data.component.BlockData;
+import net.lawliet.testmod.registries.TestDataComponent;
+import net.lawliet.testmod.registries.TestItems;
 import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -49,6 +52,9 @@ public class MetalDetectorItem extends Item {
                     //Perform other logic
                     level.playSound(null, positionClicked, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.5f, 1f);
                     spawnFoundParticle(level, positionClicked, state);
+
+                    addDataToDataTablet(player, blockPos, state.getBlock());
+
                     break;
                 }
             }
@@ -59,6 +65,13 @@ public class MetalDetectorItem extends Item {
 
         }
         return InteractionResult.SUCCESS;
+    }
+
+    private void addDataToDataTablet(Player player, BlockPos pos, Block foundBlock) {
+        int slotIndex = player.getInventory().findSlotMatchingItem(new ItemStack(TestItems.DATA_TABLET.get()));
+        if (slotIndex == -1) return;
+        ItemStack dataTablet = player.getInventory().getItem(slotIndex);
+        dataTablet.set(TestDataComponent.BLOCK_DATA, new BlockData(pos, foundBlock));
     }
 
     protected void spawnFoundParticle(Level level, BlockPos positionClicked, BlockState state) {

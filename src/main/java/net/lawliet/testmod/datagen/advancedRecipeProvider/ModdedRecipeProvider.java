@@ -298,9 +298,9 @@ public abstract class ModdedRecipeProvider extends RecipeProvider {
 
     protected ShapedRecipeBuilder spearBuilder(ItemLike result, TagKey<Item> base) {
         return shaped(RecipeCategory.COMBAT, result)
-                .pattern("##")
-                .pattern(" S")
-                .pattern(" S")
+                .pattern("  #")
+                .pattern(" S ")
+                .pattern("S  ")
                 .define('#', base)
                 .define('S', Items.STICK)
                 .unlockedBy("has_tool_material",this.has(base))

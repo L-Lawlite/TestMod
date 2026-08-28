@@ -3,12 +3,14 @@ package net.lawliet.testmod.registries;
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.food.TestConsumables;
 import net.lawliet.testmod.food.TestFoods;
+import net.lawliet.testmod.item.DataTabletItem;
 import net.lawliet.testmod.item.MetalDetectorItem;
 import net.lawliet.testmod.item.TestArmorMaterials;
 import net.lawliet.testmod.item.TestToolMaterials;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -18,7 +20,7 @@ public class TestItems {
 
     public static final DeferredItem<Item> AZURITE = ITEMS.registerSimpleItem("azurite");
     public static final DeferredItem<Item> RAW_AZURITE = ITEMS.registerSimpleItem("raw_azurite");
-    public static final DeferredItem<Item> METAL_DETECTOR = ITEMS.registerItem("metal_detector", MetalDetectorItem::new, properties -> properties.durability(64));
+    public static final DeferredItem<Item> METAL_DETECTOR = ITEMS.registerItem("metal_detector", MetalDetectorItem::new, properties -> properties.durability(64).repairable(Tags.Items.INGOTS_IRON));
     public static final DeferredItem<Item> ONION = ITEMS.registerSimpleItem("onion", properties -> properties.food(TestFoods.ONION, TestConsumables.ONION));
     public static final DeferredItem<Item> END_FIRE_STARTER = ITEMS.registerSimpleItem("end_fire_starter");
     public static final DeferredItem<Item> AZURITE_SWORD = ITEMS.registerSimpleItem("azurite_sword", properties -> properties.sword(TestToolMaterials.AZURITE, 3, -2.4f));
@@ -34,6 +36,7 @@ public class TestItems {
     public static final DeferredItem<Item> AZURITE_BOOTS = ITEMS.registerSimpleItem("azurite_boots", properties -> properties.humanoidArmor(TestArmorMaterials.AZURITE, ArmorType.BOOTS));
     public static final DeferredItem<Item> AZURITE_HORSE_ARMOR = ITEMS.registerSimpleItem("azurite_horse_armor", properties -> properties.horseArmor(TestArmorMaterials.AZURITE));
 
+    public static final DeferredItem<Item> DATA_TABLET = ITEMS.registerItem("data_tablet", DataTabletItem::new, properties -> properties.stacksTo(1));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
@@ -61,5 +64,6 @@ public class TestItems {
         output.accept(AZURITE_LEGGINGS);
         output.accept(AZURITE_BOOTS);
         output.accept(AZURITE_HORSE_ARMOR);
+        output.accept(DATA_TABLET);
     }
 }

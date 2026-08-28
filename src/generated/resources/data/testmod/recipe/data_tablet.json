@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "testmod:azurite",
+    "G": "#c:glass_panes"
+  },
+  "pattern": [
+    " A ",
+    "AGA",
+    " A "
+  ],
+  "result": {
+    "id": "testmod:data_tablet"
+  }
+}

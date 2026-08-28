@@ -4,20 +4,29 @@ import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.block.blockState.TestBlockStateProperties;
 import net.lawliet.testmod.item.TestEquipmentAssets;
 import net.lawliet.testmod.registries.TestBlocks;
+import net.lawliet.testmod.registries.TestDataComponent;
 import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.client.renderer.item.ClientItem;
+import net.minecraft.client.renderer.item.ConditionalItemModel;
+import net.minecraft.client.renderer.item.ItemModel;
+import net.minecraft.client.renderer.item.properties.conditional.HasComponent;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+
+import java.util.Optional;
 
 public class TestModelProvider extends ModelProvider {
     public TestModelProvider(PackOutput output) {
@@ -50,6 +59,7 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateTrimmableItem(TestItems.AZURITE_LEGGINGS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
         itemModels.generateTrimmableItem(TestItems.AZURITE_BOOTS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
         itemModels.generateFlatItem(TestItems.AZURITE_HORSE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
+        this.createDataTablet(TestItems.DATA_TABLET.get());
 
         blockModels.createTrivialCube(TestBlocks.RAW_AZURITE_BLOCK.get());
         blockModels.createTrivialCube(TestBlocks.AZURITE_ORE.get());
@@ -78,7 +88,19 @@ public class TestModelProvider extends ModelProvider {
         blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(BlockModelGenerators.createBooleanModelDispatch(litProperty, on, off)));
     }
 
-    @SuppressWarnings("usused")
+    public void createDataTablet(Item item) {
+        ItemModel.Unbaked unbakedDataTablet = ItemModelUtils.plainModel(itemModels.createFlatItemModel(item, ModelTemplates.FLAT_ITEM));
+        ItemModel.Unbaked unbakedDataTabletOn = ItemModelUtils.plainModel(itemModels.createFlatItemModel(item, "_on", ModelTemplates.FLAT_ITEM));
+        itemModels.itemModelOutput.register(item,
+                new ClientItem(
+                        new ConditionalItemModel.Unbaked(Optional.empty(),
+                                new HasComponent(TestDataComponent.BLOCK_DATA.get(), false) , unbakedDataTabletOn, unbakedDataTablet
+                        ),
+                        new ClientItem.Properties(false, false, 1f)
+                ));
+    }
+
+    @SuppressWarnings("unused")
     public void createLamp(Block block) {
         createLamp(block, BlockStateProperties.LIT);
     }

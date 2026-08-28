@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "#c:storage_blocks/iron",
+    "I": "#c:ingots/iron",
+    "S": "minecraft:stick"
+  },
+  "pattern": [
+    "  S",
+    "SI ",
+    "B  "
+  ],
+  "result": {
+    "id": "testmod:metal_detector"
+  }
+}
