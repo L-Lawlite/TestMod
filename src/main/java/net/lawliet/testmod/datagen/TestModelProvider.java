@@ -2,6 +2,7 @@ package net.lawliet.testmod.datagen;
 
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.block.blockState.TestBlockStateProperties;
+import net.lawliet.testmod.block.crop.OnionBlock;
 import net.lawliet.testmod.item.TestEquipmentAssets;
 import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.registries.TestDataComponent;
@@ -46,7 +47,7 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateFlatItem(TestItems.AZURITE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.RAW_AZURITE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.METAL_DETECTOR.get(), ModelTemplates.FLAT_ITEM);
-        itemModels.generateFlatItem(TestItems.ONION.get(), ModelTemplates.FLAT_ITEM);
+//        itemModels.generateFlatItem(TestItems.ONION.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.END_FIRE_STARTER.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.AZURITE_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(TestItems.AZURITE_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
@@ -82,8 +83,10 @@ public class TestModelProvider extends ModelProvider {
                 .door(TestBlocks.AZURITE_DOOR.get())
                 .trapdoor(TestBlocks.AZURITE_TRAPDOOR.get());
         this.createLamp(TestBlocks.AZURITE_LAMP.get(), TestBlockStateProperties.CLICKED);
+        blockModels.createCropBlock(TestBlocks.ONION.get(), OnionBlock.AGE, 0, 1, 2, 3);
 
         blockModels.createNonTemplateModelBlock(TestBlocks.PEDESTAL.get());
+
 
     }
 

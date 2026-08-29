@@ -1,7 +1,9 @@
 package net.lawliet.testmod.datagen;
 
+import net.lawliet.testmod.block.crop.OnionBlock;
 import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.registries.TestItems;
+import net.minecraft.advancements.predicates.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -11,10 +13,13 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
@@ -60,7 +65,14 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
                 createMultipleOreDrops(TestBlocks.AZURITE_END_ORE.get(), TestItems.RAW_AZURITE.get(), 2, 3)
         );
 
+        makeOnionLootTableWithSelf(TestBlocks.ONION.get());
 
+    }
+
+    private void makeOnionLootTableWithSelf(Block block) {
+        HolderLookup.RegistryLookup<Enchantment> enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+        LootItemCondition.Builder isCropMaxAge = LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnionBlock.AGE, OnionBlock.MAX_AGE));
+        this.add(block, this.applyExplosionDecay(block, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(block))).withPool(LootPool.lootPool().when(isCropMaxAge).add(LootItem.lootTableItem(block).apply(ApplyBonusCount.addBonusBinomialDistributionCount(enchantments.getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3))))));
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block block, ItemLike item, NumberProvider count) {

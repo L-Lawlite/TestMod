@@ -89,5 +89,7 @@ public class TestBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.INCORRECT_FOR_GOLD_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
         tag(BlockTags.INCORRECT_FOR_STONE_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
+
+        tag(BlockTags.CROPS).add(TestBlocks.ONION.getKey());
     }
 }

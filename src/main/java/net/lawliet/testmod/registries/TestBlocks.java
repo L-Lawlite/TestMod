@@ -5,6 +5,7 @@ import net.lawliet.testmod.block.AzuriteLampBlock;
 import net.lawliet.testmod.block.MagicBlock;
 import net.lawliet.testmod.block.PedestalBlock;
 import net.lawliet.testmod.block.blockState.TestBlockStateProperties;
+import net.lawliet.testmod.block.crop.OnionBlock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -102,6 +103,10 @@ public class TestBlocks {
 
     public static final DeferredBlock<Block> PEDESTAL = registerBlock("pedestal", PedestalBlock::new,
             properties -> properties.strength(2).requiresCorrectToolForDrops().sound(SoundType.STONE));
+
+    public static final DeferredBlock<Block> ONION = BLOCKS.registerBlock("onion_crop", OnionBlock::new,
+            properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.CROP));
+
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

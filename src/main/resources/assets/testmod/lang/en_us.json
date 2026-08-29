@@ -38,7 +38,7 @@
   "block.testmod.azurite_trapdoor":  "Azurite Trapdoor",
   "block.testmod.azurite_lamp":  "Azurite Lamp",
   "block.testmod.pedestal":  "Pedestal",
-
+  "block.testmod.onion_crop":  "Onion Crop",
 
   "testmod.configuration.title": "TestMod Configs",
   "testmod.configuration.section.testmod.common.toml": "TestMod Configs",

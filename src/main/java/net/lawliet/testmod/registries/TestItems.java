@@ -21,7 +21,7 @@ public class TestItems {
     public static final DeferredItem<Item> AZURITE = ITEMS.registerSimpleItem("azurite");
     public static final DeferredItem<Item> RAW_AZURITE = ITEMS.registerSimpleItem("raw_azurite");
     public static final DeferredItem<Item> METAL_DETECTOR = ITEMS.registerItem("metal_detector", MetalDetectorItem::new, properties -> properties.durability(64).repairable(Tags.Items.INGOTS_IRON));
-    public static final DeferredItem<Item> ONION = ITEMS.registerSimpleItem("onion", properties -> properties.food(TestFoods.ONION, TestConsumables.ONION));
+    public static final DeferredItem<Item> ONION = ITEMS.registerItem("onion", properties -> new BlockItem(TestBlocks.ONION.get(), properties.food(TestFoods.ONION, TestConsumables.ONION).useItemDescriptionPrefix()));
     public static final DeferredItem<Item> END_FIRE_STARTER = ITEMS.registerSimpleItem("end_fire_starter");
     public static final DeferredItem<Item> AZURITE_SWORD = ITEMS.registerSimpleItem("azurite_sword", properties -> properties.sword(TestToolMaterials.AZURITE, 3, -2.4f));
     public static final DeferredItem<Item> AZURITE_PICKAXE = ITEMS.registerSimpleItem("azurite_pickaxe", properties -> properties.pickaxe(TestToolMaterials.AZURITE, 1, -2.8f));
