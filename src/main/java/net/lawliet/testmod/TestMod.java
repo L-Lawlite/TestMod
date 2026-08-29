@@ -1,9 +1,6 @@
 package net.lawliet.testmod;
 
-import net.lawliet.testmod.registries.TestBlocks;
-import net.lawliet.testmod.registries.TestCreativeModeTabs;
-import net.lawliet.testmod.registries.TestDataComponent;
-import net.lawliet.testmod.registries.TestItems;
+import net.lawliet.testmod.registries.*;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 
@@ -32,6 +29,7 @@ public class TestMod {
         TestBlocks.register(modEventBus);
         TestCreativeModeTabs.register(modEventBus);
         TestDataComponent.register(modEventBus);
+        TestStats.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
 
 

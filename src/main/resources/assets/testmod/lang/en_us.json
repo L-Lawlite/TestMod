@@ -63,7 +63,9 @@
   "painting.testmod.world.title": "World",
   "painting.testmod.world.author": "NanoAttack",
   "painting.testmod.saw_them.title": "Saw Them",
-  "painting.testmod.saw_them.author": "NanoAttack"
+  "painting.testmod.saw_them.author": "NanoAttack",
+
+  "stat.testmod.valuables_found": "Valuables_Found"
 
 
 }

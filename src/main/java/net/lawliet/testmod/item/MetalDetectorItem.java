@@ -3,6 +3,7 @@ package net.lawliet.testmod.item;
 import net.lawliet.testmod.data.component.BlockData;
 import net.lawliet.testmod.registries.TestDataComponent;
 import net.lawliet.testmod.registries.TestItems;
+import net.lawliet.testmod.registries.TestStats;
 import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -54,6 +55,7 @@ public class MetalDetectorItem extends Item {
                     spawnFoundParticle(level, positionClicked, state);
 
                     addDataToDataTablet(player, blockPos, state.getBlock());
+                    player.awardStat(TestStats.VALUABLES_FOUND.get());
 
                     break;
                 }
