@@ -19,29 +19,29 @@ public class TestBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(TestBlocks.AZURITE_BLOCK.get())
-                .add(TestBlocks.RAW_AZURITE_BLOCK.get())
+                .add(TestBlocks.AZURITE_BLOCK.getKey())
+                .add(TestBlocks.RAW_AZURITE_BLOCK.getKey())
                 .addTag(TestTags.Blocks.AZURITE_ORES)
-                .add(TestBlocks.MAGIC_BLOCK.get())
-                .add(TestBlocks.AZURITE_STAIRS.get())
-                .add(TestBlocks.AZURITE_SLAB.get())
-                .add(TestBlocks.AZURITE_PRESSURE_PLATE.get())
-                .add(TestBlocks.AZURITE_DOOR.get())
-                .add(TestBlocks.AZURITE_TRAPDOOR.get())
-                .add(TestBlocks.PEDESTAL.get())
+                .add(TestBlocks.MAGIC_BLOCK.getKey())
+                .add(TestBlocks.AZURITE_STAIRS.getKey())
+                .add(TestBlocks.AZURITE_SLAB.getKey())
+                .add(TestBlocks.AZURITE_PRESSURE_PLATE.getKey())
+                .add(TestBlocks.AZURITE_DOOR.getKey())
+                .add(TestBlocks.AZURITE_TRAPDOOR.getKey())
+                .add(TestBlocks.PEDESTAL.getKey())
         ;
 
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .addTag(TestTags.Blocks.AZURITE_ORES);
 
         tag(BlockTags.MINEABLE_WITH_AXE)
-                .add(TestBlocks.TEST_SHELF.get());
+                .add(TestBlocks.TEST_SHELF.getKey());
 
         tag(TestTags.Blocks.AZURITE_ORES)
-                .add(TestBlocks.AZURITE_ORE.get())
-                .add(TestBlocks.AZURITE_DEEPSLATE_ORE.get())
-                .add(TestBlocks.AZURITE_NETHER_ORE.get())
-                .add(TestBlocks.AZURITE_END_ORE.get())
+                .add(TestBlocks.AZURITE_ORE.getKey())
+                .add(TestBlocks.AZURITE_DEEPSLATE_ORE.getKey())
+                .add(TestBlocks.AZURITE_NETHER_ORE.getKey())
+                .add(TestBlocks.AZURITE_END_ORE.getKey())
         ;
 
         tag(TestTags.Blocks.METAL_DETECTABLE)
@@ -51,33 +51,33 @@ public class TestBlockTagProvider extends BlockTagsProvider {
                 .addTag(Tags.Blocks.STORAGE_BLOCKS_RAW_IRON);
 
         tag(BlockTags.STAIRS)
-                .add(TestBlocks.AZURITE_STAIRS.get());
+                .add(TestBlocks.AZURITE_STAIRS.getKey());
         tag(BlockTags.SLABS)
-            .add(TestBlocks.AZURITE_SLAB.get());
+            .add(TestBlocks.AZURITE_SLAB.getKey());
         tag(Tags.Blocks.ORES)
                 .addTag(TestTags.Blocks.AZURITE_ORES);
         tag(Tags.Blocks.STORAGE_BLOCKS)
-                .add(TestBlocks.AZURITE_BLOCK.get())
-                .add(TestBlocks.RAW_AZURITE_BLOCK.get());
+                .add(TestBlocks.AZURITE_BLOCK.getKey())
+                .add(TestBlocks.RAW_AZURITE_BLOCK.getKey());
         tag(BlockTags.PRESSURE_PLATES)
-                .add(TestBlocks.AZURITE_PRESSURE_PLATE.get());
+                .add(TestBlocks.AZURITE_PRESSURE_PLATE.getKey());
         tag(BlockTags.BUTTONS)
-                .add(TestBlocks.AZURITE_BUTTON.get());
+                .add(TestBlocks.AZURITE_BUTTON.getKey());
         tag(BlockTags.FENCES)
-                .add(TestBlocks.AZURITE_FENCE.get());
+                .add(TestBlocks.AZURITE_FENCE.getKey());
         tag(BlockTags.FENCE_GATES)
-                .add(TestBlocks.AZURITE_FENCE_GATE.get());
+                .add(TestBlocks.AZURITE_FENCE_GATE.getKey());
         tag(BlockTags.WALLS)
-                .add(TestBlocks.AZURITE_WALLS.get());
+                .add(TestBlocks.AZURITE_WALLS.getKey());
 
         tag(BlockTags.DOORS)
-                .add(TestBlocks.AZURITE_DOOR.get());
+                .add(TestBlocks.AZURITE_DOOR.getKey());
 
         tag(BlockTags.TRAPDOORS)
-                .add(TestBlocks.AZURITE_TRAPDOOR.get());
+                .add(TestBlocks.AZURITE_TRAPDOOR.getKey());
 
         tag(TestTags.Blocks.NEED_AZURITE_TOOLS)
-                .add(TestBlocks.MAGIC_BLOCK.get())
+                .add(TestBlocks.MAGIC_BLOCK.getKey())
                 .addTag(BlockTags.NEEDS_IRON_TOOL);
 
         tag(TestTags.Blocks.INCORRECT_FOR_AZURITE_TOOL)
