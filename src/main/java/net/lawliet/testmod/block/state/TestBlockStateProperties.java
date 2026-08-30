@@ -1,4 +1,4 @@
-package net.lawliet.testmod.block.blockState;
+package net.lawliet.testmod.block.state;
 
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 

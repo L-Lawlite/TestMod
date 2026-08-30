@@ -23,6 +23,8 @@ public class TestDataMapProvider extends DataMapProvider {
                 .add(TestItems.END_FIRE_STARTER.getId(), new FurnaceFuel(FUEL_BASE * 24), false);
 
         builder(NeoForgeDataMaps.COMPOSTABLES)
-                .add(TestItems.ONION.getId(), new Compostable(0.65f), false);
+                .add(TestItems.ONION.getId(), new Compostable(0.65f), false)
+                .add(TestItems.GOJI_BERRIES.getId(), new Compostable(0.3f), false)
+        ;
     }
 }

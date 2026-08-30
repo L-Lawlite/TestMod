@@ -2,9 +2,10 @@ package net.lawliet.testmod.registries;
 
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.block.AzuriteLampBlock;
+import net.lawliet.testmod.block.GojiBerryBlock;
 import net.lawliet.testmod.block.MagicBlock;
 import net.lawliet.testmod.block.PedestalBlock;
-import net.lawliet.testmod.block.blockState.TestBlockStateProperties;
+import net.lawliet.testmod.block.state.TestBlockStateProperties;
 import net.lawliet.testmod.block.crop.OnionBlock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -106,6 +107,9 @@ public class TestBlocks {
 
     public static final DeferredBlock<Block> ONION = BLOCKS.registerBlock("onion_crop", OnionBlock::new,
             properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.CROP));
+    public static final DeferredBlock<Block> GOJI_BERRY_BUSH = BLOCKS.registerBlock("goji_berry_bush", GojiBerryBlock::new,
+            properties -> properties.randomTicks().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.SWEET_BERRY_BUSH));
+
 
 
     public static void register(IEventBus eventBus) {

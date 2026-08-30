@@ -2,6 +2,8 @@ package net.lawliet.testmod;
 
 import net.lawliet.testmod.datagen.*;
 import net.lawliet.testmod.datagen.TestDataMapProvider;
+import net.lawliet.testmod.datagen.loot.sub_providers.TestBlockInteractionLootProvider;
+import net.lawliet.testmod.datagen.loot.sub_providers.TestBlockLootProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -22,7 +24,8 @@ public class TestModDatagen {
                 output,
                 Set.of(),
                 List.of(
-                        new LootTableProvider.SubProviderEntry(TestBlockLootProvider::new, LootContextParamSets.BLOCK)
+                        new LootTableProvider.SubProviderEntry(TestBlockLootProvider::new, LootContextParamSets.BLOCK),
+                        new LootTableProvider.SubProviderEntry(TestBlockInteractionLootProvider::new, LootContextParamSets.BLOCK_INTERACT)
                 ),
                 lookupProvider
         )));

@@ -1,6 +1,6 @@
 package net.lawliet.testmod.block;
 
-import net.lawliet.testmod.block.blockState.TestBlockStateProperties;
+import net.lawliet.testmod.block.state.TestBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;

@@ -1,5 +1,6 @@
-package net.lawliet.testmod.datagen;
+package net.lawliet.testmod.datagen.loot.sub_providers;
 
+import net.lawliet.testmod.block.GojiBerryBlock;
 import net.lawliet.testmod.block.crop.OnionBlock;
 import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.registries.TestItems;
@@ -26,8 +27,11 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.Set;
 
 public class TestBlockLootProvider extends BlockLootSubProvider {
+    private static HolderLookup.RegistryLookup<Enchantment> enchantments;
+
     public TestBlockLootProvider(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
+        enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
     }
 
     @Override
@@ -66,17 +70,39 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
         );
 
         makeOnionLootTableWithSelf(TestBlocks.ONION.get());
+        makeGojiBushLootTable();
 
     }
 
+    private void makeGojiBushLootTable() {
+        add(TestBlocks.GOJI_BERRY_BUSH.get(), block -> applyExplosionDecay(
+                        block, LootTable.lootTable().withPool(
+                                    LootPool.lootPool().when(
+                                            LootItemBlockStatePropertyCondition.hasBlockStateProperties(TestBlocks.GOJI_BERRY_BUSH.get())
+                                                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GojiBerryBlock.AGE, 3))
+                                    )
+                                    .add(LootItem.lootTableItem(TestItems.GOJI_BERRIES))
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
+                                    .apply(ApplyBonusCount.addUniformBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE)))
+                                ).withPool(
+                                    LootPool.lootPool().when(
+                                            LootItemBlockStatePropertyCondition.hasBlockStateProperties(TestBlocks.GOJI_BERRY_BUSH.get())
+                                                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GojiBerryBlock.AGE, 2))
+                                    )
+                                    .add(LootItem.lootTableItem(TestItems.GOJI_BERRIES))
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                                    .apply(ApplyBonusCount.addUniformBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE)))
+                                )
+                )
+        );
+    }
+
     private void makeOnionLootTableWithSelf(Block block) {
-        HolderLookup.RegistryLookup<Enchantment> enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         LootItemCondition.Builder isCropMaxAge = LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnionBlock.AGE, OnionBlock.MAX_AGE));
         this.add(block, this.applyExplosionDecay(block, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(block))).withPool(LootPool.lootPool().when(isCropMaxAge).add(LootItem.lootTableItem(block).apply(ApplyBonusCount.addBonusBinomialDistributionCount(enchantments.getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3))))));
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block block, ItemLike item, NumberProvider count) {
-        HolderLookup.RegistryLookup<Enchantment> enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return this.createSilkTouchDispatchTable(
                 block,
                 this.applyExplosionDecay(

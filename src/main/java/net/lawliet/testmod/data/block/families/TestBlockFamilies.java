@@ -1,4 +1,4 @@
-package net.lawliet.testmod.BlockFamilies;
+package net.lawliet.testmod.data.block.families;
 
 import com.google.common.collect.Maps;
 import net.lawliet.testmod.registries.TestBlocks;
