@@ -71,5 +71,6 @@ public class TestItems {
         output.accept(DATA_TABLET);
         output.accept(TEST_BOW);
         output.accept(BLIZZARD_STAFF);
+        output.accept(GOJI_BERRIES);
     }
 }
