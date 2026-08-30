@@ -14,6 +14,8 @@ public class TestTags {
         public static final TagKey<Block> AZURITE_ORES = createTag("azurite_ores");
         public static final TagKey<Block> NEED_AZURITE_TOOLS = createTag("need_azurite_tools");
         public static final TagKey<Block> INCORRECT_FOR_AZURITE_TOOL = createTag("incorrect_for_azurite_tool");
+        public static final TagKey<Block> SHALLOW_WATER_FLOOR = createTag("shallow_water_floor");
+        public static final TagKey<Block> RICE_FARMLAND = createTag("rice_farmland");
 
 
         private static TagKey<Block> createTag(String name) {

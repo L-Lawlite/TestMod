@@ -5,6 +5,7 @@ import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.references.BlockItemIds;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
@@ -83,6 +84,17 @@ public class TestBlockTagProvider extends BlockTagsProvider {
         tag(TestTags.Blocks.INCORRECT_FOR_AZURITE_TOOL)
                 .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
                 .remove(TestTags.Blocks.NEED_AZURITE_TOOLS);
+        tag(TestTags.Blocks.SHALLOW_WATER_FLOOR)
+                .addTag(BlockTags.DIRT)
+                .addTag(BlockTags.GROWS_CROPS)
+                .addTag(BlockTags.SUPPORTS_CROPS)
+                .add(BlockItemIds.GRASS_BLOCK.block())
+        ;
+        tag(TestTags.Blocks.RICE_FARMLAND)
+                .addTag(TestTags.Blocks.SHALLOW_WATER_FLOOR)
+                .add(BlockItemIds.CLAY.block())
+                .add(BlockItemIds.MYCELIUM.block())
+        ;
 
         tag(BlockTags.INCORRECT_FOR_IRON_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
         tag(BlockTags.INCORRECT_FOR_COPPER_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
@@ -91,5 +103,6 @@ public class TestBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
 
         tag(BlockTags.CROPS).add(TestBlocks.ONION.getKey());
+
     }
 }

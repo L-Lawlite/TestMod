@@ -5,6 +5,7 @@ import net.lawliet.testmod.block.AzuriteLampBlock;
 import net.lawliet.testmod.block.GojiBerryBlock;
 import net.lawliet.testmod.block.MagicBlock;
 import net.lawliet.testmod.block.PedestalBlock;
+import net.lawliet.testmod.block.crop.RiceCropBlock;
 import net.lawliet.testmod.block.state.TestBlockStateProperties;
 import net.lawliet.testmod.block.crop.OnionBlock;
 import net.minecraft.core.registries.Registries;
@@ -109,6 +110,8 @@ public class TestBlocks {
             properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.CROP));
     public static final DeferredBlock<Block> GOJI_BERRY_BUSH = BLOCKS.registerBlock("goji_berry_bush", GojiBerryBlock::new,
             properties -> properties.randomTicks().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.SWEET_BERRY_BUSH));
+    public static final DeferredBlock<Block> RICE = BLOCKS.registerBlock("rice_crop", RiceCropBlock::new,
+            properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.CROP));
 
 
 

@@ -3,10 +3,8 @@ package net.lawliet.testmod.registries;
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.food.TestConsumables;
 import net.lawliet.testmod.food.TestFoods;
-import net.lawliet.testmod.item.DataTabletItem;
-import net.lawliet.testmod.item.MetalDetectorItem;
-import net.lawliet.testmod.item.TestArmorMaterials;
-import net.lawliet.testmod.item.TestToolMaterials;
+import net.lawliet.testmod.item.*;
+import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.IEventBus;
@@ -41,6 +39,7 @@ public class TestItems {
 
     public static final DeferredItem<BlockItem> ONION = ITEMS.registerItem("onion", properties -> new BlockItem(TestBlocks.ONION.get(), properties.food(TestFoods.ONION, TestConsumables.ONION).useItemDescriptionPrefix()));
     public static final DeferredItem<BlockItem> GOJI_BERRIES = ITEMS.registerItem("goji_berries", properties -> new BlockItem(TestBlocks.GOJI_BERRY_BUSH.get(), properties.food(TestFoods.GOJI_BERRY)));
+    public static final DeferredItem<BlockItem> RICE = ITEMS.registerItem("rice", properties -> new PlaceOnShallowWaterBlockItem(TestBlocks.RICE.get(), properties, TestTags.Blocks.RICE_FARMLAND));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
@@ -72,5 +71,6 @@ public class TestItems {
         output.accept(TEST_BOW);
         output.accept(BLIZZARD_STAFF);
         output.accept(GOJI_BERRIES);
+        output.accept(RICE);
     }
 }

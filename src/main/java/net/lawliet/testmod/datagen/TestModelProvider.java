@@ -1,6 +1,8 @@
 package net.lawliet.testmod.datagen;
 
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.block.GojiBerryBlock;
+import net.lawliet.testmod.block.crop.RiceCropBlock;
 import net.lawliet.testmod.block.state.TestBlockStateProperties;
 import net.lawliet.testmod.block.crop.OnionBlock;
 import net.lawliet.testmod.item.TestEquipmentAssets;
@@ -84,7 +86,8 @@ public class TestModelProvider extends ModelProvider {
                 .trapdoor(TestBlocks.AZURITE_TRAPDOOR.get());
         this.createLamp(TestBlocks.AZURITE_LAMP.get(), TestBlockStateProperties.CLICKED);
         blockModels.createCropBlock(TestBlocks.ONION.get(), OnionBlock.AGE, 0, 1, 2, 3);
-        blockModels.createCropBlock(TestBlocks.GOJI_BERRY_BUSH.get(), OnionBlock.AGE, 0, 1, 2, 3);
+        blockModels.createCropBlock(TestBlocks.GOJI_BERRY_BUSH.get(), GojiBerryBlock.AGE, 0, 1, 2, 3);
+        blockModels.createCropBlock(TestBlocks.RICE.get(), RiceCropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
 
         blockModels.createNonTemplateModelBlock(TestBlocks.PEDESTAL.get());
 

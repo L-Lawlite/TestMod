@@ -19,6 +19,7 @@
   "item.testmod.test_bow": "Test Bow",
   "item.testmod.blizzard_staff": "Blizzard Staff",
   "item.testmod.goji_berries": "Goji Berries",
+  "item.testmod.rice": "Rice",
 
   "block.testmod.azurite_block": "Azurite Block",
   "block.testmod.raw_azurite_block": "Raw Azurite Block",
@@ -41,6 +42,7 @@
   "block.testmod.pedestal":  "Pedestal",
   "block.testmod.onion_crop":  "Onion Crop",
   "block.testmod.goji_berry_bush":  "Goji Berry Bush",
+  "block.testmod.rice_crop":  "Rice Crop",
 
   "testmod.configuration.title": "TestMod Configs",
   "testmod.configuration.section.testmod.common.toml": "TestMod Configs",

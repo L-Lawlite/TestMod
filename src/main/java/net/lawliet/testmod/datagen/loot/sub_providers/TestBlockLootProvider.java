@@ -2,6 +2,7 @@ package net.lawliet.testmod.datagen.loot.sub_providers;
 
 import net.lawliet.testmod.block.GojiBerryBlock;
 import net.lawliet.testmod.block.crop.OnionBlock;
+import net.lawliet.testmod.block.crop.RiceCropBlock;
 import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.advancements.predicates.StatePropertiesPredicate;
@@ -69,8 +70,9 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
                 createMultipleOreDrops(TestBlocks.AZURITE_END_ORE.get(), TestItems.RAW_AZURITE.get(), 2, 3)
         );
 
-        makeOnionLootTableWithSelf(TestBlocks.ONION.get());
+        makeOnionLootTable();
         makeGojiBushLootTable();
+        makeRiceCropLootTable();
 
     }
 
@@ -97,9 +99,22 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
         );
     }
 
-    private void makeOnionLootTableWithSelf(Block block) {
-        LootItemCondition.Builder isCropMaxAge = LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnionBlock.AGE, OnionBlock.MAX_AGE));
-        this.add(block, this.applyExplosionDecay(block, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(block))).withPool(LootPool.lootPool().when(isCropMaxAge).add(LootItem.lootTableItem(block).apply(ApplyBonusCount.addBonusBinomialDistributionCount(enchantments.getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3))))));
+    private void makeRiceCropLootTable() {
+        Block rice = TestBlocks.RICE.get();
+        LootItemCondition.Builder isCropMaxAge = LootItemBlockStatePropertyCondition.hasBlockStateProperties(rice).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RiceCropBlock.AGE, RiceCropBlock.MAX_AGE));
+        this.add(rice, createCropDrops(rice, rice.asItem(), rice.asItem(), isCropMaxAge));
+    }
+
+    private void makeOnionLootTable() {
+        Block onion = TestBlocks.ONION.get();
+        LootItemCondition.Builder isCropMaxAge = LootItemBlockStatePropertyCondition.hasBlockStateProperties(onion).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnionBlock.AGE, OnionBlock.MAX_AGE));
+        this.add(onion, this.applyExplosionDecay(onion,
+                LootTable.lootTable()
+                        .withPool(
+                                LootPool.lootPool().add(LootItem.lootTableItem(onion))
+                        )
+                        .withPool(LootPool.lootPool().when(isCropMaxAge).add(LootItem.lootTableItem(onion)
+                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(enchantments.getOrThrow(Enchantments.FORTUNE), 0.5714286F, 3))))));
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block block, ItemLike item, NumberProvider count) {
