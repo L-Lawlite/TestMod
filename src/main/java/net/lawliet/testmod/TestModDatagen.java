@@ -34,5 +34,6 @@ public class TestModDatagen {
         event.createProvider(TestEquipmentAssetProvider::new);
         event.createProvider(TestDatapackProvider::new);
         event.createProvider(TestPaintingTagsProvider::new);
+        event.createProvider(TestSoundsProvider::new);
     }
 }

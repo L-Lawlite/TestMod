@@ -36,9 +36,7 @@ public class TestModelProvider extends ModelProvider {
         super(output, TestMod.MODID);
     }
 
-    @SuppressWarnings("unused")
     private static ItemModelGenerators itemModels;
-    @SuppressWarnings("unused")
     private static BlockModelGenerators blockModels;
 
     @Override
@@ -49,7 +47,6 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateFlatItem(TestItems.AZURITE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.RAW_AZURITE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.METAL_DETECTOR.get(), ModelTemplates.FLAT_ITEM);
-//        itemModels.generateFlatItem(TestItems.ONION.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.END_FIRE_STARTER.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.AZURITE_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(TestItems.AZURITE_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);

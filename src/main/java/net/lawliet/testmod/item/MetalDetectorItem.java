@@ -3,6 +3,7 @@ package net.lawliet.testmod.item;
 import net.lawliet.testmod.data.component.BlockData;
 import net.lawliet.testmod.registries.TestDataComponent;
 import net.lawliet.testmod.registries.TestItems;
+import net.lawliet.testmod.registries.TestSounds;
 import net.lawliet.testmod.registries.TestStats;
 import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.ChatFormatting;
@@ -13,7 +14,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -51,7 +51,7 @@ public class MetalDetectorItem extends Item {
                     outputValueCoordinates(blockPos, player, state.getBlock());
                     foundBlock = true;
                     //Perform other logic
-                    level.playSound(null, positionClicked, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.5f, 1f);
+                    level.playSound(null, positionClicked, TestSounds.VALUABLE_FOUND.get(), SoundSource.BLOCKS, 1.5f, 0.8f + level.getRandom().nextFloat() * 0.4f);
                     spawnFoundParticle(level, positionClicked, state);
 
                     addDataToDataTablet(player, blockPos, state.getBlock());
@@ -62,6 +62,7 @@ public class MetalDetectorItem extends Item {
             }
             if(!foundBlock) {
                 outputNoValuablesFound(player);
+                level.playSound(null, positionClicked, TestSounds.VALUABLE_NOT_FOUND.get(), SoundSource.BLOCKS, 1.5f, 0.8f + level.getRandom().nextFloat() * 0.4f);
             }
             context.getItemInHand().hurtAndBreak(1, player, context.getHand());
 

@@ -30,6 +30,7 @@ public class TestMod {
         TestCreativeModeTabs.register(modEventBus);
         TestDataComponent.register(modEventBus);
         TestStats.register(modEventBus);
+        TestSounds.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
 
 
@@ -51,8 +52,6 @@ public class TestMod {
     public static Identifier createIdentifier(String id) {
         return Identifier.fromNamespaceAndPath(MODID, id);
     }
-
-
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {

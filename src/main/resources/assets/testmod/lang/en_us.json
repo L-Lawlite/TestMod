@@ -69,6 +69,9 @@
   "painting.testmod.saw_them.title": "Saw Them",
   "painting.testmod.saw_them.author": "NanoAttack",
 
+  "sounds.testmod.valuable_found": "Valuable Found",
+  "sounds.testmod.valuable_not_found": "Valuable Not Found",
+
   "stat.testmod.valuables_found": "Valuables_Found"
 
 
