@@ -5,6 +5,9 @@
     },
     "testmod:onion": {
       "chance": 0.65
+    },
+    "testmod:rice": {
+      "chance": 0.5
     }
   }
 }

@@ -25,6 +25,7 @@ public class TestDataMapProvider extends DataMapProvider {
         builder(NeoForgeDataMaps.COMPOSTABLES)
                 .add(TestItems.ONION.getId(), new Compostable(0.65f), false)
                 .add(TestItems.GOJI_BERRIES.getId(), new Compostable(0.3f), false)
+                .add(TestItems.RICE.getId(), new Compostable(0.5f), false)
         ;
     }
 }
