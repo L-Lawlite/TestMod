@@ -61,6 +61,7 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateFlatItem(TestItems.AZURITE_HORSE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
         this.createDataTablet(TestItems.DATA_TABLET.get());
         this.createBow(TestItems.TEST_BOW.get());
+        itemModels.generateFlatItem(TestItems.BAR_BRAWL_MUSIC_DISC.get(), ModelTemplates.FLAT_ITEM);
 
         itemModels.declareCustomModelItem(TestItems.BLIZZARD_STAFF.get());
 

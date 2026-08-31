@@ -19,6 +19,14 @@ public class TestSoundsProvider extends SoundDefinitionsProvider {
     public void registerSounds() {
         addSound(TestSounds.VALUABLE_FOUND.get(), "valuable_found");
         addSound(TestSounds.VALUABLE_NOT_FOUND.get(), "valuable_not_found");
+        addSoundStream(TestSounds.BAR_BRAWL.song().get(), "bar_brawl");
+    }
+
+    private void addSoundStream(SoundEvent soundEvent, Identifier... identifiers) {
+        add(soundEvent, definition()
+                .subtitle(String.format("sounds.%s.%s",TestMod.MODID, soundEvent.location().getPath()))
+                .with(Arrays.stream(identifiers).map(SoundDefinitionsProvider::sound).map(SoundDefinition.Sound::stream).toArray(SoundDefinition.Sound[]::new))
+        );
     }
 
     private void addSound(SoundEvent soundEvent, Identifier... identifiers) {
@@ -28,7 +36,15 @@ public class TestSoundsProvider extends SoundDefinitionsProvider {
         );
     }
 
+    private void addSoundStream(SoundEvent soundEvent, String... names) {
+        addSoundStream(soundEvent, convertNamesToIdentifiers(names));
+    }
+
     private void addSound(SoundEvent soundEvent, String... names) {
-        addSound(soundEvent, Arrays.stream(names).map((name) -> Identifier.fromNamespaceAndPath(TestMod.MODID, name)).toArray(Identifier[]::new));
+        addSound(soundEvent, convertNamesToIdentifiers(names));
+    }
+
+    private Identifier[] convertNamesToIdentifiers(String... names) {
+        return Arrays.stream(names).map((name) -> Identifier.fromNamespaceAndPath(TestMod.MODID, name)).toArray(Identifier[]::new);
     }
 }

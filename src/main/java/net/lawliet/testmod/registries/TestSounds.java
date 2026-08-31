@@ -1,10 +1,15 @@
 package net.lawliet.testmod.registries;
 
 import net.lawliet.testmod.TestMod;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.JukeboxSong;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -15,13 +20,32 @@ public class TestSounds {
     public static final Supplier<SoundEvent> VALUABLE_FOUND = registerSound("valuable_found");
     public static final Supplier<SoundEvent> VALUABLE_NOT_FOUND = registerSound("valuable_not_found");
 
+    public static final JunkboxMusicDisc BAR_BRAWL = JunkboxMusicDisc.create("bar_brawl");
 
     private static Supplier<SoundEvent> registerSound(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath(TestMod.MODID, name)));
     }
 
-
     public static void register(IEventBus eventBus) {
         SOUND_EVENTS.register(eventBus);
+    }
+
+    public record JunkboxMusicDisc(DeferredHolder<SoundEvent, SoundEvent> song, ResourceKey<JukeboxSong> key) {
+        public static JunkboxMusicDisc create(String name) {
+            return new JunkboxMusicDisc(registerJukeboxSong(name), createSong(name));
+        }
+
+        private static DeferredHolder<SoundEvent, SoundEvent> registerJukeboxSong(String name) {
+            return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(Identifier.fromNamespaceAndPath(TestMod.MODID, name)));
+        }
+
+        private static ResourceKey<JukeboxSong> createSong(String name) {
+            return ResourceKey.create(Registries.JUKEBOX_SONG, Identifier.fromNamespaceAndPath(TestMod.MODID, name));
+        }
+
+        public Holder.Reference<SoundEvent> getHolderReference() {
+            return (Holder.Reference<SoundEvent>) this.song().getDelegate();
+        }
+
     }
 }

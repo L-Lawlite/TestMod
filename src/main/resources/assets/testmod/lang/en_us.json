@@ -20,6 +20,7 @@
   "item.testmod.blizzard_staff": "Blizzard Staff",
   "item.testmod.goji_berries": "Goji Berries",
   "item.testmod.rice": "Rice",
+  "item.testmod.bar_brawl_music_disc": "Bar Brawl Music Disc",
 
   "block.testmod.azurite_block": "Azurite Block",
   "block.testmod.raw_azurite_block": "Raw Azurite Block",
@@ -71,6 +72,9 @@
 
   "sounds.testmod.valuable_found": "Valuable Found",
   "sounds.testmod.valuable_not_found": "Valuable Not Found",
+  "sounds.testmod.bar_brawl": "Playing Bar brawl Music Disc",
+
+  "jukebox.testmod.bar_brawl": "Bryan Tech - Bar Brawl (CCO)",
 
   "stat.testmod.valuables_found": "Valuables_Found"
 

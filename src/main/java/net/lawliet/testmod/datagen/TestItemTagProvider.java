@@ -48,5 +48,6 @@ public class TestItemTagProvider extends BlockTagCopyingItemTagProvider {
         tag(ItemTags.BOW_ENCHANTABLE).add(TestItems.TEST_BOW.getKey());
         tag(Tags.Items.TOOLS_BOW).add(TestItems.TEST_BOW.getKey());
 
+        tag(ItemTags.CREEPER_DROP_MUSIC_DISCS).add(TestItems.BAR_BRAWL_MUSIC_DISC.getKey());
     }
 }

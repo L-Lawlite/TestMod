@@ -37,6 +37,8 @@ public class TestItems {
     public static final DeferredItem<Item> DATA_TABLET = ITEMS.registerItem("data_tablet", DataTabletItem::new, properties -> properties.stacksTo(1));
     public static final DeferredItem<Item> BLIZZARD_STAFF = ITEMS.registerSimpleItem("blizzard_staff", properties -> properties.stacksTo(1));
 
+    public static final DeferredItem<Item> BAR_BRAWL_MUSIC_DISC = ITEMS.registerSimpleItem("bar_brawl_music_disc", properties -> properties.jukeboxPlayable(TestSounds.BAR_BRAWL.key()).rarity(Rarity.EPIC).stacksTo(1));
+
     public static final DeferredItem<BlockItem> ONION = ITEMS.registerItem("onion", properties -> new BlockItem(TestBlocks.ONION.get(), properties.food(TestFoods.ONION, TestConsumables.ONION).useItemDescriptionPrefix()));
     public static final DeferredItem<BlockItem> GOJI_BERRIES = ITEMS.registerItem("goji_berries", properties -> new BlockItem(TestBlocks.GOJI_BERRY_BUSH.get(), properties.food(TestFoods.GOJI_BERRY)));
     public static final DeferredItem<BlockItem> RICE = ITEMS.registerItem("rice", properties -> new PlaceOnShallowWaterBlockItem(TestBlocks.RICE.get(), properties, TestTags.Blocks.RICE_FARMLAND));
@@ -72,5 +74,6 @@ public class TestItems {
         output.accept(BLIZZARD_STAFF);
         output.accept(GOJI_BERRIES);
         output.accept(RICE);
+        output.accept(BAR_BRAWL_MUSIC_DISC);
     }
 }

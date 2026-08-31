@@ -1,4 +1,13 @@
 {
+  "bar_brawl": {
+    "sounds": [
+      {
+        "name": "testmod:bar_brawl",
+        "stream": true
+      }
+    ],
+    "subtitle": "sounds.testmod.bar_brawl"
+  },
   "valuable_found": {
     "sounds": [
       "testmod:valuable_found"
