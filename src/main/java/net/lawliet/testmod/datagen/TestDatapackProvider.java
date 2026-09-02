@@ -14,7 +14,9 @@ import java.util.concurrent.CompletableFuture;
 public class TestDatapackProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.PAINTING_VARIANT, TestPainting::bootstrap)
-            .add(Registries.JUKEBOX_SONG, TestJukeBoxSong::bootstrap);
+            .add(Registries.JUKEBOX_SONG, TestJukeBoxSong::bootstrap)
+            .add(Registries.DAMAGE_TYPE, TestDamageTypeProvider::bootstrap)
+            ;
 
     public TestDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(TestMod.MODID));

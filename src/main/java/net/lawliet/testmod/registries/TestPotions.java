@@ -12,7 +12,7 @@ public class TestPotions {
     public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(BuiltInRegistries.POTION, TestMod.MODID);
 
     public static final DeferredHolder<Potion, Potion> STINKY_POTION = registerPotion("stinky_potion",
-            new MobEffectInstance(TestMobEffects.STINKY, 1200, 0)
+            new MobEffectInstance(TestMobEffects.STINKY, 3600, 0)
             );
 
     private static DeferredHolder<Potion, Potion> registerPotion(String name, MobEffectInstance... effects) {
