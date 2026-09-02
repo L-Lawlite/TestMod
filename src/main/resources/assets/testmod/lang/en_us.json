@@ -89,7 +89,14 @@
   "death.attack.stinky.player": "%s was stinkied to death trying to outrun %s",
 
   "effect.testmod.stinky": "Stinky",
-  "effect.testmod.stinky.description": "Allows easier detection by enemies"
+
+  "effect.testmod.stinky.description": "Allows easier detection by enemies",
+  "advancement.testmod.root.title": "TestMod Advancements",
+  "advancement.testmod.root.description": "TestMod Advancements Description",
+  "advancement.testmod.plant_custom.title": "Planted Custom Plant",
+  "advancement.testmod.plant_custom.description": "Planted a custom plant",
+  "advancement.testmod.metal_detector.title": "Use Metal Detector",
+  "advancement.testmod.metal_detector.description": "Try using metal detector to find valuables"
 
 
 }
