@@ -11,6 +11,10 @@
     {
       "id": "testmod:world",
       "required": false
+    },
+    {
+      "id": "testmod:wanderer",
+      "required": false
     }
   ]
 }

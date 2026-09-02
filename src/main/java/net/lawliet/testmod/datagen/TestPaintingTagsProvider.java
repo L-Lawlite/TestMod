@@ -22,7 +22,8 @@ public class TestPaintingTagsProvider extends PaintingVariantTagsProvider {
         getOrCreateRawBuilder(PaintingVariantTags.PLACEABLE)
                 .add(keyIdentifier(TestPainting.SAW_THEM))
                 .add(keyIdentifier(TestPainting.SHRIMP))
-                .add(keyIdentifier(TestPainting.WORLD));
+                .add(keyIdentifier(TestPainting.WORLD))
+                .add(keyIdentifier(TestPainting.WANDERER));
     }
 
     private TagEntry keyIdentifier(ResourceKey<PaintingVariant> key) {

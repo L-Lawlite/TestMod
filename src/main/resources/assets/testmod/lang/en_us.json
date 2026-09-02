@@ -21,6 +21,7 @@
   "item.testmod.goji_berries": "Goji Berries",
   "item.testmod.rice": "Rice",
   "item.testmod.bar_brawl_music_disc": "Bar Brawl Music Disc",
+  "item.testmod.radiation_staff": "Radiation Staff",
 
   "item.minecraft.potion.effect.stinky_potion": "Stinky Potion",
   "item.minecraft.splash_potion.effect.stinky_potion": "Stinky Splash Potion",
@@ -73,6 +74,8 @@
   "painting.testmod.world.author": "NanoAttack",
   "painting.testmod.saw_them.title": "Saw Them",
   "painting.testmod.saw_them.author": "NanoAttack",
+  "painting.testmod.wanderer.title": "Wanderer",
+  "painting.testmod.wanderer.author": "PlatinumG17",
 
   "sounds.testmod.valuable_found": "Valuable Found",
   "sounds.testmod.valuable_not_found": "Valuable Not Found",

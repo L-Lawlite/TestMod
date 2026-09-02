@@ -16,12 +16,14 @@ public class TestPainting {
     public static final ResourceKey<PaintingVariant> SAW_THEM = create("saw_them");
     public static final ResourceKey<PaintingVariant> SHRIMP = create("shrimp");
     public static final ResourceKey<PaintingVariant> WORLD = create("world");
+    public static final ResourceKey<PaintingVariant> WANDERER = create("wanderer");
 
     /** For datagen **/
     public static void bootstrap(BootstrapContext<PaintingVariant> context) {
         register(context, SAW_THEM, 2, 2, true);
         register(context, SHRIMP, 2, 1, true);
         register(context, WORLD, 2, 2, true);
+        register(context, WANDERER, 1, 2, true);
     }
 
     protected static void register(final BootstrapContext<PaintingVariant> context, final ResourceKey<PaintingVariant> key, final int width, final int height, final boolean hasAuthor) {

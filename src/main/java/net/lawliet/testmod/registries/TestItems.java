@@ -33,6 +33,7 @@ public class TestItems {
     public static final DeferredItem<Item> AZURITE_BOOTS = ITEMS.registerSimpleItem("azurite_boots", properties -> properties.humanoidArmor(TestArmorMaterials.AZURITE, ArmorType.BOOTS));
     public static final DeferredItem<Item> AZURITE_HORSE_ARMOR = ITEMS.registerSimpleItem("azurite_horse_armor", properties -> properties.horseArmor(TestArmorMaterials.AZURITE));
     public static final DeferredItem<Item> TEST_BOW = ITEMS.registerItem("test_bow", BowItem::new, properties -> properties.enchantable(1).durability(400));
+    public static final DeferredItem<Item> RADIATION_STAFF = ITEMS.registerSimpleItem("radiation_staff", properties -> properties.rarity(Rarity.RARE).stacksTo(1));
 
     public static final DeferredItem<Item> DATA_TABLET = ITEMS.registerItem("data_tablet", DataTabletItem::new, properties -> properties.stacksTo(1));
     public static final DeferredItem<Item> BLIZZARD_STAFF = ITEMS.registerSimpleItem("blizzard_staff", properties -> properties.stacksTo(1));
@@ -75,5 +76,6 @@ public class TestItems {
         output.accept(GOJI_BERRIES);
         output.accept(RICE);
         output.accept(BAR_BRAWL_MUSIC_DISC);
+        output.accept(RADIATION_STAFF);
     }
 }
