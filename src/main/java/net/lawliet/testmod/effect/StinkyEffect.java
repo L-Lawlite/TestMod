@@ -1,6 +1,6 @@
 package net.lawliet.testmod.effect;
 
-import net.lawliet.testmod.damagesource.TestDamageTypes;
+import net.lawliet.testmod.datagen.damagesource.TestDamageTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

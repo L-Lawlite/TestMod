@@ -1,0 +1,13 @@
+{
+  "asset_id": "testmod:wanderer",
+  "author": {
+    "color": "gray",
+    "translate": "painting.testmod.wanderer.author"
+  },
+  "height": 2,
+  "title": {
+    "color": "yellow",
+    "translate": "painting.testmod.wanderer.title"
+  },
+  "width": 1
+}

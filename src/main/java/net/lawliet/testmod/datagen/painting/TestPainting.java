@@ -1,4 +1,4 @@
-package net.lawliet.testmod.painting;
+package net.lawliet.testmod.datagen.painting;
 
 import net.lawliet.testmod.TestMod;
 import net.minecraft.ChatFormatting;
@@ -17,6 +17,7 @@ public class TestPainting {
     public static final ResourceKey<PaintingVariant> SHRIMP = create("shrimp");
     public static final ResourceKey<PaintingVariant> WORLD = create("world");
 
+    /** For datagen **/
     public static void bootstrap(BootstrapContext<PaintingVariant> context) {
         register(context, SAW_THEM, 2, 2, true);
         register(context, SHRIMP, 2, 1, true);
