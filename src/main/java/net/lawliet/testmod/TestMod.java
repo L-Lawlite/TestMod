@@ -31,6 +31,7 @@ public class TestMod {
         TestDataComponent.register(modEventBus);
         TestStats.register(modEventBus);
         TestSounds.register(modEventBus);
+        TestMobEffects.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
 
 

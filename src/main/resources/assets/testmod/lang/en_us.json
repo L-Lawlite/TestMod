@@ -76,7 +76,10 @@
 
   "jukebox.testmod.bar_brawl": "Bryan Tech - Bar Brawl (CCO)",
 
-  "stat.testmod.valuables_found": "Valuables_Found"
+  "stat.testmod.valuables_found": "Valuables_Found",
+
+  "effect.testmod.stinky": "Stinky",
+  "effect.testmod.stinky.description": "Allows easier detection by enemies"
 
 
 }
