@@ -32,6 +32,7 @@ public class TestMod {
         TestStats.register(modEventBus);
         TestSounds.register(modEventBus);
         TestMobEffects.register(modEventBus);
+        TestPotions.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
 
 

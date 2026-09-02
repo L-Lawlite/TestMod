@@ -22,6 +22,10 @@
   "item.testmod.rice": "Rice",
   "item.testmod.bar_brawl_music_disc": "Bar Brawl Music Disc",
 
+  "item.minecraft.potion_effect.stinky_potion": "Stinky Potion",
+  "item.minecraft.splash_potion_effect.stinky_potion": "Stinky Splash Potion",
+  "item.minecraft.lingering_potion_effect.stinky_potion": "Stinky Lingering Potion",
+
   "block.testmod.azurite_block": "Azurite Block",
   "block.testmod.raw_azurite_block": "Raw Azurite Block",
   "block.testmod.azurite_ore": "Azurite Ore",
