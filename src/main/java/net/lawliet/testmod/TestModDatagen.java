@@ -27,7 +27,8 @@ public class TestModDatagen {
                 Set.of(),
                 List.of(
                         new LootTableProvider.SubProviderEntry(TestBlockLootProvider::new, LootContextParamSets.BLOCK),
-                        new LootTableProvider.SubProviderEntry(TestBlockInteractionLootProvider::new, LootContextParamSets.BLOCK_INTERACT)
+                        new LootTableProvider.SubProviderEntry(TestBlockInteractionLootProvider::new, LootContextParamSets.BLOCK_INTERACT),
+                        new LootTableProvider.SubProviderEntry(TestExtraLootProvider::new, LootContextParamSets.ALL_PARAMS)
                 ),
                 lookupProvider
         )));
@@ -40,5 +41,6 @@ public class TestModDatagen {
         event.createProvider(TestAdvancementProvider::new);
         event.createProvider(TestVillagerTradeTags::new);
         event.createProvider(TestPoiTags::new);
+        event.createProvider(TestGLMProvider::new);
     }
 }

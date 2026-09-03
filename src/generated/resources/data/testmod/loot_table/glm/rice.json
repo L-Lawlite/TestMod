@@ -1,0 +1,20 @@
+{
+  "pools": [
+    {
+      "conditions": [
+        {
+          "chance": 0.25,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "testmod:rice"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "testmod:glm/rice"
+}
