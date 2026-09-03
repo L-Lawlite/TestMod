@@ -2,6 +2,7 @@ package keybinding;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.networking.packet.TestPacketC2S;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -11,6 +12,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.common.util.Lazy;
 import org.lwjgl.glfw.GLFW;
 
@@ -36,6 +38,7 @@ public class TestKeyMapping {
         assert player != null;
         while(TEST.keyPress().get().consumeClick()) {
             player.sendSystemMessage(Component.literal("Test Key pressed"));
+            ClientPacketDistributor.sendToServer(new TestPacketC2S("test", 1));
         }
     }
 
