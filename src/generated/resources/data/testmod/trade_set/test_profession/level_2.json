@@ -1,0 +1,5 @@
+{
+  "amount": 2.0,
+  "random_sequence": "testmod:trade_set/test_profession/level_2",
+  "trades": "#testmod:test_profession/level_2"
+}

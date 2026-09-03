@@ -1,6 +1,7 @@
 package net.lawliet.testmod.datagen.villager;
 
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -22,6 +23,13 @@ public class TestVillagerTrades {
     public static final ResourceKey<VillagerTrade> FARMER_1_EMERALD_ONION = createVillagerTrade("farmer/1/emerald_onion");
     public static final ResourceKey<VillagerTrade> FARMER_2_GOJI_BERRIES_EMERALD = createVillagerTrade("farmer/2/goji_berries_emerald");
     public static final ResourceKey<VillagerTrade> LIBRARIAN_1_AZURITE_ENCHANTED = createVillagerTrade("librarian/1/azurite_enchanted");
+
+    public static final ResourceKey<VillagerTrade> TEST_PROFESSION_1_EMERALD_METAL_DETECTOR = createVillagerTrade("test_profession/1/emerald_metal_detector");
+    public static final ResourceKey<VillagerTrade> TEST_PROFESSION_1_EMERALD_RAW_AZURITE = createVillagerTrade("test_profession/1/emerald_raw_azurite");
+
+    public static final ResourceKey<VillagerTrade> TEST_PROFESSION_2_EMERALD_DATA_TABLET = createVillagerTrade("test_profession/2/emerald_metal_detector");
+    public static final ResourceKey<VillagerTrade> TEST_PROFESSION_2_AZURITE_MAGIC_BLOCK = createVillagerTrade("test_profession/2/azurite_magic_block");
+
 
     public static void bootstrap(BootstrapContext<VillagerTrade> context) {
         var items = context.lookup(Registries.ITEM);
@@ -52,6 +60,31 @@ public class TestVillagerTrades {
                         VillagerTrades.enchantedBook(items, enchantmentsForBooks),
                         doubleTradePrice
                 ));
+        context.register(TEST_PROFESSION_1_EMERALD_METAL_DETECTOR,
+                new VillagerTrade(
+                        new TradeCost(Items.EMERALD, 12),
+                        new ItemStackTemplate(TestItems.METAL_DETECTOR),
+                        8, 12, 0.05f, Optional.empty(), List.of()
+            ));
+        context.register(TEST_PROFESSION_1_EMERALD_RAW_AZURITE,
+                new VillagerTrade(
+                        new TradeCost(Items.EMERALD, 10),
+                        new ItemStackTemplate(TestItems.RAW_AZURITE),
+                        8, 12, 0.05f, Optional.empty(), List.of()
+                ));
+        context.register(TEST_PROFESSION_2_EMERALD_DATA_TABLET,
+                new VillagerTrade(
+                        new TradeCost(Items.EMERALD, 2),
+                        new ItemStackTemplate(TestItems.DATA_TABLET),
+                        8, 12, 0.05f, Optional.empty(), List.of()
+                ));
+        context.register(TEST_PROFESSION_2_AZURITE_MAGIC_BLOCK,
+                new VillagerTrade(
+                        new TradeCost(TestItems.AZURITE, 10),
+                        new ItemStackTemplate(TestBlocks.MAGIC_BLOCK.asItem()),
+                        8, 12, 0.05f, Optional.empty(), List.of()
+                ));
+
     }
 
     private static ResourceKey<VillagerTrade> createVillagerTrade(String key) {

@@ -1,0 +1,12 @@
+{
+  "gives": {
+    "id": "testmod:magic_block"
+  },
+  "max_uses": 8.0,
+  "reputation_discount": 0.05,
+  "wants": {
+    "count": 10.0,
+    "id": "testmod:azurite"
+  },
+  "xp": 12.0
+}

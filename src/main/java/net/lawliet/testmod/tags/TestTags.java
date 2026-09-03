@@ -1,11 +1,13 @@
 package net.lawliet.testmod.tags;
 
 import net.lawliet.testmod.TestMod;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.trading.VillagerTrade;
 import net.minecraft.world.level.block.Block;
 
 public class TestTags {
@@ -31,6 +33,15 @@ public class TestTags {
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(Identifier.fromNamespaceAndPath(TestMod.MODID, name));
+        }
+    }
+
+    public static class Trades {
+        public static final TagKey<VillagerTrade> TEST_PROFESSION_LEVEL_1 = createTag("test_profession/level_1");
+        public static final TagKey<VillagerTrade> TEST_PROFESSION_LEVEL_2 = createTag("test_profession/level_2");
+
+        private static TagKey<VillagerTrade> createTag(String name) {
+            return TagKey.create(Registries.VILLAGER_TRADE, Identifier.fromNamespaceAndPath(TestMod.MODID, name));
         }
     }
 }

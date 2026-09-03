@@ -88,6 +88,8 @@
   "death.attack.stinky": "%s was stinkied to death!",
   "death.attack.stinky.player": "%s was stinkied to death trying to outrun %s",
 
+  "entity.minecraft.villager.testmod.test_profession": "Test Profession",
+
   "effect.testmod.stinky": "Stinky",
 
   "effect.testmod.stinky.description": "Allows easier detection by enemies",

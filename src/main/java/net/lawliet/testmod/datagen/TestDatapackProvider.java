@@ -5,6 +5,7 @@ import net.lawliet.testmod.datagen.damagesource.TestDamageTypes;
 import net.lawliet.testmod.datagen.painting.TestPainting;
 import net.lawliet.testmod.datagen.villager.TestVillagerTrades;
 import net.lawliet.testmod.registries.TestSounds;
+import net.lawliet.testmod.registries.villager.TestTradeSets;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -20,6 +21,7 @@ public class TestDatapackProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.JUKEBOX_SONG, TestSounds::bootstrap)
             .add(Registries.DAMAGE_TYPE, TestDamageTypes::bootstrap)
             .add(Registries.VILLAGER_TRADE, TestVillagerTrades::bootstrap)
+            .add(Registries.TRADE_SET, TestTradeSets::bootstrap)
             ;
 
     public TestDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

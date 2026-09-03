@@ -1,6 +1,8 @@
 package net.lawliet.testmod;
 
 import net.lawliet.testmod.registries.*;
+import net.lawliet.testmod.registries.villager.Poi;
+import net.lawliet.testmod.registries.villager.Profession;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 
@@ -33,6 +35,8 @@ public class TestMod {
         TestSounds.register(modEventBus);
         TestMobEffects.register(modEventBus);
         TestPotions.register(modEventBus);
+        Profession.register(modEventBus);
+        Poi.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
 
 
