@@ -1,4 +1,4 @@
-package loot;
+package net.lawliet.testmod.loot;
 
 import net.lawliet.testmod.TestMod;
 import net.minecraft.core.registries.Registries;
@@ -24,7 +24,7 @@ public class TestLootTables {
         if (LOCATIONS.add(location)) {
             return location;
         } else {
-            throw new IllegalArgumentException(location.identifier() + " is already a registered built-in loot table");
+            throw new IllegalArgumentException(location.identifier() + " is already a registered built-in net.lawliet.testmod.loot table");
         }
     }
 

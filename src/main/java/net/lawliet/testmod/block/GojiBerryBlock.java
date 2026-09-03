@@ -1,6 +1,6 @@
 package net.lawliet.testmod.block;
 
-import loot.TestLootTables;
+import net.lawliet.testmod.loot.TestLootTables;
 import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

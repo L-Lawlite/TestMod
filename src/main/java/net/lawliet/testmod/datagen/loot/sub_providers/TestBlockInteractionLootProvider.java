@@ -1,6 +1,6 @@
 package net.lawliet.testmod.datagen.loot.sub_providers;
 
-import loot.TestLootTables;
+import net.lawliet.testmod.loot.TestLootTables;
 import net.lawliet.testmod.block.GojiBerryBlock;
 import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.registries.TestItems;
