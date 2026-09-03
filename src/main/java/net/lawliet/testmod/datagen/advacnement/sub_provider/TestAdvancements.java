@@ -7,16 +7,22 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementType;
+import net.minecraft.advancements.predicates.ContextAwarePredicate;
 import net.minecraft.advancements.predicates.ItemPredicate;
 import net.minecraft.advancements.predicates.LocationPredicate;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.advancements.triggers.InventoryChangeTrigger;
 import net.minecraft.advancements.triggers.ItemUsedOnLocationTrigger;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
+import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class TestAdvancements implements AdvancementSubProvider {
@@ -68,10 +74,12 @@ public class TestAdvancements implements AdvancementSubProvider {
                         true,
                         false
                 )
-                .addCriterion("metal_detector", ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(
-                        LocationPredicate.Builder.location().setCanSeeSky(true),
-                        ItemPredicate.Builder.item().of(items, TestItems.METAL_DETECTOR)
-                ))
+                .addCriterion("metal_detector",
+                       CriteriaTriggers.ITEM_USED_ON_BLOCK.createCriterion(new ItemUsedOnLocationTrigger.TriggerInstance(Optional.empty(), Optional.of(
+                        ContextAwarePredicate.create(
+                                LocationCheck.checkLocation(LocationPredicate.Builder.location().setCanSeeSky(true), new BlockPos(0, 1, 0)).build(),
+                                MatchTool.toolMatches(ItemPredicate.Builder.item().of(items, TestItems.METAL_DETECTOR)).build()
+                        )))))
                 .save(output, getSavePath("metal_detector"));
     }
 
