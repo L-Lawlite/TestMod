@@ -37,6 +37,7 @@ public class TestMod {
         TestPotions.register(modEventBus);
         Profession.register(modEventBus);
         Poi.register(modEventBus);
+        TestBlockEntities.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
 
 
