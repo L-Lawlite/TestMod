@@ -4,6 +4,7 @@ import net.lawliet.testmod.datagen.*;
 import net.lawliet.testmod.datagen.TestDataMapProvider;
 import net.lawliet.testmod.datagen.loot.sub_providers.TestBlockInteractionLootProvider;
 import net.lawliet.testmod.datagen.loot.sub_providers.TestBlockLootProvider;
+import net.lawliet.testmod.datagen.loot.sub_providers.TestExtraLootProvider;
 import net.lawliet.testmod.datagen.villager.TestPoiTags;
 import net.lawliet.testmod.datagen.villager.TestVillagerTradeTags;
 import net.minecraft.data.loot.LootTableProvider;

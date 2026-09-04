@@ -1,6 +1,7 @@
 package net.lawliet.testmod.datagen;
 
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.datagen.loot.sub_providers.TestExtraLootProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;

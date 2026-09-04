@@ -1,6 +1,7 @@
 package net.lawliet.testmod.event;
 
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.gui.screen.CrystallizerScreen;
 import net.lawliet.testmod.gui.screen.PedestalScreen;
 import net.lawliet.testmod.registries.gui.TestMenu;
 import net.neoforged.api.distmarker.Dist;
@@ -13,5 +14,6 @@ public class RegisterScreen {
     @SubscribeEvent
     public static void registerScreen(RegisterMenuScreensEvent event) {
         event.register(TestMenu.PEDESTAL_MENU.get(), PedestalScreen::new);
+        event.register(TestMenu.CRYSTALLIZER_MENU.get(), CrystallizerScreen::new);
     }
 }

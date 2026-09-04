@@ -87,6 +87,7 @@ public class TestModelProvider extends ModelProvider {
         blockModels.createCropBlock(TestBlocks.ONION.get(), OnionBlock.AGE, 0, 1, 2, 3);
         blockModels.createCropBlock(TestBlocks.GOJI_BERRY_BUSH.get(), GojiBerryBlock.AGE, 0, 1, 2, 3);
         blockModels.createCropBlock(TestBlocks.RICE.get(), RiceCropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
+        blockModels.createHorizontallyRotatedBlock(TestBlocks.CRYSTALLIZER.get(), TexturedModel.ORIENTABLE);
 
         blockModels.createNonTemplateModelBlock(TestBlocks.PEDESTAL.get());
 

@@ -1,6 +1,7 @@
 package net.lawliet.testmod.registries.gui;
 
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.gui.menu.CrystallizerMenu;
 import net.lawliet.testmod.gui.menu.PedestalMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -15,6 +16,7 @@ public class TestMenu {
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(Registries.MENU, TestMod.MODID);
 
     public static final DeferredHolder<MenuType<?>, MenuType<PedestalMenu>> PEDESTAL_MENU = registerMenu("pedestal_menu", PedestalMenu::new);
+    public static final DeferredHolder<MenuType<?>, MenuType<CrystallizerMenu>> CRYSTALLIZER_MENU = registerMenu("crystallizer_menu", CrystallizerMenu::new);
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenu(String name, IContainerFactory<T> factory) {
         return MENU_TYPES.register(name, () -> IMenuTypeExtension.create(factory));

@@ -50,6 +50,7 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
         dropSelf(TestBlocks.AZURITE_TRAPDOOR.get());
         dropSelf(TestBlocks.AZURITE_LAMP.get());
         dropSelf(TestBlocks.PEDESTAL.get());
+        dropSelf(TestBlocks.CRYSTALLIZER.get());
 
         add(TestBlocks.AZURITE_DOOR.get(), this::createDoorTable);
         add(TestBlocks.AZURITE_SLAB.get(), this::createSlabItemTable);

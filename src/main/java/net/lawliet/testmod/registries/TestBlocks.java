@@ -1,10 +1,7 @@
 package net.lawliet.testmod.registries;
 
 import net.lawliet.testmod.TestMod;
-import net.lawliet.testmod.block.AzuriteLampBlock;
-import net.lawliet.testmod.block.GojiBerryBlock;
-import net.lawliet.testmod.block.MagicBlock;
-import net.lawliet.testmod.block.PedestalBlock;
+import net.lawliet.testmod.block.*;
 import net.lawliet.testmod.block.crop.RiceCropBlock;
 import net.lawliet.testmod.block.state.TestBlockStateProperties;
 import net.lawliet.testmod.block.crop.OnionBlock;
@@ -113,7 +110,7 @@ public class TestBlocks {
     public static final DeferredBlock<Block> RICE = BLOCKS.registerBlock("rice_crop", RiceCropBlock::new,
             properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.CROP));
 
-
+    public static final DeferredBlock<Block> CRYSTALLIZER = registerBlock("crystallizer", CrystallizerBlock::new, properties -> properties.strength(2f).requiresCorrectToolForDrops());
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
@@ -140,6 +137,7 @@ public class TestBlocks {
         output.accept(AZURITE_TRAPDOOR);
         output.accept(AZURITE_LAMP);
         output.accept(PEDESTAL);
+        output.accept(CRYSTALLIZER);
 
     }
 

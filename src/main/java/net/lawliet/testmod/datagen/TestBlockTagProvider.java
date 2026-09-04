@@ -30,6 +30,7 @@ public class TestBlockTagProvider extends BlockTagsProvider {
                 .add(TestBlocks.AZURITE_DOOR.getKey())
                 .add(TestBlocks.AZURITE_TRAPDOOR.getKey())
                 .add(TestBlocks.PEDESTAL.getKey())
+                .add(TestBlocks.CRYSTALLIZER.getKey())
         ;
 
         tag(BlockTags.NEEDS_IRON_TOOL)
