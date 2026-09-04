@@ -1,14 +1,21 @@
 package net.lawliet.testmod.block.entity;
 
+import net.lawliet.testmod.gui.menu.PedestalMenu;
 import net.lawliet.testmod.registries.TestBlockEntities;
+import net.lawliet.testmod.registries.TestBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -18,8 +25,9 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.access.ItemAccess;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
+import org.jspecify.annotations.Nullable;
 
-public class PedestalBlockEntity extends BlockEntity {
+public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
     public final ItemStacksResourceHandler inventory = new ItemStacksResourceHandler(1) {
         @Override
         protected int getCapacity(int index, ItemResource resource) {
@@ -97,4 +105,14 @@ public class PedestalBlockEntity extends BlockEntity {
         return ClientboundBlockEntityDataPacket.create(this);
     }
     //END: Block entity sync methods
+
+    @Override
+    public Component getDisplayName() {
+        return Component.translatable(TestBlocks.PEDESTAL.getId().toLanguageKey());
+    }
+
+    @Override
+    public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player) {
+        return new PedestalMenu(containerId, inventory, this, this.inventory);
+    }
 }

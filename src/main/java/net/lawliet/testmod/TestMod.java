@@ -1,6 +1,7 @@
 package net.lawliet.testmod;
 
 import net.lawliet.testmod.registries.*;
+import net.lawliet.testmod.registries.gui.TestMenu;
 import net.lawliet.testmod.registries.villager.Poi;
 import net.lawliet.testmod.registries.villager.Profession;
 import net.minecraft.resources.Identifier;
@@ -38,6 +39,7 @@ public class TestMod {
         Profession.register(modEventBus);
         Poi.register(modEventBus);
         TestBlockEntities.register(modEventBus);
+        TestMenu.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
 
 

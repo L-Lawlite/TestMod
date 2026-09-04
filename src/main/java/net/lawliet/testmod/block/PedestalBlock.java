@@ -3,10 +3,12 @@ package net.lawliet.testmod.block;
 import com.mojang.serialization.MapCodec;
 import net.lawliet.testmod.block.entity.PedestalBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -56,6 +58,12 @@ public class PedestalBlock extends BaseEntityBlock {
     @Override
     protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (level.getBlockEntity(pos) instanceof PedestalBlockEntity pedestalBlockEntity) {
+            //Open Menu
+            if(player.isCrouching()) {
+                player.openMenu(new SimpleMenuProvider(pedestalBlockEntity, Component.translatable("block.testmod.pedestal")), pos);
+                return InteractionResult.SUCCESS;
+            }
+
             // Insert
             if(pedestalBlockEntity.isEmpty() && !itemStack.isEmpty()) {
                 pedestalBlockEntity.insertItem(itemStack);
