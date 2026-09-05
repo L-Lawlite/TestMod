@@ -1,0 +1,8 @@
+{
+  "type": "testmod:crystallizing",
+  "ingredient": "testmod:goji_berries",
+  "result": {
+    "count": 4,
+    "id": "testmod:end_fire_starter"
+  }
+}

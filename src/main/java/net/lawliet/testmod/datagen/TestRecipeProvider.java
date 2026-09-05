@@ -14,8 +14,11 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
+import recipe.datagen.CrystallizerRecipeBuilder;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -68,6 +71,30 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
         makeDataTablet();
         makeMetalDetector();
         makeTestBow();
+
+        makeCrystallizerRecipe(Items.STICK, Items.END_ROD, 2);
+        makeCrystallizerRecipe(TestItems.RAW_AZURITE, TestItems.AZURITE, 3);
+        makeCrystallizerRecipe(Blocks.DIRT, Items.NETHER_STAR);
+        makeCrystallizerRecipe(TestItems.GOJI_BERRIES, TestItems.END_FIRE_STARTER, 4);
+        makeCrystallizerRecipe(Items.REDSTONE, TestItems.DATA_TABLET);
+    }
+
+    private void makeCrystallizerRecipe(RecipeCategory category, ItemLike ingredient, ItemLike result, int count) {
+        CrystallizerRecipeBuilder.crystallizerRecipe(category, Ingredient.of(ingredient), result, count)
+                .unlockedBy(getHasName(ingredient), has(ingredient))
+                .save(output);
+    }
+
+    private void makeCrystallizerRecipe(RecipeCategory category, ItemLike ingredient, ItemLike result) {
+        makeCrystallizerRecipe(category, ingredient, result, 1);
+    }
+
+    private void makeCrystallizerRecipe(ItemLike ingredient, ItemLike result) {
+        makeCrystallizerRecipe(ingredient, result, 1);
+    }
+
+    private void makeCrystallizerRecipe(ItemLike ingredient, ItemLike result, int count) {
+        makeCrystallizerRecipe(RecipeCategory.MISC,ingredient, result, count);
     }
 
     private void makeTestBow() {

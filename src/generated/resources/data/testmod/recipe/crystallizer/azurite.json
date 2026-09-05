@@ -1,0 +1,8 @@
+{
+  "type": "testmod:crystallizing",
+  "ingredient": "testmod:raw_azurite",
+  "result": {
+    "count": 3,
+    "id": "testmod:azurite"
+  }
+}

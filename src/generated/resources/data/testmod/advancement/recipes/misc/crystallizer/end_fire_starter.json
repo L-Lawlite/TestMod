@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_goji_berries": {
+      "conditions": {
+        "items": [
+          {
+            "items": "testmod:goji_berries"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "testmod:crystallizer/end_fire_starter"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_goji_berries"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "testmod:crystallizer/end_fire_starter"
+    ]
+  }
+}
