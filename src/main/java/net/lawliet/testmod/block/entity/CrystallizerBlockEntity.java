@@ -4,7 +4,7 @@ import net.lawliet.testmod.block.CrystallizerBlock;
 import net.lawliet.testmod.gui.menu.CrystallizerMenu;
 import net.lawliet.testmod.registries.TestBlockEntities;
 import net.lawliet.testmod.registries.TestBlocks;
-import net.lawliet.testmod.registries.TestItems;
+import net.lawliet.testmod.registries.TestRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -13,6 +13,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -21,6 +22,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,6 +32,10 @@ import net.neoforged.neoforge.transfer.access.ItemAccess;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
+import recipe.crystallizer.CrystallizerRecipe;
+import recipe.crystallizer.CrystallizerRecipeInput;
+
+import java.util.Optional;
 
 public class CrystallizerBlockEntity extends BlockEntity implements MenuProvider {
     public final ItemStacksResourceHandler inventory = new ItemStacksResourceHandler(2) {
@@ -111,7 +117,9 @@ public class CrystallizerBlockEntity extends BlockEntity implements MenuProvider
     }
 
     private void craftItem() {
-        ItemStack output = new ItemStack(TestItems.AZURITE.get());
+        Optional<RecipeHolder<CrystallizerRecipe>> recipe = getCurrentRecipe();
+        assert recipe.isPresent();
+        ItemStack output = getRecipeOutput(recipe.get());
         try (Transaction transaction = Transaction.openRoot()) {
             ItemAccess itemAccess = ItemAccess.forHandlerIndex(inventory, OUTPUT_SLOT);
 
@@ -123,10 +131,22 @@ public class CrystallizerBlockEntity extends BlockEntity implements MenuProvider
 
     }
 
+    private ItemStack getRecipeOutput(RecipeHolder<CrystallizerRecipe> recipe) {
+        return recipe.value().assemble(new CrystallizerRecipeInput(inventory.getResource(INPUT_SLOT).toStack()));
+    }
+
     private boolean hasRecipe() {
-        ItemStack output = new ItemStack(TestItems.AZURITE.get());
-        boolean hasInput = inventory.getResource(INPUT_SLOT).is(TestItems.RAW_AZURITE.get());
-        return hasInput && canInsertIntoSlot(output);
+        Optional<RecipeHolder<CrystallizerRecipe>> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) {
+            return false;
+        }
+        ItemStack output = getRecipeOutput(recipe.get());
+        return canInsertIntoSlot(output);
+    }
+
+    private Optional<RecipeHolder<CrystallizerRecipe>> getCurrentRecipe() {
+        // Only work for 1 item in input
+        return ((ServerLevel) level).recipeAccess().getRecipeFor(TestRecipes.CRYSTALLIZER_RECIPE.type().get(), new CrystallizerRecipeInput(inventory.getResource(INPUT_SLOT).toStack()), level);
     }
 
     private boolean canInsertIntoSlot(ItemStack output) {

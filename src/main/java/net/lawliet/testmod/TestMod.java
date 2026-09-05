@@ -40,6 +40,7 @@ public class TestMod {
         Poi.register(modEventBus);
         TestBlockEntities.register(modEventBus);
         TestMenu.register(modEventBus);
+        TestRecipes.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
 
 
