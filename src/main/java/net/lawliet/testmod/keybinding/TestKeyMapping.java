@@ -1,4 +1,4 @@
-package keybinding;
+package net.lawliet.testmod.keybinding;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.lawliet.testmod.TestMod;
