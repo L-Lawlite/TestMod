@@ -108,7 +108,9 @@ public class TestBlocks {
     public static final DeferredBlock<Block> GOJI_BERRY_BUSH = BLOCKS.registerBlock("goji_berry_bush", GojiBerryBlock::new,
             properties -> properties.randomTicks().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.SWEET_BERRY_BUSH));
     public static final DeferredBlock<Block> RICE = BLOCKS.registerBlock("rice_crop", RiceCropBlock::new,
-            properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.CROP));
+            properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.CROP)
+                    .lightLevel(state -> state.getValue(CrystallizerBlock.LIT) ? 7 : 0)
+    );
 
     public static final DeferredBlock<Block> CRYSTALLIZER = registerBlock("crystallizer", CrystallizerBlock::new, properties -> properties.strength(2f).requiresCorrectToolForDrops());
 

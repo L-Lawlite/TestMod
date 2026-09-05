@@ -1,5 +1,6 @@
 package net.lawliet.testmod.block.entity;
 
+import net.lawliet.testmod.block.CrystallizerBlock;
 import net.lawliet.testmod.gui.menu.CrystallizerMenu;
 import net.lawliet.testmod.registries.TestBlockEntities;
 import net.lawliet.testmod.registries.TestBlocks;
@@ -98,12 +99,14 @@ public class CrystallizerBlockEntity extends BlockEntity implements MenuProvider
         if(hasRecipe() && isOutputSlotEmptyOrReceivable()) {
             increaseCraftingProgress();
             setChanged(level, pos, state);
+            level.setBlockAndUpdate(pos, state.setValue(CrystallizerBlock.LIT, true));
             if (isCraftingFinished()) {
                 craftItem();
                 resetProgress();
             }
         } else {
             resetProgress();
+            level.setBlockAndUpdate(pos, state.setValue(CrystallizerBlock.LIT, false));
         }
     }
 
