@@ -91,13 +91,13 @@ public class CrystallizerBlockEntity extends BlockEntity implements MenuProvider
         return new CrystallizerMenu(containerId, inventory, this, this.inventory, this.data);
     }
 
-
     public void drops() {
         SimpleContainer inv = new SimpleContainer(inventory.size());
         for (int i = 0; i < inventory.size(); i++) {
             ItemAccess itemAccess = ItemAccess.forHandlerIndex(inventory, i);
             inv.setItem(i, new ItemStack(itemAccess.getResource().getItem(), itemAccess.getAmount()));
         }
+        assert level != null;
         Containers.dropContents(level, worldPosition, inv);
     }
 
@@ -121,11 +121,8 @@ public class CrystallizerBlockEntity extends BlockEntity implements MenuProvider
         assert recipe.isPresent();
         ItemStack output = getRecipeOutput(recipe.get());
         try (Transaction transaction = Transaction.openRoot()) {
-            ItemAccess itemAccess = ItemAccess.forHandlerIndex(inventory, OUTPUT_SLOT);
-
             inventory.extract(INPUT_SLOT ,inventory.getResource(INPUT_SLOT), 1, transaction);
-            inventory.set(OUTPUT_SLOT, ItemResource.of(output), itemAccess.getAmount() + output.getCount());
-
+            inventory.insert(OUTPUT_SLOT, ItemResource.of(output), output.getCount(), transaction);
             transaction.commit();
         }
 
@@ -146,6 +143,7 @@ public class CrystallizerBlockEntity extends BlockEntity implements MenuProvider
 
     private Optional<RecipeHolder<CrystallizerRecipe>> getCurrentRecipe() {
         // Only work for 1 item in input
+        assert level != null;
         return ((ServerLevel) level).recipeAccess().getRecipeFor(TestRecipes.CRYSTALLIZER_RECIPE.type().get(), new CrystallizerRecipeInput(inventory.getResource(INPUT_SLOT).toStack()), level);
     }
 
