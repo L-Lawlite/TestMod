@@ -18,10 +18,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 
-/** Many parts taken from <a href="https://github.com/SlimeKnights/Mantle/tree/1.20">Mantle</a>*/
-public abstract class BaseContainerMenu<T extends BlockEntity> extends AbstractContainerMenu {
-    public static double MAX_DISTANCE = 32D;
-    public static int DEFAULT_X_OFFSET = 0;
+public class BaseContainerMenu<T extends BlockEntity> extends AbstractContainerMenu {
+//    public static double MAX_DISTANCE = 32D;
+    public static int DEFAULT_X_OFFSET = 8;
     public static int DEFAULT_Y_OFFSET = 84;
 
     private static final Logger LOGGER = LogUtils.getLogger();
@@ -31,15 +30,21 @@ public abstract class BaseContainerMenu<T extends BlockEntity> extends AbstractC
 
     @Nullable
     protected final Inventory inventory;
-    protected int playerInventoryStart = -1;
+    @Nullable
+    protected final Level level;
 
+    /**
+     * Must provide {@link #setExtraInventorySlotCount(int)}
+     */
     protected BaseContainerMenu(@Nullable MenuType<?> menuType, int containerId, @Nullable Inventory inventory,@Nullable T blockEntity) {
         super(menuType, containerId);
         this.blockEntity = blockEntity;
         this.inventory = inventory;
+        this.level = inventory != null ? inventory.player.level(): null;
     }
 
     @Nullable
+    @SuppressWarnings("unused")
     public T getBlockEntity() {
         return blockEntity;
     }
@@ -69,7 +74,8 @@ public abstract class BaseContainerMenu<T extends BlockEntity> extends AbstractC
      *  Set default state here.
      * @param playerOpened {@link ServerPlayer} that opened the container menu
      */
-    protected abstract void syncNewContainer(ServerPlayer playerOpened);
+    @SuppressWarnings("unused")
+    protected void syncNewContainer(ServerPlayer playerOpened) {}
 
     /**
      *  Called when the container is opened and another player already has a container for this {@link BlockEntity} open.
@@ -77,7 +83,8 @@ public abstract class BaseContainerMenu<T extends BlockEntity> extends AbstractC
      * @param otherContainer other container
      * @param playerOpened {@link ServerPlayer} that opened the container menu
      */
-    protected abstract void syncWithOtherContainer(BaseContainerMenu<?> otherContainer, ServerPlayer playerOpened);
+    @SuppressWarnings("unused")
+    protected void syncWithOtherContainer(BaseContainerMenu<?> otherContainer, ServerPlayer playerOpened) {}
 
     /**
      *  Checks if {@link BlockEntity} are same
@@ -104,10 +111,9 @@ public abstract class BaseContainerMenu<T extends BlockEntity> extends AbstractC
         int xOffset = this.getInventoryXOffset();
         int yOffset = this.getInventoryYOffset();
 
-        int start = this.slots.size();
-        for(int slotY = 0; slotY < 3; slotY++) {
-            for(int slotX = 0; slotX < 9; slotX++) {
-                addSlot(new Slot(inventory, slotX + slotY * 9 + 9, xOffset + slotX * 18, yOffset + slotY * 18));
+        for (int slotY = 0; slotY < 3; ++slotY) {
+            for (int slotX = 0; slotX < 9; ++slotX) {
+                this.addSlot(new Slot(inventory, slotX + slotY * 9 + 9, xOffset + slotX * 18, yOffset + slotY * 18));
             }
         }
 
@@ -116,7 +122,6 @@ public abstract class BaseContainerMenu<T extends BlockEntity> extends AbstractC
             addSlot(new Slot(inventory, slotY, xOffset + slotY * 18, yOffset));
         }
 
-        this.playerInventoryStart = start;
     }
 
     /**
@@ -135,22 +140,26 @@ public abstract class BaseContainerMenu<T extends BlockEntity> extends AbstractC
 
 
 
-    @Override
-    protected Slot addSlot(Slot slot) {
-        if (this.playerInventoryStart >= 0) {
-            throw new IllegalStateException("BaseContainer: Player inventory has to be last slots. Add all slots before adding the player inventory.");
-        }
-        return super.addSlot(slot);
+
+
+    /** Must be given in class constructor defines how many extra slots does the container has for {@link #quickMoveStack(Player, int)}
+     *
+     * @param extraInventorySlotCount Count of extra slots
+     */
+    public void setExtraInventorySlotCount(int extraInventorySlotCount) {
+        this.ExtraInventorySlotCount = extraInventorySlotCount;
+    }
+
+    /** Getter for ExtraInventorySlotCount
+     *
+     * @return int value
+     */
+    @SuppressWarnings("unused")
+    public int getExtraInventorySlotCount() {
+        return ExtraInventorySlotCount;
     }
 
 
-    // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
-    // must assign a slot number to each of the slots used by the GUI.
-    // For this container, we can see both the tile inventory's slots as well as the player inventory slots and the hotbar.
-    // Each time we add a Slot to the container, it automatically increases the slotIndex, which means
-    //  0 - 8 = hotbar slots (which will map to the InventoryPlayer slot numbers 0 - 8)
-    //  9 - 35 = player inventory slots (which map to the InventoryPlayer slot numbers 9 - 35)
-    //  36 - 44 = TileInventory slots, which map to our TileEntity slot numbers 0 - 8)
     protected static final int HOTBAR_SLOT_COUNT = 9;
     protected static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     protected static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
@@ -158,16 +167,15 @@ public abstract class BaseContainerMenu<T extends BlockEntity> extends AbstractC
     protected static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
     protected static final int VANILLA_FIRST_SLOT_INDEX = 0;
     protected static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-
-    public void setExtraInventorySlotCount(int extraInventorySlotCount) {
-        this.ExtraInventorySlotCount = extraInventorySlotCount;
-    }
-
-    public int getExtraInventorySlotCount() {
-        return ExtraInventorySlotCount;
-    }
-
     private int ExtraInventorySlotCount;
+    /** CREDIT GOES TO: <a href="https://github.com/diesieben07/SevenCommons">diesieben07</a>
+     * <br/>must assign a slot number to each of the slots used by the GUI.
+     * <br/>For this container, we can see both the tile inventory's slots and the player inventory slots and the hotbar.
+     * <br/>Each time we add a Slot to the container, it automatically increases the slotIndex, which means
+     * <br/> 0 - 8 = hotbar slots (which will map to the InventoryPlayer slot numbers 0 - 8)
+     * <br/> 9 - 35 = player inventory slots (which map to the InventoryPlayer slot numbers 9 - 35)
+     * <br/> 36 - 44 = TileInventory slots, which map to our TileEntity slot numbers 0 - 8)
+     **/
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         if (ExtraInventorySlotCount < 0) {
@@ -208,10 +216,10 @@ public abstract class BaseContainerMenu<T extends BlockEntity> extends AbstractC
 
     @Override
     public boolean stillValid(Player player) {
-        if (blockEntity == null) {
+        if (blockEntity == null || level == null) {
             return false;
         }
-        return stillValid(ContainerLevelAccess.create(player.level(), blockEntity.getBlockPos()), player, blockEntity.getBlockState().getBlock());
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, blockEntity.getBlockState().getBlock());
     }
 
     /**

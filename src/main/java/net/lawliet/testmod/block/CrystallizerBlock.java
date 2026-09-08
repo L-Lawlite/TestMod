@@ -2,16 +2,19 @@ package net.lawliet.testmod.block;
 
 import com.mojang.serialization.MapCodec;
 import net.lawliet.testmod.block.entity.CrystallizerBlockEntity;
+import net.lawliet.testmod.gui.menu.BaseContainerMenu;
 import net.lawliet.testmod.registries.TestBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -73,7 +76,11 @@ public class CrystallizerBlock extends BaseEntityBlock {
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if(!level.isClientSide()) {
             if(level.getBlockEntity(pos) instanceof CrystallizerBlockEntity blockEntity) {
-                player.openMenu(new SimpleMenuProvider(blockEntity, Component.translatable("block.testmod.crystallizer")), pos);
+                MenuProvider menuProvider = new SimpleMenuProvider(blockEntity, Component.translatable("block.testmod.crystallizer"));
+                player.openMenu(menuProvider, pos);
+                if(player.containerMenu instanceof BaseContainerMenu<?> menu) {
+                    menu.syncOnOpen((ServerPlayer) player);
+                }
             } else {
                 throw new IllegalStateException("Container Provider missing");
             }
