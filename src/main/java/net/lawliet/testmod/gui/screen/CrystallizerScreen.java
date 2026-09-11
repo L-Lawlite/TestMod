@@ -1,15 +1,15 @@
 package net.lawliet.testmod.gui.screen;
 
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.block.entity.CrystallizerBlockEntity;
 import net.lawliet.testmod.gui.menu.CrystallizerMenu;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 
-public class CrystallizerScreen extends AbstractContainerScreen<CrystallizerMenu> {
+public class CrystallizerScreen extends BaseTabbedScreen<CrystallizerBlockEntity, CrystallizerMenu> {
     private static final Identifier GUI_TEXTURE = TestMod.createIdentifier("textures/gui/crystallizer/crystallizer_gui.png");
     private static final Identifier ARROW_TEXTURE = TestMod.createIdentifier("textures/gui/crystallizer/arrow_progress.png");
     private static final Identifier CRYSTAL_TEXTURE = Identifier.withDefaultNamespace("textures/block/amethyst_cluster.png");
@@ -22,12 +22,10 @@ public class CrystallizerScreen extends AbstractContainerScreen<CrystallizerMenu
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
         super.extractBackground(graphics, mouseX, mouseY, a);
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
-        graphics.blit(RenderPipelines.GUI_TEXTURED, GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight, 256, 256);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, GUI_TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight, 256, 256);
         if (menu.isCrafting()) {
-            renderProgressArrow(graphics, x, y);
-            renderProgressCrystal(graphics, x, y);
+            renderProgressArrow(graphics, leftPos, topPos);
+            renderProgressCrystal(graphics, leftPos, topPos);
         }
     }
 

@@ -2,7 +2,6 @@ package net.lawliet.testmod.gui.menu;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.ibm.icu.impl.Pair;
 import net.lawliet.testmod.gui.inferface.ITabbedBlock;
 import net.lawliet.testmod.gui.screen.BaseTabbedScreen;
 import net.minecraft.client.Minecraft;
@@ -14,6 +13,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.apache.commons.lang3.tuple.Pair;
 import org.jspecify.annotations.Nullable;
 
 import java.util.*;
@@ -116,8 +116,8 @@ public class TabbedContainerMenu<T extends BlockEntity> extends BaseContainerMen
          */
         @Override
         public int compare(Pair<BlockPos, BlockState> o1, Pair<BlockPos, BlockState> o2) {
-            BlockPos pos1 = o1.first;
-            BlockPos pos2 = o2.first;
+            BlockPos pos1 = o1.getLeft();
+            BlockPos pos2 = o2.getLeft();
             int sum1 = pos1.getX() + pos1.getY() + pos1.getZ();
             int sum2 = pos2.getX() + pos2.getY() + pos2.getZ();
             if (sum1 != sum2) {

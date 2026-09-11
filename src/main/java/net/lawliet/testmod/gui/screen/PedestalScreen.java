@@ -1,15 +1,15 @@
 package net.lawliet.testmod.gui.screen;
 
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.block.entity.PedestalBlockEntity;
 import net.lawliet.testmod.gui.menu.PedestalMenu;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 
-public class PedestalScreen extends AbstractContainerScreen<PedestalMenu> {
+public class PedestalScreen extends BaseTabbedScreen<PedestalBlockEntity, PedestalMenu> {
     private static final Identifier GUI_TEXTURE = TestMod.createIdentifier("textures/gui/pedestal/pedestal_gui.png");
 
     public PedestalScreen(PedestalMenu menu, Inventory inventory, Component title) {
@@ -23,5 +23,6 @@ public class PedestalScreen extends AbstractContainerScreen<PedestalMenu> {
         int y = (this.height - this.imageHeight) / 2;
 
         graphics.blit(RenderPipelines.GUI_TEXTURED, GUI_TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+
     }
 }

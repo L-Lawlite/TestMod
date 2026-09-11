@@ -2,6 +2,7 @@ package net.lawliet.testmod.block;
 
 import com.mojang.serialization.MapCodec;
 import net.lawliet.testmod.block.entity.CrystallizerBlockEntity;
+import net.lawliet.testmod.gui.inferface.ITabbedBlock;
 import net.lawliet.testmod.gui.menu.BaseContainerMenu;
 import net.lawliet.testmod.registries.TestBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -34,7 +35,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jspecify.annotations.Nullable;
 
-public class CrystallizerBlock extends BaseEntityBlock {
+public class CrystallizerBlock extends BaseEntityBlock implements ITabbedBlock {
     public static final EnumProperty<Direction>  FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final MapCodec<CrystallizerBlock> CODEC = simpleCodec(CrystallizerBlock::new);
@@ -75,15 +76,7 @@ public class CrystallizerBlock extends BaseEntityBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if(!level.isClientSide()) {
-            if(level.getBlockEntity(pos) instanceof CrystallizerBlockEntity blockEntity) {
-                MenuProvider menuProvider = new SimpleMenuProvider(blockEntity, Component.translatable("block.testmod.crystallizer"));
-                player.openMenu(menuProvider, pos);
-                if(player.containerMenu instanceof BaseContainerMenu<?> menu) {
-                    menu.syncOnOpen((ServerPlayer) player);
-                }
-            } else {
-                throw new IllegalStateException("Container Provider missing");
-            }
+            return this.openGui(player, level, pos) ? InteractionResult.SUCCESS : InteractionResult.PASS;
         }
         return InteractionResult.SUCCESS;
     }
@@ -127,5 +120,29 @@ public class CrystallizerBlock extends BaseEntityBlock {
                     x + xOffset, y + yOffset, z + zOffset, 0.0, 0.0, 0.0);
         }
 
+    }
+
+    /**
+     * Called when the block is activated to open the UI. Override to return false for blocks with no inventory
+     *
+     * @param player Player instance
+     * @param level  World instance
+     * @param pos    Block position
+     * @return true if the GUI opened, false if not
+     */
+    @Override
+    public boolean openGui(Player player, Level level, BlockPos pos) {
+        if(!level.isClientSide()) {
+            if(level.getBlockEntity(pos) instanceof CrystallizerBlockEntity blockEntity) {
+                MenuProvider menuProvider = new SimpleMenuProvider(blockEntity, Component.translatable("block.testmod.crystallizer"));
+                player.openMenu(menuProvider, pos);
+                if(player.containerMenu instanceof BaseContainerMenu<?> menu) {
+                    menu.syncOnOpen((ServerPlayer) player);
+                }
+            } else {
+                throw new IllegalStateException("Container Provider missing");
+            }
+        }
+        return true;
     }
 }

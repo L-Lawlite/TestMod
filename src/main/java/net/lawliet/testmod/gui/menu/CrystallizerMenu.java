@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.item.ResourceHandlerSlot;
 
-public class CrystallizerMenu extends BaseContainerMenu<CrystallizerBlockEntity> {
+public class CrystallizerMenu extends TabbedContainerMenu<CrystallizerBlockEntity> {
     private final ContainerData data;
 
     public static final int CRYSTAL_PIXEL_SIZE = 16;

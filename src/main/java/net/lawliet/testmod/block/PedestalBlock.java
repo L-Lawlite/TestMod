@@ -2,12 +2,16 @@ package net.lawliet.testmod.block;
 
 import com.mojang.serialization.MapCodec;
 import net.lawliet.testmod.block.entity.PedestalBlockEntity;
+import net.lawliet.testmod.gui.inferface.ITabbedBlock;
+import net.lawliet.testmod.gui.menu.BaseContainerMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -23,7 +27,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.Nullable;
 
-public class PedestalBlock extends BaseEntityBlock {
+public class PedestalBlock extends BaseEntityBlock implements ITabbedBlock {
     public static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
     public static final MapCodec<PedestalBlock> CODEC = simpleCodec(PedestalBlock::new);
 
@@ -60,8 +64,7 @@ public class PedestalBlock extends BaseEntityBlock {
         if (level.getBlockEntity(pos) instanceof PedestalBlockEntity pedestalBlockEntity) {
             //Open Menu
             if(player.isCrouching()) {
-                player.openMenu(new SimpleMenuProvider(pedestalBlockEntity, Component.translatable("block.testmod.pedestal")), pos);
-                return InteractionResult.SUCCESS;
+                return this.openGui(player, level, pos) ?  InteractionResult.SUCCESS : InteractionResult.PASS;
             }
 
             // Insert
@@ -81,5 +84,29 @@ public class PedestalBlock extends BaseEntityBlock {
         }
 
         return InteractionResult.SUCCESS;
+    }
+
+    /**
+     * Called when the block is activated to open the UI. Override to return false for blocks with no inventory
+     *
+     * @param player Player instance
+     * @param level  World instance
+     * @param pos    Block position
+     * @return true if the GUI opened, false if not
+     */
+    @Override
+    public boolean openGui(Player player, Level level, BlockPos pos) {
+        if(!level.isClientSide()) {
+            if(level.getBlockEntity(pos) instanceof PedestalBlockEntity pedestalBlockEntity) {
+                MenuProvider menuProvider = new SimpleMenuProvider(pedestalBlockEntity, Component.translatable("block.testmod.pedestal"));
+                player.openMenu(menuProvider, pos);
+                if(player.containerMenu instanceof BaseContainerMenu<?> menu) {
+                    menu.syncOnOpen((ServerPlayer) player);
+                }
+            } else {
+                throw new IllegalStateException("Container Provider missing");
+            }
+        }
+        return true;
     }
 }
