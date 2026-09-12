@@ -1,4 +1,4 @@
-package recipe.crystallizer;
+package net.lawliet.testmod.recipe.crystallizer;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;

@@ -1,4 +1,4 @@
-package recipe.datagen;
+package net.lawliet.testmod.recipe.datagen;
 
 import net.lawliet.testmod.TestMod;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
-import recipe.crystallizer.CrystallizerRecipe;
+import net.lawliet.testmod.recipe.crystallizer.CrystallizerRecipe;
 
 public class CrystallizerRecipeBuilder extends SingleInputItemRecipeBuilder {
     protected CrystallizerRecipeBuilder(RecipeCategory category, Ingredient ingredient, ItemStackTemplate result) {
@@ -20,6 +20,7 @@ public class CrystallizerRecipeBuilder extends SingleInputItemRecipeBuilder {
         return new CrystallizerRecipeBuilder(category, ingredient, new ItemStackTemplate(result.asItem(), count));
     }
 
+    @SuppressWarnings("unused")
     public static CrystallizerRecipeBuilder crystallizerRecipe(RecipeCategory category, Ingredient ingredient, ItemLike result) {
         return crystallizerRecipe(category, ingredient, result, 1);
     }

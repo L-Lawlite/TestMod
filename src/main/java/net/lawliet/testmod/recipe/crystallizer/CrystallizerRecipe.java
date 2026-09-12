@@ -1,4 +1,4 @@
-package recipe.crystallizer;
+package net.lawliet.testmod.recipe.crystallizer;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

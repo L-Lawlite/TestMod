@@ -20,7 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Block;
 import org.jspecify.annotations.Nullable;
-import recipe.crystallizer.CrystallizerRecipe;
+import net.lawliet.testmod.recipe.crystallizer.CrystallizerRecipe;
 
 import java.util.List;
 
@@ -52,7 +52,7 @@ public class CrystallizerRecipeCategory implements IRecipeCategory<RecipeHolder<
     }
 
     /**
-     * @return the type of recipe that this category handles.
+     * @return the type of net.lawliet.testmod.recipe that this category handles.
      * @since 9.5.0
      */
     @Override
@@ -61,8 +61,8 @@ public class CrystallizerRecipeCategory implements IRecipeCategory<RecipeHolder<
     }
 
     /**
-     * Returns a text component representing the name of this recipe type.
-     * Drawn at the top of the recipe GUI pages for this category.
+     * Returns a text component representing the name of this net.lawliet.testmod.recipe type.
+     * Drawn at the top of the net.lawliet.testmod.recipe GUI pages for this category.
      *
      * @since 7.6.4
      */
@@ -72,7 +72,7 @@ public class CrystallizerRecipeCategory implements IRecipeCategory<RecipeHolder<
     }
 
     /**
-     * Returns the width of recipe layouts that are drawn for this recipe category.
+     * Returns the width of net.lawliet.testmod.recipe layouts that are drawn for this net.lawliet.testmod.recipe category.
      *
      * @apiNote in 27.0.0 getBackground was removed, and implementing this method became mandatory.
      * @since 11.5.0
@@ -83,7 +83,7 @@ public class CrystallizerRecipeCategory implements IRecipeCategory<RecipeHolder<
     }
 
     /**
-     * Returns the height of recipe layouts that are drawn for this recipe category.
+     * Returns the height of net.lawliet.testmod.recipe layouts that are drawn for this net.lawliet.testmod.recipe category.
      *
      * @apiNote in 27.0.0 getBackground was removed, and implementing this method became mandatory.
      * @since 11.5.0
@@ -108,8 +108,8 @@ public class CrystallizerRecipeCategory implements IRecipeCategory<RecipeHolder<
     }
 
     /**
-     * Sets all the recipe's ingredients by filling out an instance of {@link IRecipeLayoutBuilder}.
-     * This is used by JEI for lookups, to figure out what ingredients are inputs and outputs for a recipe.
+     * Sets all the net.lawliet.testmod.recipe's ingredients by filling out an instance of {@link IRecipeLayoutBuilder}.
+     * This is used by JEI for lookups, to figure out what ingredients are inputs and outputs for a net.lawliet.testmod.recipe.
      *
      */
     @Override

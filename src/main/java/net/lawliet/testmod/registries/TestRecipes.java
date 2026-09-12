@@ -11,7 +11,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import recipe.crystallizer.CrystallizerRecipe;
+import net.lawliet.testmod.recipe.crystallizer.CrystallizerRecipe;
 
 public class TestRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, TestMod.MODID);

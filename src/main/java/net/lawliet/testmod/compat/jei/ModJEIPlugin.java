@@ -17,7 +17,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
-import recipe.crystallizer.CrystallizerRecipe;
+import net.lawliet.testmod.recipe.crystallizer.CrystallizerRecipe;
 
 import java.util.List;
 

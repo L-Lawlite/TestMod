@@ -18,7 +18,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
-import recipe.datagen.CrystallizerRecipeBuilder;
+import net.lawliet.testmod.recipe.datagen.CrystallizerRecipeBuilder;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -85,6 +85,7 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
                 .save(output);
     }
 
+    @SuppressWarnings("unused")
     private void makeCrystallizerRecipe(RecipeCategory category, ItemLike ingredient, ItemLike result) {
         makeCrystallizerRecipe(category, ingredient, result, 1);
     }

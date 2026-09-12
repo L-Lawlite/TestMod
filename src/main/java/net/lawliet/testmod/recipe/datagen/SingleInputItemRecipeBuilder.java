@@ -1,4 +1,4 @@
-package recipe.datagen;
+package net.lawliet.testmod.recipe.datagen;
 
 import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.core.registries.Registries;

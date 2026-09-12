@@ -31,8 +31,8 @@ import net.neoforged.neoforge.transfer.access.ItemAccess;
 import net.neoforged.neoforge.transfer.item.ItemResource;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
-import recipe.crystallizer.CrystallizerRecipe;
-import recipe.crystallizer.CrystallizerRecipeInput;
+import net.lawliet.testmod.recipe.crystallizer.CrystallizerRecipe;
+import net.lawliet.testmod.recipe.crystallizer.CrystallizerRecipeInput;
 
 import java.util.Optional;
 
