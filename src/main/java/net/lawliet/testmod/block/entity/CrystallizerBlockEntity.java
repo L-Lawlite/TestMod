@@ -3,7 +3,6 @@ package net.lawliet.testmod.block.entity;
 import net.lawliet.testmod.block.CrystallizerBlock;
 import net.lawliet.testmod.gui.menu.CrystallizerMenu;
 import net.lawliet.testmod.registries.TestBlockEntities;
-import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.registries.TestRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -83,7 +82,7 @@ public class CrystallizerBlockEntity extends BlockEntity implements MenuProvider
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable(TestBlocks.CRYSTALLIZER.getId().toLanguageKey());
+        return this.getBlockState().getBlock().getName();
     }
 
     @Override

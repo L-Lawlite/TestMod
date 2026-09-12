@@ -6,6 +6,7 @@ import net.lawliet.testmod.gui.ScreenElement;
 import net.lawliet.testmod.gui.inferface.ITabbedBlock;
 import net.lawliet.testmod.gui.menu.TabbedContainerMenu;
 import net.lawliet.testmod.gui.screen.BaseTabbedScreen;
+import net.lawliet.testmod.networking.packet.StationTabPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Renderable;
@@ -24,6 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 
@@ -91,6 +93,7 @@ public class TabsRender implements Renderable, GuiEventListener, NarratableEntry
             BlockState state = level.getBlockState(pos);
             if (state.getBlock() instanceof ITabbedBlock) {
                 // send network packet
+                ClientPacketDistributor.sendToServer(new StationTabPacket(pos));
 
                 //sound
                 this.parent.getMinecraft().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1f));
@@ -106,6 +109,7 @@ public class TabsRender implements Renderable, GuiEventListener, NarratableEntry
         return this.topPos + this.imageHeight;
     }
 
+    @SuppressWarnings("unused")
     public Rect2i getArea() {
         return new Rect2i(this.leftPos, this.topPos, this.imageWidth, this.imageHeight);
     }

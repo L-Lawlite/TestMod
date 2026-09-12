@@ -2,6 +2,7 @@ package net.lawliet.testmod.event;
 
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.networking.ClientPayloadHandler;
+import net.lawliet.testmod.networking.packet.StationTabPacket;
 import net.lawliet.testmod.networking.packet.TestPacketC2S;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -17,5 +18,6 @@ public class NetworkingEvents {
         final PayloadRegistrar registrar = event.registrar("1")
                 .executesOn(HandlerThread.MAIN);
         registrar.playToServer(TestPacketC2S.TYPE, TestPacketC2S.STREAM_CODEC, ClientPayloadHandler::handleTestPacket);
+        registrar.playToServer(StationTabPacket.TYPE, StationTabPacket.STREAM_CODEC, ClientPayloadHandler::handleStationTabPacket);
     }
 }

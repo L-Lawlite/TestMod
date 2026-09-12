@@ -49,7 +49,7 @@
   "block.testmod.onion_crop": "Onion Crop",
   "block.testmod.goji_berry_bush": "Goji Berry Bush",
   "block.testmod.rice_crop": "Rice Crop",
-  "block.testmod.crystallizer": "crystallizer",
+  "block.testmod.crystallizer": "Crystallizer",
 
   "testmod.configuration.title": "TestMod Configs",
   "testmod.configuration.section.testmod.common.toml": "TestMod Configs",

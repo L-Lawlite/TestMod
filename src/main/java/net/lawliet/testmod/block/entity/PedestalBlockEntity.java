@@ -2,7 +2,6 @@ package net.lawliet.testmod.block.entity;
 
 import net.lawliet.testmod.gui.menu.PedestalMenu;
 import net.lawliet.testmod.registries.TestBlockEntities;
-import net.lawliet.testmod.registries.TestBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -108,7 +107,7 @@ public class PedestalBlockEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable(TestBlocks.PEDESTAL.getId().toLanguageKey());
+        return this.getBlockState().getBlock().getName();
     }
 
     @Override
