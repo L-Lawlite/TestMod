@@ -19,6 +19,11 @@ public class CrystallizerMenu extends TabbedContainerMenu<CrystallizerBlockEntit
 
     private static final int EXTRA_SLOTS = 2;
 
+    public static final int INPUT_SLOT_X = 54;
+    public static final int INPUT_SLOT_Y = 34;
+    public static final int OUTPUT_SLOT_X = 104;
+    public static final int OUTPUT_SLOT_Y = 34;
+
     public CrystallizerMenu(int containerId, Inventory inventory, BlockEntity blockEntity, ItemStacksResourceHandler handler, ContainerData data) {
         super(TestMenu.CRYSTALLIZER_MENU.get(), containerId, inventory,(CrystallizerBlockEntity) blockEntity);
         this.setExtraInventorySlotCount(EXTRA_SLOTS);
@@ -26,8 +31,8 @@ public class CrystallizerMenu extends TabbedContainerMenu<CrystallizerBlockEntit
 
         addInventorySlots(inventory);
 
-        this.addSlot(new ResourceHandlerSlot(handler, handler::set, CrystallizerBlockEntity.INPUT_SLOT, 54, 34));
-        this.addSlot(new ResourceHandlerSlot(handler, handler::set, CrystallizerBlockEntity.OUTPUT_SLOT, 104, 34) {
+        this.addSlot(new ResourceHandlerSlot(handler, handler::set, CrystallizerBlockEntity.INPUT_SLOT, INPUT_SLOT_X, INPUT_SLOT_Y));
+        this.addSlot(new ResourceHandlerSlot(handler, handler::set, CrystallizerBlockEntity.OUTPUT_SLOT, OUTPUT_SLOT_X, OUTPUT_SLOT_Y) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;

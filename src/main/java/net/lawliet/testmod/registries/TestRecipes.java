@@ -20,7 +20,8 @@ public class TestRecipes {
     public static final RecipeRegister<CrystallizerRecipe> CRYSTALLIZER_RECIPE = RecipeRegister.create("crystallizing", CrystallizerRecipe.CODEC, CrystallizerRecipe.STREAM_CODEC);
 
 
-    public record RecipeRegister<T extends Recipe<?>>(DeferredHolder<RecipeSerializer<?>, RecipeSerializer<T>> serializer, DeferredHolder<RecipeType<?>, RecipeType<T>> type){
+    public record RecipeRegister<T extends Recipe<?>>(String name,DeferredHolder<RecipeSerializer<?>, RecipeSerializer<T>> serializer, DeferredHolder<RecipeType<?>, RecipeType<T>> type){
+
         public static <T extends Recipe<?>> RecipeRegister<T> create(String name, MapCodec<T> codec, StreamCodec<RegistryFriendlyByteBuf, T> streamCodec) {
             DeferredHolder<RecipeSerializer<?>, RecipeSerializer<T>> serializer = SERIALIZERS.register(name, () -> new RecipeSerializer<>(codec, streamCodec));
             DeferredHolder<RecipeType<?>, RecipeType<T>> recipeType = RECIPE_TYPES.register(name,() -> new RecipeType<>() {
@@ -29,7 +30,7 @@ public class TestRecipes {
                     return name;
                 }
             });
-            return new RecipeRegister<>(serializer, recipeType);
+            return new RecipeRegister<>(name, serializer, recipeType);
         }
     }
 
