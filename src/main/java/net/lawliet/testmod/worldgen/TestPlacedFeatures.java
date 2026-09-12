@@ -1,16 +1,8 @@
 package net.lawliet.testmod.worldgen;
 
-import net.lawliet.testmod.TestMod;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
+import net.lawliet.testmod.worldgen.features.OreFeatureSets;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
-
-import java.util.List;
 
 /**
  * Gets {@link net.minecraft.world.level.levelgen.feature.ConfiguredFeature} and determine where/how many it is placed
@@ -18,15 +10,9 @@ import java.util.List;
 public class TestPlacedFeatures {
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
-
+        OreFeatureSets.bootstrapPlaced(context);
     }
 
-    public static ResourceKey<PlacedFeature> resourceKey(String name) {
-        return ResourceKey.create(Registries.PLACED_FEATURE, Identifier.fromNamespaceAndPath(TestMod.MODID, name));
-    }
 
-    private static void register(BootstrapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration, List<PlacementModifier> modifiers) {
-        context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
-    }
 
 }
