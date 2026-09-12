@@ -42,12 +42,12 @@ public class TestBiomeModifiers {
 
         context.register(ADD_NETHER_AZURITE_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_NETHER),
-                HolderSet.direct(placedFeatures.getOrThrow(OreFeatureSets.OVERWORLD_AZURITE_ORE.placedFeature())),
+                HolderSet.direct(placedFeatures.getOrThrow(OreFeatureSets.NETHER_AZURITE_ORE.placedFeature())),
                 GenerationStep.Decoration.UNDERGROUND_ORES
         ));
         context.register(ADD_END_AZURITE_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_END),
-                HolderSet.direct(placedFeatures.getOrThrow(OreFeatureSets.OVERWORLD_AZURITE_ORE.placedFeature())),
+                HolderSet.direct(placedFeatures.getOrThrow(OreFeatureSets.END_AZURITE_ORE.placedFeature())),
                 GenerationStep.Decoration.UNDERGROUND_ORES
         ));
     }
