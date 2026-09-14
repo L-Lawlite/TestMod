@@ -51,6 +51,13 @@
   "block.testmod.rice_crop": "Rice Crop",
   "block.testmod.crystallizer": "Crystallizer",
 
+  "block.testmod.driftwood_log": "Driftwood Log",
+  "block.testmod.driftwood_wood": "Driftwood Wood",
+  "block.testmod.stripped_driftwood_log": "Stripped Driftwood Log",
+  "block.testmod.stripped_driftwood_wood": "Stripped Driftwood Wood",
+  "block.testmod.driftwood_planks": "Driftwood Planks",
+  "block.testmod.driftwood_leaves": "Driftwood Leaves",
+
   "testmod.configuration.title": "TestMod Configs",
   "testmod.configuration.section.testmod.common.toml": "TestMod Configs",
   "testmod.configuration.section.testmod.common.toml.title": "TestMod Configs",

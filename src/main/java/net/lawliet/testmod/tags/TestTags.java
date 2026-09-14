@@ -18,6 +18,7 @@ public class TestTags {
         public static final TagKey<Block> INCORRECT_FOR_AZURITE_TOOL = createTag("incorrect_for_azurite_tool");
         public static final TagKey<Block> SHALLOW_WATER_FLOOR = createTag("shallow_water_floor");
         public static final TagKey<Block> RICE_FARMLAND = createTag("rice_farmland");
+        public static final TagKey<Block> DRIFTWOOD_LOGS = createTag("driftwood_logs");
 
 
         private static TagKey<Block> createTag(String name) {
@@ -29,6 +30,8 @@ public class TestTags {
         public static final TagKey<Item> TRANSFORMABLE_ITEMS = createTag("transformable_items");
         public static final TagKey<Item> AZURITE_TOOL_MATERIAL = createTag("azurite_tool_material");
         public static final TagKey<Item> AZURITE_REPAIRABLE = createTag("azurite_repairable");
+        public static final TagKey<Item> DRIFTWOOD_LOGS = createTag("driftwood_logs");
+
 
 
         private static TagKey<Item> createTag(String name) {

@@ -51,6 +51,13 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
         dropSelf(TestBlocks.AZURITE_LAMP.get());
         dropSelf(TestBlocks.PEDESTAL.get());
         dropSelf(TestBlocks.CRYSTALLIZER.get());
+        dropSelf(TestBlocks.DRIFTWOOD_LOG.get());
+        dropSelf(TestBlocks.DRIFTWOOD_WOOD.get());
+        dropSelf(TestBlocks.STRIPPED_DRIFTWOOD_LOG.get());
+        dropSelf(TestBlocks.STRIPPED_DRIFTWOOD_WOOD.get());
+        dropSelf(TestBlocks.DRIFTWOOD_PLANKS.get());
+        // NOTE: Change when saplings are added
+        add(TestBlocks.DRIFTWOOD_LEAVES.get(), block -> createLeavesDrops(block, TestBlocks.DRIFTWOOD_LEAVES.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         add(TestBlocks.AZURITE_DOOR.get(), this::createDoorTable);
         add(TestBlocks.AZURITE_SLAB.get(), this::createSlabItemTable);

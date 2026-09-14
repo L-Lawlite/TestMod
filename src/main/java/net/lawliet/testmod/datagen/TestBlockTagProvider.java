@@ -6,6 +6,7 @@ import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.references.BlockItemIds;
+import net.minecraft.tags.BlockItemTags;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
@@ -105,5 +106,14 @@ public class TestBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.CROPS).add(TestBlocks.ONION.getKey());
 
+        tag(BlockTags.LEAVES).add(TestBlocks.DRIFTWOOD_LEAVES.getKey());
+        tag(BlockTags.PLANKS).add(TestBlocks.DRIFTWOOD_PLANKS.getKey());
+        tag(TestTags.Blocks.DRIFTWOOD_LOGS)
+                .add(TestBlocks.DRIFTWOOD_LOG.getKey())
+                .add(TestBlocks.DRIFTWOOD_WOOD.getKey())
+                .add(TestBlocks.STRIPPED_DRIFTWOOD_LOG.getKey())
+                .add(TestBlocks.STRIPPED_DRIFTWOOD_WOOD.getKey())
+        ;
+        tag(BlockItemTags.LOGS_THAT_BURN.block()).addTag(TestTags.Blocks.DRIFTWOOD_LOGS);
     }
 }

@@ -1,5 +1,6 @@
 package net.lawliet.testmod.datagen;
 
+import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -7,6 +8,7 @@ import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
 import net.neoforged.neoforge.registries.datamaps.builtin.FurnaceFuel;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
+import net.neoforged.neoforge.registries.datamaps.builtin.Strippable;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -27,5 +29,9 @@ public class TestDataMapProvider extends DataMapProvider {
                 .add(TestItems.GOJI_BERRIES.getId(), new Compostable(0.3f), false)
                 .add(TestItems.RICE.getId(), new Compostable(0.5f), false)
         ;
+
+        builder(NeoForgeDataMaps.STRIPPABLES)
+                .add(TestBlocks.DRIFTWOOD_LOG, new Strippable(TestBlocks.STRIPPED_DRIFTWOOD_LOG.get()), false)
+                .add(TestBlocks.DRIFTWOOD_WOOD, new Strippable(TestBlocks.STRIPPED_DRIFTWOOD_WOOD.get()), false);
     }
 }

@@ -1,7 +1,6 @@
-package net.lawliet.testmod.datagen;
+package net.lawliet.testmod.datagen.painting;
 
 import net.lawliet.testmod.TestMod;
-import net.lawliet.testmod.datagen.painting.TestPainting;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.PaintingVariantTagsProvider;

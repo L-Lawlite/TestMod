@@ -5,6 +5,7 @@ import net.lawliet.testmod.block.*;
 import net.lawliet.testmod.block.crop.RiceCropBlock;
 import net.lawliet.testmod.block.state.TestBlockStateProperties;
 import net.lawliet.testmod.block.crop.OnionBlock;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -13,7 +14,9 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -111,6 +114,57 @@ public class TestBlocks {
 
     public static final DeferredBlock<Block> CRYSTALLIZER = registerBlock("crystallizer", CrystallizerBlock::new, properties -> properties.strength(2f).requiresCorrectToolForDrops().lightLevel(state -> state.getValue(CrystallizerBlock.LIT) ? 7 : 0));
 
+    public static final DeferredBlock<Block> DRIFTWOOD_LOG = registerBlock("driftwood_log", properties ->
+            new FlammableRotatedPillarBlock(properties
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2)
+                    .sound(SoundType.CHERRY_WOOD)
+                    .ignitedByLava()
+                    , 5, 5));
+    public static final DeferredBlock<Block> DRIFTWOOD_WOOD = registerBlock("driftwood_wood", properties ->
+            new FlammableRotatedPillarBlock(properties
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2)
+                    .sound(SoundType.CHERRY_WOOD)
+                    .ignitedByLava()
+                    , 5, 5));
+    public static final DeferredBlock<Block> STRIPPED_DRIFTWOOD_LOG = registerBlock("stripped_driftwood_log", properties ->
+            new FlammableRotatedPillarBlock(properties
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2)
+                    .sound(SoundType.CHERRY_WOOD)
+                    .ignitedByLava()
+                    , 5, 5));
+    public static final DeferredBlock<Block> STRIPPED_DRIFTWOOD_WOOD = registerBlock("stripped_driftwood_wood", properties ->
+            new FlammableRotatedPillarBlock(properties
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2)
+                    .sound(SoundType.CHERRY_WOOD)
+                    .ignitedByLava()
+                    , 5, 5));
+
+    public static final DeferredBlock<Block> DRIFTWOOD_PLANKS = registerBlock("driftwood_planks", properties ->
+            new FlammableBlock(properties
+                    .mapColor(MapColor.WOOD)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2, 3)
+                    .sound(SoundType.CHERRY_WOOD)
+                    .ignitedByLava()
+                    , 20, 5));
+    public static final DeferredBlock<Block> DRIFTWOOD_LEAVES = registerBlock("driftwood_leaves", properties ->
+            new FlammableUntintedParticleLeavesBlock(0.01f, ParticleTypes.CHERRY_LEAVES, properties
+                    .mapColor(MapColor.COLOR_GREEN)
+                    .strength(0.2f)
+                    .sound(SoundType.GRASS)
+                    .noOcclusion()
+                    .isValidSpawn(Blocks::ocelotOrParrot)
+                    .isSuffocating(Blocks::never)
+                    .isViewBlocking(Blocks::never)
+                    .ignitedByLava()
+                    .pushReaction(PushReaction.DESTROY)
+                    .isRedstoneConductor(Blocks::never)
+                    , 60, 30));
+
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
@@ -137,7 +191,12 @@ public class TestBlocks {
         output.accept(AZURITE_LAMP);
         output.accept(PEDESTAL);
         output.accept(CRYSTALLIZER);
-
+        output.accept(DRIFTWOOD_LOG);
+        output.accept(DRIFTWOOD_WOOD);
+        output.accept(STRIPPED_DRIFTWOOD_LOG);
+        output.accept(STRIPPED_DRIFTWOOD_WOOD);
+        output.accept(DRIFTWOOD_PLANKS);
+        output.accept(DRIFTWOOD_LEAVES);
     }
 
     // Registry Helpers

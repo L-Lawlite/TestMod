@@ -1,0 +1,10 @@
+{
+  "values": {
+    "testmod:driftwood_log": {
+      "stripped_block": "testmod:stripped_driftwood_log"
+    },
+    "testmod:driftwood_wood": {
+      "stripped_block": "testmod:stripped_driftwood_wood"
+    }
+  }
+}

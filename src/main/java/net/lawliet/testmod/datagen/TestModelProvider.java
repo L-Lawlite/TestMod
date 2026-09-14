@@ -90,6 +90,16 @@ public class TestModelProvider extends ModelProvider {
         blockModels.createFurnace(TestBlocks.CRYSTALLIZER.get(), TexturedModel.ORIENTABLE);
 
         blockModels.createNonTemplateModelBlock(TestBlocks.PEDESTAL.get());
+        blockModels.woodProvider(TestBlocks.DRIFTWOOD_LOG.get())
+                .logWithHorizontal(TestBlocks.DRIFTWOOD_LOG.get())
+                .wood(TestBlocks.DRIFTWOOD_WOOD.get())
+        ;
+        blockModels.woodProvider(TestBlocks.STRIPPED_DRIFTWOOD_LOG.get())
+                .logWithHorizontal(TestBlocks.STRIPPED_DRIFTWOOD_LOG.get())
+                .wood(TestBlocks.STRIPPED_DRIFTWOOD_WOOD.get())
+        ;
+        blockModels.createTrivialCube(TestBlocks.DRIFTWOOD_PLANKS.get());
+        blockModels.createTintedLeaves(TestBlocks.DRIFTWOOD_LEAVES.get(), TexturedModel.LEAVES, 14994345);
 
 
     }

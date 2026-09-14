@@ -77,6 +77,10 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
         makeCrystallizerRecipe(Blocks.DIRT, Items.NETHER_STAR);
         makeCrystallizerRecipe(TestItems.GOJI_BERRIES, TestItems.END_FIRE_STARTER, 4);
         makeCrystallizerRecipe(Items.REDSTONE, TestItems.DATA_TABLET);
+        woodFromLogs(TestBlocks.DRIFTWOOD_WOOD, TestBlocks.DRIFTWOOD_LOG);
+        woodFromLogs(TestBlocks.STRIPPED_DRIFTWOOD_WOOD, TestBlocks.STRIPPED_DRIFTWOOD_LOG);
+        planksFromLog(TestBlocks.DRIFTWOOD_PLANKS, TestTags.Items.DRIFTWOOD_LOGS, 4);
+
     }
 
     private void makeCrystallizerRecipe(RecipeCategory category, ItemLike ingredient, ItemLike result, int count) {

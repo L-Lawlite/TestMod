@@ -28,7 +28,6 @@ public class TestItemTagProvider extends BlockTagCopyingItemTagProvider {
         copy(BlockTags.STAIRS, BlockItemTags.STAIRS.item());
         copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
-        copy(BlockTags.FENCES, Tags.Items.FENCES);
         copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
         copy(BlockTags.WALLS, ItemTags.WALLS);
         copy(BlockTags.DOORS, BlockItemTags.DOORS.item());
@@ -47,7 +46,12 @@ public class TestItemTagProvider extends BlockTagCopyingItemTagProvider {
         tag(ItemTags.FOOT_ARMOR).add(TestItems.AZURITE_BOOTS.getKey());
         tag(ItemTags.BOW_ENCHANTABLE).add(TestItems.TEST_BOW.getKey());
         tag(Tags.Items.TOOLS_BOW).add(TestItems.TEST_BOW.getKey());
+        copy(BlockItemTags.FENCES.block(), BlockItemTags.FENCES.item());
 
         tag(ItemTags.CREEPER_DROP_MUSIC_DISCS).add(TestItems.BAR_BRAWL_MUSIC_DISC.getKey());
+        copy(BlockItemTags.LEAVES.block(), BlockItemTags.LEAVES.item());
+        copy(BlockItemTags.PLANKS.block(), BlockItemTags.PLANKS.item());
+        copy(BlockItemTags.LOGS_THAT_BURN.block(), BlockItemTags.LOGS_THAT_BURN.item());
+        copy(TestTags.Blocks.DRIFTWOOD_LOGS, TestTags.Items.DRIFTWOOD_LOGS);
     }
 }
