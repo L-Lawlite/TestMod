@@ -56,11 +56,18 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
         dropSelf(TestBlocks.STRIPPED_DRIFTWOOD_LOG.get());
         dropSelf(TestBlocks.STRIPPED_DRIFTWOOD_WOOD.get());
         dropSelf(TestBlocks.DRIFTWOOD_PLANKS.get());
+        dropSelf(TestBlocks.AZURITE_STAIRS.get());
+        dropSelf(TestBlocks.DRIFTWOOD_PRESSURE_PLATE.get());
+        dropSelf(TestBlocks.DRIFTWOOD_BUTTON.get());
+        dropSelf(TestBlocks.DRIFTWOOD_FENCE.get());
+        dropSelf(TestBlocks.DRIFTWOOD_FENCE_GATE.get());
+        dropSelf(TestBlocks.DRIFTWOOD_STAIRS.get());
         // NOTE: Change when saplings are added
         add(TestBlocks.DRIFTWOOD_LEAVES.get(), block -> createLeavesDrops(block, TestBlocks.DRIFTWOOD_LEAVES.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         add(TestBlocks.AZURITE_DOOR.get(), this::createDoorTable);
         add(TestBlocks.AZURITE_SLAB.get(), this::createSlabItemTable);
+        add(TestBlocks.DRIFTWOOD_SLAB.get(),  this::createSlabItemTable);
         add(
                 TestBlocks.AZURITE_ORE.get(),
                 createOreDrop(TestBlocks.AZURITE_ORE.get(), TestItems.RAW_AZURITE.get())
@@ -142,6 +149,7 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
     }
 
     @Override
+    @SuppressWarnings("NullableProblems")
     protected Iterable<Block> getKnownBlocks() {
         return TestBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }

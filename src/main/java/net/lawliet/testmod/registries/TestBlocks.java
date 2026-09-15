@@ -3,8 +3,10 @@ package net.lawliet.testmod.registries;
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.block.*;
 import net.lawliet.testmod.block.crop.RiceCropBlock;
+import net.lawliet.testmod.block.flammable.*;
 import net.lawliet.testmod.block.state.TestBlockStateProperties;
 import net.lawliet.testmod.block.crop.OnionBlock;
+import net.lawliet.testmod.block.type.TestBlockSetType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -165,6 +167,54 @@ public class TestBlocks {
                     .isRedstoneConductor(Blocks::never)
                     , 60, 30));
 
+    public static final DeferredBlock<Block> DRIFTWOOD_STAIRS = registerBlock("driftwood_stairs", properties -> new FlammableStairBlock(
+            DRIFTWOOD_PLANKS.get().defaultBlockState(),
+            properties.mapColor(MapColor.WOOD)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2, 3)
+                    .sound(SoundType.CHERRY_WOOD)
+                    .ignitedByLava()
+            , 20, 5
+    ));
+    public static final DeferredBlock<Block> DRIFTWOOD_SLAB = registerBlock("driftwood_slab", properties -> new FlammableSlabBlock(properties
+            .mapColor(MapColor.WOOD)
+            .instrument(NoteBlockInstrument.BASS)
+            .strength(2, 3)
+            .sound(SoundType.CHERRY_WOOD)
+            .ignitedByLava()
+            , 20, 5
+    ));
+    public static final DeferredBlock<Block> DRIFTWOOD_PRESSURE_PLATE = registerBlock("driftwood_pressure_plate", properties -> new PressurePlateBlock(
+            TestBlockSetType.DRIFTWOOD,
+            properties.mapColor(MapColor.WOOD)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2, 3)
+                    .sound(SoundType.CHERRY_WOOD)
+                    .ignitedByLava()
+    ));
+    public static final DeferredBlock<Block> DRIFTWOOD_BUTTON = registerBlock("driftwood_button", properties -> new ButtonBlock(
+            TestBlockSetType.DRIFTWOOD,
+            2,
+            properties.noCollision().pushReaction(PushReaction.DESTROY).strength(0.5f)
+    ));
+    public static final DeferredBlock<Block> DRIFTWOOD_FENCE = registerBlock("driftwood_fence", properties -> new FlammableFenceBlock(
+            properties.mapColor(MapColor.WOOD)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .strength(2, 3)
+                    .sound(SoundType.CHERRY_WOOD)
+                    .ignitedByLava()
+            , 20, 5
+    ));
+    public static final DeferredBlock<Block> DRIFTWOOD_FENCE_GATE = registerBlock("driftwood_fence_gate", properties -> new FlammableFenceGateBlock(
+            new WoodType("driftwood", TestBlockSetType.DRIFTWOOD),
+            properties.mapColor(MapColor.WOOD)
+                .instrument(NoteBlockInstrument.BASS)
+                .strength(2, 3)
+                .sound(SoundType.CHERRY_WOOD)
+                .ignitedByLava(),
+            20, 5
+    ));
+
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
@@ -196,6 +246,12 @@ public class TestBlocks {
         output.accept(STRIPPED_DRIFTWOOD_LOG);
         output.accept(STRIPPED_DRIFTWOOD_WOOD);
         output.accept(DRIFTWOOD_PLANKS);
+        output.accept(DRIFTWOOD_STAIRS);
+        output.accept(DRIFTWOOD_SLAB);
+        output.accept(DRIFTWOOD_BUTTON);
+        output.accept(DRIFTWOOD_PRESSURE_PLATE);
+        output.accept(DRIFTWOOD_FENCE);
+        output.accept(DRIFTWOOD_FENCE_GATE);
         output.accept(DRIFTWOOD_LEAVES);
     }
 
@@ -218,6 +274,7 @@ public class TestBlocks {
      * @param properties The supplied properties for the created block.
      * @return A {@link DeferredHolder} that will track updates from the registry for this block.
      */
+    @SuppressWarnings("unused")
     public static DeferredBlock<Block> registerSimpleBlock(String name, Supplier<BlockBehaviour.Properties> properties) {
         return registerBlock(name, Block::new, properties);
     }
@@ -229,6 +286,7 @@ public class TestBlocks {
      * @param name The new block's name. It will automatically have the {@linkplain DeferredRegister#getNamespace() namespace} prefixed.
      * @return A {@link DeferredHolder} that will track updates from the registry for this block.
      */
+    @SuppressWarnings("unused")
     public static DeferredBlock<Block> registerSimpleBlock(String name) {
         return registerSimpleBlock(name, UnaryOperator.identity());
     }

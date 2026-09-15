@@ -1,20 +1,19 @@
-package net.lawliet.testmod.block;
+package net.lawliet.testmod.block.flammable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Block;
 
-public class FlammableBlock extends Block {
+public class FlammableSlabBlock extends SlabBlock {
     private final int flammability;
     private final int fireSpreadSpeed;
 
-    public FlammableBlock(Properties properties, int flammability, int fireSpreadSpeed) {
+    public FlammableSlabBlock(Properties properties,int flammability, int fireSpreadSpeed) {
         super(properties);
         this.flammability = flammability;
         this.fireSpreadSpeed = fireSpreadSpeed;
-
     }
 
     @Override

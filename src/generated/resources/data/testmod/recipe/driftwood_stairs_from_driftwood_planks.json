@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "testmod:driftwood_planks",
+  "result": {
+    "id": "testmod:driftwood_stairs"
+  }
+}

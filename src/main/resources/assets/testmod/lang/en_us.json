@@ -57,6 +57,12 @@
   "block.testmod.stripped_driftwood_wood": "Stripped Driftwood Wood",
   "block.testmod.driftwood_planks": "Driftwood Planks",
   "block.testmod.driftwood_leaves": "Driftwood Leaves",
+  "block.testmod.driftwood_stairs": "Driftwood Stairs",
+  "block.testmod.driftwood_slab": "Driftwood Slab",
+  "block.testmod.driftwood_pressure_plate": "Driftwood Pressure Plate",
+  "block.testmod.driftwood_button": "Driftwood Button",
+  "block.testmod.driftwood_fence": "Driftwood Fence",
+  "block.testmod.driftwood_fence_gate": "Driftwood Fence Gate",
 
   "testmod.configuration.title": "TestMod Configs",
   "testmod.configuration.section.testmod.common.toml": "TestMod Configs",

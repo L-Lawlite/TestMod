@@ -80,6 +80,12 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
         woodFromLogs(TestBlocks.DRIFTWOOD_WOOD, TestBlocks.DRIFTWOOD_LOG);
         woodFromLogs(TestBlocks.STRIPPED_DRIFTWOOD_WOOD, TestBlocks.STRIPPED_DRIFTWOOD_LOG);
         planksFromLog(TestBlocks.DRIFTWOOD_PLANKS, TestTags.Items.DRIFTWOOD_LOGS, 4);
+        solidStair(RecipeCategory.BUILDING_BLOCKS, TestBlocks.DRIFTWOOD_STAIRS, TestBlocks.DRIFTWOOD_PLANKS);
+        solidSlab(RecipeCategory.BUILDING_BLOCKS, TestBlocks.DRIFTWOOD_SLAB, TestBlocks.DRIFTWOOD_PLANKS);
+        pressurePlate(TestBlocks.DRIFTWOOD_PRESSURE_PLATE, TestBlocks.DRIFTWOOD_PLANKS);
+        createBlockRecipeUsingBuilder(TestBlocks.DRIFTWOOD_BUTTON, TestBlocks.DRIFTWOOD_PLANKS, this::buttonBuilder);
+        createBlockRecipeUsingBuilder(TestBlocks.DRIFTWOOD_FENCE, TestBlocks.DRIFTWOOD_PLANKS, this::fenceBuilder);
+        createBlockRecipeUsingBuilder(TestBlocks.DRIFTWOOD_FENCE_GATE, TestBlocks.DRIFTWOOD_PLANKS, this::fenceGateBuilder);
 
     }
 
@@ -161,11 +167,13 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
         }
 
         @Override
+        @SuppressWarnings("NullableProblems")
         protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
             return new TestRecipeProvider(registries, output);
         }
 
         @Override
+        @SuppressWarnings("NullableProblems")
         public String getName() {
             return "Test Mod Recipes";
         }

@@ -98,8 +98,15 @@ public class TestModelProvider extends ModelProvider {
                 .logWithHorizontal(TestBlocks.STRIPPED_DRIFTWOOD_LOG.get())
                 .wood(TestBlocks.STRIPPED_DRIFTWOOD_WOOD.get())
         ;
-        blockModels.createTrivialCube(TestBlocks.DRIFTWOOD_PLANKS.get());
+//        blockModels.createTrivialCube(TestBlocks.DRIFTWOOD_PLANKS.get());
         blockModels.createTintedLeaves(TestBlocks.DRIFTWOOD_LEAVES.get(), TexturedModel.LEAVES, 14994345);
+        blockModels.family(TestBlocks.DRIFTWOOD_PLANKS.get())
+                .stairs(TestBlocks.DRIFTWOOD_STAIRS.get())
+                .slab(TestBlocks.DRIFTWOOD_SLAB.get())
+                .fence(TestBlocks.DRIFTWOOD_FENCE.get())
+                .fenceGate(TestBlocks.DRIFTWOOD_FENCE_GATE.get())
+                .button(TestBlocks.DRIFTWOOD_BUTTON.get())
+                .pressurePlate(TestBlocks.DRIFTWOOD_PRESSURE_PLATE.get());
 
 
     }

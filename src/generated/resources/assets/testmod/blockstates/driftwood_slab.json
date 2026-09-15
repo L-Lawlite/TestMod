@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "testmod:block/driftwood_slab"
+    },
+    "type=double": {
+      "model": "testmod:block/driftwood_planks"
+    },
+    "type=top": {
+      "model": "testmod:block/driftwood_slab_top"
+    }
+  }
+}

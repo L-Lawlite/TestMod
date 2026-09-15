@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "testmod:block/driftwood_planks",
+    "side": "testmod:block/driftwood_planks",
+    "top": "testmod:block/driftwood_planks"
+  }
+}
