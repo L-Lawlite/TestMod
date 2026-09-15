@@ -73,6 +73,7 @@ public class TestModelProvider extends ModelProvider {
         blockModels.createTrivialCube(TestBlocks.AZURITE_END_ORE.get());
         blockModels.createTrivialCube(TestBlocks.MAGIC_BLOCK.get());
         blockModels.createShelf(TestBlocks.TEST_SHELF.get(), Blocks.STRIPPED_ACACIA_LOG);
+        blockModels.createShelf(TestBlocks.DRIFTWOOD_SHELF.get(), TestBlocks.STRIPPED_DRIFTWOOD_LOG.get());
         blockModels.family(TestBlocks.AZURITE_BLOCK.get())
                 .stairs(TestBlocks.AZURITE_STAIRS.get())
                 .slab(TestBlocks.AZURITE_SLAB.get())

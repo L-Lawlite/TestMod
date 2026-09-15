@@ -53,5 +53,6 @@ public class TestItemTagProvider extends BlockTagCopyingItemTagProvider {
         copy(BlockItemTags.PLANKS.block(), BlockItemTags.PLANKS.item());
         copy(BlockItemTags.LOGS_THAT_BURN.block(), BlockItemTags.LOGS_THAT_BURN.item());
         copy(TestTags.Blocks.DRIFTWOOD_LOGS, TestTags.Items.DRIFTWOOD_LOGS);
+        copy(BlockItemTags.WOODEN_SHELVES.block(), BlockItemTags.WOODEN_SHELVES.item());
     }
 }

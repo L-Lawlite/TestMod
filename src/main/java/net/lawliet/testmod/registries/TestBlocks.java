@@ -214,6 +214,15 @@ public class TestBlocks {
                 .ignitedByLava(),
             20, 5
     ));
+    public static final DeferredBlock<Block> DRIFTWOOD_SHELF = registerBlock("driftwood_shelf", properties -> new FlammableShelfBlock(
+            properties.mapColor(MapColor.WOOD)
+                    .instrument(NoteBlockInstrument.BASS)
+                    .sound(SoundType.SHELF)
+                    .ignitedByLava()
+                    .strength(2.0F, 3.0F)
+                    , 30, 20
+    ));
+
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

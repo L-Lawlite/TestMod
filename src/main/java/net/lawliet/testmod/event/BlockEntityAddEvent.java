@@ -15,7 +15,11 @@ public class BlockEntityAddEvent {
 
     @SubscribeEvent
     public static void onBlockEntityAdd(BlockEntityTypeAddBlocksEvent event) {
-        event.modify(BlockEntityTypes.SHELF, TestBlocks.TEST_SHELF.get());
+        event.modify(
+                BlockEntityTypes.SHELF,
+                TestBlocks.TEST_SHELF.get(),
+                TestBlocks.DRIFTWOOD_SHELF.get()
+        );
     }
 
     @SubscribeEvent

@@ -86,6 +86,7 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
         createBlockRecipeUsingBuilder(TestBlocks.DRIFTWOOD_BUTTON, TestBlocks.DRIFTWOOD_PLANKS, this::buttonBuilder);
         createBlockRecipeUsingBuilder(TestBlocks.DRIFTWOOD_FENCE, TestBlocks.DRIFTWOOD_PLANKS, this::fenceBuilder);
         createBlockRecipeUsingBuilder(TestBlocks.DRIFTWOOD_FENCE_GATE, TestBlocks.DRIFTWOOD_PLANKS, this::fenceGateBuilder);
+        shelf(TestBlocks.DRIFTWOOD_SHELF, TestBlocks.STRIPPED_DRIFTWOOD_LOG);
 
     }
 

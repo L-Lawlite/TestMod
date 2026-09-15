@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_left",
+  "textures": {
+    "all": "testmod:block/driftwood_shelf",
+    "particle": "testmod:block/stripped_driftwood_log"
+  }
+}

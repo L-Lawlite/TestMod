@@ -62,6 +62,7 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
         dropSelf(TestBlocks.DRIFTWOOD_FENCE.get());
         dropSelf(TestBlocks.DRIFTWOOD_FENCE_GATE.get());
         dropSelf(TestBlocks.DRIFTWOOD_STAIRS.get());
+        dropSelf(TestBlocks.DRIFTWOOD_SHELF.get());
         // NOTE: Change when saplings are added
         add(TestBlocks.DRIFTWOOD_LEAVES.get(), block -> createLeavesDrops(block, TestBlocks.DRIFTWOOD_LEAVES.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
