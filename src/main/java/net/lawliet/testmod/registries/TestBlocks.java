@@ -7,6 +7,7 @@ import net.lawliet.testmod.block.flammable.*;
 import net.lawliet.testmod.block.state.TestBlockStateProperties;
 import net.lawliet.testmod.block.crop.OnionBlock;
 import net.lawliet.testmod.block.type.TestBlockSetType;
+import net.lawliet.testmod.worldgen.tree.TestTreeGrower;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -223,6 +224,19 @@ public class TestBlocks {
                     , 30, 20
     ));
 
+    public static final DeferredBlock<Block> DRIFTWOOD_SAPLING =  registerBlock("driftwood_sapling",
+            properties -> new SaplingBlock(TestTreeGrower.DRIFTWOOD,
+                    properties.mapColor(MapColor.PLANT)
+                            .noCollision().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)
+    ));
+    public static final DeferredBlock<Block> POTTED_DRIFTWOOD_SAPLING = BLOCKS.registerBlock("potted_driftwood_sapling", properties -> new FlowerPotBlock(
+            () -> ((FlowerPotBlock) Blocks.FLOWER_POT), DRIFTWOOD_SAPLING, properties
+    ), TestBlocks::flowerPotProperties);
+
+
+    private static BlockBehaviour.Properties flowerPotProperties() {
+        return BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY);
+    }
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
@@ -262,6 +276,7 @@ public class TestBlocks {
         output.accept(DRIFTWOOD_FENCE);
         output.accept(DRIFTWOOD_FENCE_GATE);
         output.accept(DRIFTWOOD_LEAVES);
+        output.accept(DRIFTWOOD_SAPLING);
     }
 
     // Registry Helpers

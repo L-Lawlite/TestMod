@@ -1,6 +1,7 @@
 package net.lawliet.testmod.worldgen;
 
 import net.lawliet.testmod.worldgen.features.OreFeatureSets;
+import net.lawliet.testmod.worldgen.features.TreeFeatureSets;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
@@ -11,6 +12,7 @@ public class TestConfiguredFeatures {
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         OreFeatureSets.bootstrapConfigured(context);
+        TreeFeatureSets.bootstrapConfigured(context);
     }
 
 }

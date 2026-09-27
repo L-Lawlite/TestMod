@@ -110,6 +110,9 @@ public class TestModelProvider extends ModelProvider {
                 .button(TestBlocks.DRIFTWOOD_BUTTON.get())
                 .pressurePlate(TestBlocks.DRIFTWOOD_PRESSURE_PLATE.get());
 
+        blockModels.createPlantWithDefaultItem(TestBlocks.DRIFTWOOD_SAPLING.get(), TestBlocks.POTTED_DRIFTWOOD_SAPLING.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+
+
 
     }
 

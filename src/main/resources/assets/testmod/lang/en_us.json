@@ -64,6 +64,8 @@
   "block.testmod.driftwood_button": "Driftwood Button",
   "block.testmod.driftwood_fence": "Driftwood Fence",
   "block.testmod.driftwood_fence_gate": "Driftwood Fence Gate",
+  "block.testmod.driftwood_sapling": "Driftwood Sapling",
+  "block.testmod.potted_driftwood_sapling": "Potted Driftwood Sapling",
 
   "testmod.configuration.title": "TestMod Configs",
   "testmod.configuration.section.testmod.common.toml": "TestMod Configs",

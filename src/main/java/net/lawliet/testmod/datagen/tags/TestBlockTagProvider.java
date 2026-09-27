@@ -128,5 +128,6 @@ public class TestBlockTagProvider extends BlockTagsProvider {
         ;
         tag(BlockItemTags.LOGS_THAT_BURN.block()).addTag(TestTags.Blocks.DRIFTWOOD_LOGS);
         tag(BlockTags.WOODEN_SHELVES).add(TestBlocks.DRIFTWOOD_SHELF.getKey());
+        tag(BlockTags.FLOWER_POTS).add(TestBlocks.DRIFTWOOD_SAPLING.getKey());
     }
 }
