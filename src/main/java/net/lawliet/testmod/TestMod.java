@@ -29,6 +29,7 @@ public class TestMod {
         modEventBus.addListener(this::commonSetup);
 
         TestItems.register(modEventBus);
+        TestEntityTypes.register(modEventBus);
         TestBlocks.register(modEventBus);
         TestCreativeModeTabs.register(modEventBus);
         TestDataComponent.register(modEventBus);

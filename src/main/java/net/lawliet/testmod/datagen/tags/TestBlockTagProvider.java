@@ -1,4 +1,4 @@
-package net.lawliet.testmod.datagen;
+package net.lawliet.testmod.datagen.tags;
 
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.registries.TestBlocks;

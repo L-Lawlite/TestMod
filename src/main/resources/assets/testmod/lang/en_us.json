@@ -22,6 +22,7 @@
   "item.testmod.rice": "Rice",
   "item.testmod.bar_brawl_music_disc": "Bar Brawl Music Disc",
   "item.testmod.radiation_staff": "Radiation Staff",
+  "item.testmod.driftwood_boat": "Driftwood Boat",
 
   "item.minecraft.potion.effect.stinky_potion": "Stinky Potion",
   "item.minecraft.splash_potion.effect.stinky_potion": "Stinky Splash Potion",
@@ -113,7 +114,7 @@
   "advancement.testmod.plant_custom.title": "Planted Custom Plant",
   "advancement.testmod.plant_custom.description": "Planted a custom plant",
   "advancement.testmod.metal_detector.title": "Use Metal Detector",
-  "advancement.testmod.metal_detector.description": "Try using metal detector to find valuables"
+  "advancement.testmod.metal_detector.description": "Try using metal detector to find valuables",
 
-
+  "entity.testmod.driftwood_boat": "Driftwood Boat"
 }

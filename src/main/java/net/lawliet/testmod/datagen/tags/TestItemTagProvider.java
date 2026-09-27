@@ -1,4 +1,4 @@
-package net.lawliet.testmod.datagen;
+package net.lawliet.testmod.datagen.tags;
 
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.registries.TestItems;
@@ -20,6 +20,7 @@ public class TestItemTagProvider extends BlockTagCopyingItemTagProvider {
     }
 
     @Override
+    @SuppressWarnings("NullableProblems")
     protected void addTags(HolderLookup.Provider provider) {
         copy(TestTags.Blocks.AZURITE_ORES, TestTags.Items.AZURITE_ORES);
         tag(TestTags.Items.TRANSFORMABLE_ITEMS).add(TestItems.AZURITE.getKey());
@@ -54,5 +55,6 @@ public class TestItemTagProvider extends BlockTagCopyingItemTagProvider {
         copy(BlockItemTags.LOGS_THAT_BURN.block(), BlockItemTags.LOGS_THAT_BURN.item());
         copy(TestTags.Blocks.DRIFTWOOD_LOGS, TestTags.Items.DRIFTWOOD_LOGS);
         copy(BlockItemTags.WOODEN_SHELVES.block(), BlockItemTags.WOODEN_SHELVES.item());
+        tag(ItemTags.BOATS).add(TestItems.DRIFTWOOD_BOAT.getKey());
     }
 }

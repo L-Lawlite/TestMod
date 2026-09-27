@@ -6,6 +6,9 @@ import net.lawliet.testmod.datagen.loot.sub_providers.TestBlockInteractionLootPr
 import net.lawliet.testmod.datagen.loot.sub_providers.TestBlockLootProvider;
 import net.lawliet.testmod.datagen.loot.sub_providers.TestExtraLootProvider;
 import net.lawliet.testmod.datagen.painting.TestPaintingTagsProvider;
+import net.lawliet.testmod.datagen.tags.TestBlockTagProvider;
+import net.lawliet.testmod.datagen.tags.TestEntityTypesTagProvider;
+import net.lawliet.testmod.datagen.tags.TestItemTagProvider;
 import net.lawliet.testmod.datagen.villager.TestPoiTags;
 import net.lawliet.testmod.datagen.villager.TestVillagerTradeTags;
 import net.minecraft.data.loot.LootTableProvider;
@@ -23,6 +26,7 @@ public class TestModDatagen {
     public static void gatherClientData(GatherDataEvent.Client event) {
         event.createProvider(TestModelProvider::new);
         event.createBlockAndItemTags(TestBlockTagProvider::new, TestItemTagProvider::new);
+        event.createProvider(TestEntityTypesTagProvider::new);
 
         event.createProvider(((output, lookupProvider) -> new LootTableProvider(
                 output,
