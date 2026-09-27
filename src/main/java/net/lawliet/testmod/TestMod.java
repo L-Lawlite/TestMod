@@ -4,6 +4,7 @@ import net.lawliet.testmod.registries.*;
 import net.lawliet.testmod.registries.gui.TestMenu;
 import net.lawliet.testmod.registries.villager.Poi;
 import net.lawliet.testmod.registries.villager.Profession;
+import net.lawliet.testmod.worldgen.tree.trunk.placer.TestTruckPlacerTypes;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 
@@ -42,6 +43,7 @@ public class TestMod {
         TestBlockEntities.register(modEventBus);
         TestMenu.register(modEventBus);
         TestRecipes.register(modEventBus);
+        TestTruckPlacerTypes.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
 
 

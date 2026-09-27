@@ -7,7 +7,7 @@ import net.lawliet.testmod.block.flammable.*;
 import net.lawliet.testmod.block.state.TestBlockStateProperties;
 import net.lawliet.testmod.block.crop.OnionBlock;
 import net.lawliet.testmod.block.type.TestBlockSetType;
-import net.lawliet.testmod.worldgen.tree.TestTreeGrower;
+import net.lawliet.testmod.worldgen.tree.grower.TestTreeGrower;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;

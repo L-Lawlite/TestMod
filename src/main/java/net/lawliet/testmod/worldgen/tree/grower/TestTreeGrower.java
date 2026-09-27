@@ -1,4 +1,4 @@
-package net.lawliet.testmod.worldgen.tree;
+package net.lawliet.testmod.worldgen.tree.grower;
 
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.worldgen.features.TreeFeatureSets;
