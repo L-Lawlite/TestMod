@@ -1,7 +1,6 @@
 {
   "type": "neoforge:add_features",
   "biomes": [
-    "minecraft:plains",
     "minecraft:savanna",
     "minecraft:flower_forest"
   ],

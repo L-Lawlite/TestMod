@@ -3,6 +3,7 @@ package net.lawliet.testmod.worldgen;
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.worldgen.features.OreFeatureSets;
 import net.lawliet.testmod.worldgen.features.TreeFeatureSets;
+import net.lawliet.testmod.worldgen.features.VegetationFeatureSets;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -24,6 +25,7 @@ public class TestBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_NETHER_AZURITE_ORE = registerKey("add_nether_azurite_ore");
     public static final ResourceKey<BiomeModifier> ADD_END_AZURITE_ORE = registerKey("add_end_azurite_ore");
     public static final ResourceKey<BiomeModifier> ADD_TREE_DRIFTWOOD = registerKey("add_tree_driftwood");
+    public static final ResourceKey<BiomeModifier> ADD_GOJI_BERRY_BUSH = registerKey("add_goji_berry_bush");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -55,8 +57,13 @@ public class TestBiomeModifiers {
         ));
 
         context.register(ADD_TREE_DRIFTWOOD, new BiomeModifiers.AddFeaturesBiomeModifier(
-                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS), biomes.getOrThrow(Biomes.SAVANNA), biomes.getOrThrow(Biomes.FLOWER_FOREST)),
+                HolderSet.direct(biomes.getOrThrow(Biomes.SAVANNA), biomes.getOrThrow(Biomes.FLOWER_FOREST)),
                 HolderSet.direct(placedFeatures.getOrThrow(TreeFeatureSets.DRIFTWOOD_TREE.placedFeature())),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+        context.register(ADD_GOJI_BERRY_BUSH, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS), biomes.getOrThrow(Biomes.FOREST)),
+                HolderSet.direct(placedFeatures.getOrThrow(VegetationFeatureSets.GOJI_BERRY_BUSH.placedFeature())),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
     }
