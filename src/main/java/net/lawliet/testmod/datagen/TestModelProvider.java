@@ -14,10 +14,7 @@ import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
-import net.minecraft.client.data.models.model.ItemModelUtils;
-import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.item.ClientItem;
 import net.minecraft.client.renderer.item.ConditionalItemModel;
 import net.minecraft.client.renderer.item.ItemModel;
@@ -36,13 +33,13 @@ public class TestModelProvider extends ModelProvider {
         super(output, TestMod.MODID);
     }
 
-    private static ItemModelGenerators itemModels;
-    private static BlockModelGenerators blockModels;
+    private ItemModelGenerators itemModels;
+    private BlockModelGenerators blockModels;
 
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
-        TestModelProvider.itemModels = itemModels;
-        TestModelProvider.blockModels = blockModels;
+        this.itemModels = itemModels;
+        this.blockModels = blockModels;
 
         itemModels.generateFlatItem(TestItems.AZURITE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.RAW_AZURITE.get(), ModelTemplates.FLAT_ITEM);

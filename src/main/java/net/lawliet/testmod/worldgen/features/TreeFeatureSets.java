@@ -2,6 +2,7 @@ package net.lawliet.testmod.worldgen.features;
 
 import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.worldgen.FeatureSet;
+import net.lawliet.testmod.worldgen.tree.foliage.placer.InvertedPyramidFoliagePlacer;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -17,7 +18,6 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.UpwardsBranchingTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -33,7 +33,8 @@ public class TreeFeatureSets {
                 new UpwardsBranchingTrunkPlacer(4, 3, 4, ConstantInt.of(2), 0.4f, UniformInt.of(1,3), blocks.getOrThrow(BlockTags.REPLACEABLE_BY_TREES)),
 
                 BlockStateProvider.simple(TestBlocks.DRIFTWOOD_LEAVES.get()),
-                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(3), 3),
+//                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(3), 3),
+                new InvertedPyramidFoliagePlacer(ConstantInt.of(1), ConstantInt.of(1), 3),
 
                 new TwoLayersFeatureSize(1, 0, 2),
                 BlockStateProvider.simple(Blocks.DIRT)
