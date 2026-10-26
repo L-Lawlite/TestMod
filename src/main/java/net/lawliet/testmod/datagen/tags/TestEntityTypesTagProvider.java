@@ -1,7 +1,7 @@
 package net.lawliet.testmod.datagen.tags;
 
 import net.lawliet.testmod.TestMod;
-import net.lawliet.testmod.registries.TestEntityTypes;
+import net.lawliet.testmod.registries.entity.TestEntityTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;

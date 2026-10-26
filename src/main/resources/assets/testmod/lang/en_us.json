@@ -23,6 +23,7 @@
   "item.testmod.bar_brawl_music_disc": "Bar Brawl Music Disc",
   "item.testmod.radiation_staff": "Radiation Staff",
   "item.testmod.driftwood_boat": "Driftwood Boat",
+  "item.testmod.dodo_spawn_egg": "Dodo Spawn Egg",
 
   "item.minecraft.potion.effect.stinky_potion": "Stinky Potion",
   "item.minecraft.splash_potion.effect.stinky_potion": "Stinky Splash Potion",
@@ -118,5 +119,6 @@
   "advancement.testmod.metal_detector.title": "Use Metal Detector",
   "advancement.testmod.metal_detector.description": "Try using metal detector to find valuables",
 
-  "entity.testmod.driftwood_boat": "Driftwood Boat"
+  "entity.testmod.driftwood_boat": "Driftwood Boat",
+  "entity.testmod.dodo": "Dodo"
 }

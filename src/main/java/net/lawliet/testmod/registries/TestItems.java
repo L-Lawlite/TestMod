@@ -4,6 +4,7 @@ import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.food.TestConsumables;
 import net.lawliet.testmod.food.TestFoods;
 import net.lawliet.testmod.item.*;
+import net.lawliet.testmod.registries.entity.TestEntityTypes;
 import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.equipment.ArmorType;
@@ -45,6 +46,8 @@ public class TestItems {
     public static final DeferredItem<BlockItem> RICE = ITEMS.registerItem("rice", properties -> new PlaceOnShallowWaterBlockItem(TestBlocks.RICE.get(), properties, TestTags.Blocks.RICE_FARMLAND));
     public static final DeferredItem<Item> DRIFTWOOD_BOAT = ITEMS.registerItem("driftwood_boat", properties -> new BoatItem(TestEntityTypes.DRIFTWOOD_BOAT.get(), properties.stacksTo(1)));
 
+    public static final DeferredItem<Item> DODO_SPAWN_EGG = ITEMS.registerItem("dodo_spawn_egg", SpawnEggItem::new, properties -> properties.spawnEgg(TestEntityTypes.DODO.get()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
         eventBus.addListener(TestItems::addCreative);
@@ -78,5 +81,7 @@ public class TestItems {
         output.accept(RICE);
         output.accept(BAR_BRAWL_MUSIC_DISC);
         output.accept(RADIATION_STAFF);
+        output.accept(DRIFTWOOD_BOAT);
+        output.accept(DODO_SPAWN_EGG);
     }
 }

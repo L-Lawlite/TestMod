@@ -1,6 +1,8 @@
-package net.lawliet.testmod.registries;
+package net.lawliet.testmod.registries.entity;
 
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.entity.DodoEntity;
+import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
@@ -21,6 +23,10 @@ public class TestEntityTypes {
             EntityType.Builder.of(boatFactory(TestItems.DRIFTWOOD_BOAT), MobCategory.MISC)
                     .noLootTable()
                     .sized(1.375F, 0.5625F).eyeHeight(0.5625F).clientTrackingRange(10)
+    );
+    public static final DeferredHolder<EntityType<?>, EntityType<DodoEntity>> DODO = registerEntityType("dodo",
+            EntityType.Builder.of(DodoEntity::new, MobCategory.CREATURE)
+                    .sized(1, 2.5f)
     );
 
     public static void register(IEventBus eventBus) {

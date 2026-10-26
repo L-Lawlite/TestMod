@@ -1,4 +1,4 @@
-package net.lawliet.testmod.model;
+package net.lawliet.testmod.registries.entity.client;
 
 import com.google.common.collect.Sets;
 import net.lawliet.testmod.TestMod;
@@ -11,6 +11,7 @@ public class TestModelLayers {
     private static final Set<ModelLayerLocation> ALL_MODELS = Sets.newHashSet();
 
     public static final ModelLayerLocation DRIFTWOOD_BOAT = register("boat/driftwood");
+    public static final ModelLayerLocation DODO =  register("dodo");
 
     private static ModelLayerLocation register(String name) {
         return register(name, "main");

@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "testmod:item/dodo_spawn_egg"
+  }
+}
