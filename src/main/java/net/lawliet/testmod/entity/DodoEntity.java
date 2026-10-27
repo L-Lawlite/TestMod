@@ -9,7 +9,10 @@ import net.minecraft.core.Holder;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
@@ -112,5 +115,21 @@ public class DodoEntity extends PathfinderMob {
     public SpawnGroupData finalizeSpawn(@NonNull ServerLevelAccessor level, @NonNull DifficultyInstance difficulty, @NonNull EntitySpawnReason spawnReason, @Nullable SpawnGroupData groupData) {
         VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), CustomRegistry.DODO_VARIANT_KEY).ifPresent(this::setVariant);
         return super.finalizeSpawn(level, difficulty, spawnReason, groupData);
+    }
+
+    /// Sound
+    @Override
+    protected @Nullable SoundEvent getDeathSound() {
+        return SoundEvents.NAUTILUS_DEATH;
+    }
+
+    @Override
+    protected @Nullable SoundEvent getAmbientSound() {
+        return SoundEvents.PARROT_AMBIENT;
+    }
+
+    @Override
+    protected @Nullable SoundEvent getHurtSound(@NonNull DamageSource source) {
+        return SoundEvents.PARROT_HURT;
     }
 }
