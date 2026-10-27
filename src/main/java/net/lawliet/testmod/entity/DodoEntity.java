@@ -1,15 +1,35 @@
 package net.lawliet.testmod.entity;
 
+import net.lawliet.testmod.datagen.DodoVariants;
 import net.lawliet.testmod.entity.client.dodo.DodoRenderState;
+import net.lawliet.testmod.entity.variant.DodoVariant;
+import net.lawliet.testmod.registries.custom.CustomRegistry;
+import net.lawliet.testmod.registries.entity.serializer.TestEntityDataSerializers;
+import net.minecraft.core.Holder;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.variant.SpawnContext;
+import net.minecraft.world.entity.variant.VariantUtils;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class DodoEntity extends PathfinderMob {
+    private static final EntityDataAccessor<Holder<DodoVariant>> DATA_VARIANT_ID = SynchedEntityData.defineId(DodoEntity.class, TestEntityDataSerializers.DODO_VARIANT.get());
+    private static final ResourceKey<DodoVariant> DEFAULT_VARIANT = DodoVariants.BLACK;
     public final DodoRenderState state = new DodoRenderState();
     private int idleAnimationTimeout = 0;
 
@@ -27,6 +47,7 @@ public class DodoEntity extends PathfinderMob {
         goalSelector.addGoal(4, new RandomLookAroundGoal(this));
     }
 
+    /// Animations
     private void setupAnimationState() {
         if (this.idleAnimationTimeout <= 0) {
             this.idleAnimationTimeout = 40;
@@ -52,5 +73,44 @@ public class DodoEntity extends PathfinderMob {
                 .add(Attributes.MOVEMENT_SPEED, 0.25)
                 .add(Attributes.TEMPT_RANGE, 16)
                 .add(Attributes.FOLLOW_RANGE, 24);
+    }
+
+    /// Variants
+    @Override
+    protected void defineSynchedData(SynchedEntityData.@NonNull Builder entityData) {
+        super.defineSynchedData(entityData);
+        entityData.define(DATA_VARIANT_ID, VariantUtils.getDefaultOrAny(this.registryAccess(), DEFAULT_VARIANT));
+    }
+
+
+    public Holder<DodoVariant> getVariant() {
+        return this.entityData.get(DATA_VARIANT_ID);
+    }
+
+
+    private void setVariant(Holder<DodoVariant> variant) {
+        this.entityData.set(DATA_VARIANT_ID, variant);
+    }
+
+
+
+    @Override
+    protected void addAdditionalSaveData(@NonNull ValueOutput output) {
+        super.addAdditionalSaveData(output);
+        VariantUtils.writeVariant(output, this.getVariant());
+    }
+
+
+    @Override
+    protected void readAdditionalSaveData(@NonNull ValueInput input) {
+        super.readAdditionalSaveData(input);
+        VariantUtils.readVariant(input, CustomRegistry.DODO_VARIANT_KEY).ifPresent(this::setVariant);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public SpawnGroupData finalizeSpawn(@NonNull ServerLevelAccessor level, @NonNull DifficultyInstance difficulty, @NonNull EntitySpawnReason spawnReason, @Nullable SpawnGroupData groupData) {
+        VariantUtils.selectVariantToSpawn(SpawnContext.create(level, this.blockPosition()), CustomRegistry.DODO_VARIANT_KEY).ifPresent(this::setVariant);
+        return super.finalizeSpawn(level, difficulty, spawnReason, groupData);
     }
 }

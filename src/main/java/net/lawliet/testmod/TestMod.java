@@ -2,6 +2,7 @@ package net.lawliet.testmod;
 
 import net.lawliet.testmod.registries.*;
 import net.lawliet.testmod.registries.entity.TestEntityTypes;
+import net.lawliet.testmod.registries.entity.serializer.TestEntityDataSerializers;
 import net.lawliet.testmod.registries.gui.TestMenu;
 import net.lawliet.testmod.registries.villager.Poi;
 import net.lawliet.testmod.registries.villager.Profession;
@@ -47,6 +48,7 @@ public class TestMod {
         TestRecipes.register(modEventBus);
         TestTruckPlacerTypes.register(modEventBus);
         TestFoliagePlacerTypes.register(modEventBus);
+        TestEntityDataSerializers.register(modEventBus);
         NeoForge.EVENT_BUS.register(this);
 
 

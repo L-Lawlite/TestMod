@@ -5,6 +5,7 @@ import net.lawliet.testmod.datagen.damagesource.TestDamageTypes;
 import net.lawliet.testmod.datagen.painting.TestPainting;
 import net.lawliet.testmod.datagen.villager.TestVillagerTrades;
 import net.lawliet.testmod.registries.TestSounds;
+import net.lawliet.testmod.registries.custom.CustomRegistry;
 import net.lawliet.testmod.registries.villager.TestTradeSets;
 import net.lawliet.testmod.worldgen.TestBiomeModifiers;
 import net.lawliet.testmod.worldgen.TestConfiguredFeatures;
@@ -29,6 +30,7 @@ public class TestDatapackProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.CONFIGURED_FEATURE, TestConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, TestPlacedFeatures::bootstrap)
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, TestBiomeModifiers::bootstrap)
+            .add(CustomRegistry.DODO_VARIANT_KEY, DodoVariants::bootstrap)
             ;
 
     public TestDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
