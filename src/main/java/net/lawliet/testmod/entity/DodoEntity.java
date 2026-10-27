@@ -76,14 +76,13 @@ public class DodoEntity extends Animal {
 
 
     public static AttributeSupplier.Builder createAttributes() {
-        return PathfinderMob.createMobAttributes()
+        return Animal.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 10)
                 .add(Attributes.MOVEMENT_SPEED, 0.25)
                 .add(Attributes.TEMPT_RANGE, 16)
                 .add(Attributes.FOLLOW_RANGE, 24);
     }
 
-    /// Variants
     @Override
     protected void defineSynchedData(SynchedEntityData.@NonNull Builder entityData) {
         super.defineSynchedData(entityData);
