@@ -4,6 +4,7 @@ import net.lawliet.testmod.datagen.*;
 import net.lawliet.testmod.datagen.TestDataMapProvider;
 import net.lawliet.testmod.datagen.loot.sub_providers.TestBlockInteractionLootProvider;
 import net.lawliet.testmod.datagen.loot.sub_providers.TestBlockLootProvider;
+import net.lawliet.testmod.datagen.loot.sub_providers.TestEntityLootProvider;
 import net.lawliet.testmod.datagen.loot.sub_providers.TestExtraLootProvider;
 import net.lawliet.testmod.datagen.painting.TestPaintingTagsProvider;
 import net.lawliet.testmod.datagen.tags.TestBlockTagProvider;
@@ -34,7 +35,8 @@ public class TestModDatagen {
                 List.of(
                         new LootTableProvider.SubProviderEntry(TestBlockLootProvider::new, LootContextParamSets.BLOCK),
                         new LootTableProvider.SubProviderEntry(TestBlockInteractionLootProvider::new, LootContextParamSets.BLOCK_INTERACT),
-                        new LootTableProvider.SubProviderEntry(TestExtraLootProvider::new, LootContextParamSets.ALL_PARAMS)
+                        new LootTableProvider.SubProviderEntry(TestExtraLootProvider::new, LootContextParamSets.ALL_PARAMS),
+                        new LootTableProvider.SubProviderEntry(TestEntityLootProvider::new, LootContextParamSets.ENTITY)
                 ),
                 lookupProvider
         )));
