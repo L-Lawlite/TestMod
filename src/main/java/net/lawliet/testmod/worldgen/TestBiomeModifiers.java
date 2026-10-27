@@ -1,6 +1,7 @@
 package net.lawliet.testmod.worldgen;
 
 import net.lawliet.testmod.TestMod;
+import net.lawliet.testmod.registries.entity.TestEntityTypes;
 import net.lawliet.testmod.worldgen.features.OreFeatureSets;
 import net.lawliet.testmod.worldgen.features.TreeFeatureSets;
 import net.lawliet.testmod.worldgen.features.VegetationFeatureSets;
@@ -10,15 +11,15 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.util.random.Weighted;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
-/**
- * Neoforge class to Place feature in specific biome
- */
+/// Neoforge class to Place feature in specific biome
 public class TestBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> ADD_OVERWORLD_AZURITE_ORE = registerKey("add_overworld_azurite_ore");
@@ -26,6 +27,8 @@ public class TestBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_END_AZURITE_ORE = registerKey("add_end_azurite_ore");
     public static final ResourceKey<BiomeModifier> ADD_TREE_DRIFTWOOD = registerKey("add_tree_driftwood");
     public static final ResourceKey<BiomeModifier> ADD_GOJI_BERRY_BUSH = registerKey("add_goji_berry_bush");
+
+    public static final ResourceKey<BiomeModifier> SPAWN_DODO = registerKey("spawn_dodo");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -65,6 +68,11 @@ public class TestBiomeModifiers {
                 HolderSet.direct(biomes.getOrThrow(Biomes.PLAINS), biomes.getOrThrow(Biomes.FOREST)),
                 HolderSet.direct(placedFeatures.getOrThrow(VegetationFeatureSets.GOJI_BERRY_BUSH.placedFeature())),
                 GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(SPAWN_DODO, BiomeModifiers.AddSpawnsBiomeModifier.singleSpawn(
+                HolderSet.direct(biomes.getOrThrow(Biomes.MEADOW), biomes.getOrThrow(Biomes.FOREST)),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(TestEntityTypes.DODO.get(), 2, 4), 15)
         ));
     }
 
