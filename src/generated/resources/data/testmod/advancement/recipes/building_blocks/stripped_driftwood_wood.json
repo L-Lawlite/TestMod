@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:stripped_driftwood_wood"
+        "recipes": "testmod:stripped_driftwood_wood"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

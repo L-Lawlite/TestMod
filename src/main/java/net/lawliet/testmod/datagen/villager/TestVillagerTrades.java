@@ -16,13 +16,10 @@ import net.minecraft.world.item.trading.TradeCost;
 import net.minecraft.world.item.trading.VillagerTrade;
 import net.minecraft.world.item.trading.VillagerTrades;
 
-import java.util.List;
-import java.util.Optional;
-
 public class TestVillagerTrades {
     public static final ResourceKey<VillagerTrade> FARMER_1_EMERALD_ONION = createVillagerTrade("farmer/1/emerald_onion");
     public static final ResourceKey<VillagerTrade> FARMER_2_GOJI_BERRIES_EMERALD = createVillagerTrade("farmer/2/goji_berries_emerald");
-    public static final ResourceKey<VillagerTrade> LIBRARIAN_1_AZURITE_ENCHANTED = createVillagerTrade("librarian/1/azurite_enchanted");
+    public static final ResourceKey<VillagerTrade> LIBRARIAN_1_AZURITE_AND_BOOK_ENCHANTED_BOOK = createVillagerTrade("librarian/1/azurite_and_book_enchanted_book");
 
     public static final ResourceKey<VillagerTrade> TEST_PROFESSION_1_EMERALD_METAL_DETECTOR = createVillagerTrade("test_profession/1/emerald_metal_detector");
     public static final ResourceKey<VillagerTrade> TEST_PROFESSION_1_EMERALD_RAW_AZURITE = createVillagerTrade("test_profession/1/emerald_raw_azurite");
@@ -37,53 +34,49 @@ public class TestVillagerTrades {
         HolderSet<Enchantment> enchantmentsForBooks = enchantments.getOrThrow(EnchantmentTags.TRADEABLE);
         HolderSet<Enchantment> doubleTradePrice = enchantments.getOrThrow(EnchantmentTags.DOUBLE_TRADE_PRICE);
 
-        context.register(FARMER_1_EMERALD_ONION, new VillagerTrade(
+        context.register(FARMER_1_EMERALD_ONION, VillagerTrade.builder(
                 new TradeCost(Items.EMERALD, 4),
                 new ItemStackTemplate(TestItems.ONION),
-                12, 6, 0.05f, Optional.empty(), List.of()
-        ));
+                12, 6, 0.05f
+        ).build());
 
-        context.register(FARMER_2_GOJI_BERRIES_EMERALD, new VillagerTrade(
+        context.register(FARMER_2_GOJI_BERRIES_EMERALD, VillagerTrade.builder(
                 new TradeCost(TestItems.GOJI_BERRIES, 40),
                 new ItemStackTemplate(Items.EMERALD),
-                12, 6, 0.05f, Optional.empty(), List.of()
-        ));
-        context.register(LIBRARIAN_1_AZURITE_ENCHANTED,
-                new VillagerTrade(
+                12, 6, 0.05f
+        ).build());
+        context.register(LIBRARIAN_1_AZURITE_AND_BOOK_ENCHANTED_BOOK,
+                VillagerTrade.builder(
                         new TradeCost(TestItems.AZURITE, 0),
-                        Optional.of(new TradeCost(Items.BOOK, 1)),
-                        new ItemStackTemplate(Items.ENCHANTED_BOOK),
-                        12,
-                        1,
-                        0.2F,
-                        Optional.empty(),
-                        VillagerTrades.enchantedBook(items, enchantmentsForBooks),
-                        doubleTradePrice
-                ));
+                        new TradeCost(Items.BOOK, 1),
+                        new ItemStackTemplate(Items.ENCHANTED_BOOK), 12, 1, 0.2f)
+                        .addModifiers(VillagerTrades.enchantedBook(items, enchantmentsForBooks))
+                        .doubleTradePriceEnchantments(doubleTradePrice)
+                        .build());
         context.register(TEST_PROFESSION_1_EMERALD_METAL_DETECTOR,
-                new VillagerTrade(
+                VillagerTrade.builder(
                         new TradeCost(Items.EMERALD, 12),
                         new ItemStackTemplate(TestItems.METAL_DETECTOR),
-                        8, 12, 0.05f, Optional.empty(), List.of()
-            ));
+                        8, 12, 0.5f
+                ).build());
         context.register(TEST_PROFESSION_1_EMERALD_RAW_AZURITE,
-                new VillagerTrade(
+                VillagerTrade.builder(
                         new TradeCost(Items.EMERALD, 10),
                         new ItemStackTemplate(TestItems.RAW_AZURITE),
-                        8, 12, 0.05f, Optional.empty(), List.of()
-                ));
+                        8, 12, 0.5f
+                ).build());
         context.register(TEST_PROFESSION_2_EMERALD_DATA_TABLET,
-                new VillagerTrade(
+                VillagerTrade.builder(
                         new TradeCost(Items.EMERALD, 2),
                         new ItemStackTemplate(TestItems.DATA_TABLET),
-                        8, 12, 0.05f, Optional.empty(), List.of()
-                ));
+                        8, 12, 0.5f
+                ).build());
         context.register(TEST_PROFESSION_2_AZURITE_MAGIC_BLOCK,
-                new VillagerTrade(
+                VillagerTrade.builder(
                         new TradeCost(TestItems.AZURITE, 10),
                         new ItemStackTemplate(TestBlocks.MAGIC_BLOCK.asItem()),
-                        8, 12, 0.05f, Optional.empty(), List.of()
-                ));
+                        8, 12, 0.5f
+                ).build());
 
     }
 

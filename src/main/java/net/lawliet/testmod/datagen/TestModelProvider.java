@@ -5,7 +5,6 @@ import net.lawliet.testmod.block.GojiBerryBlock;
 import net.lawliet.testmod.block.crop.RiceCropBlock;
 import net.lawliet.testmod.block.state.TestBlockStateProperties;
 import net.lawliet.testmod.block.crop.OnionBlock;
-import net.lawliet.testmod.item.TestEquipmentAssets;
 import net.lawliet.testmod.registries.TestBlocks;
 import net.lawliet.testmod.registries.TestDataComponent;
 import net.lawliet.testmod.registries.TestItems;
@@ -51,10 +50,17 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateFlatItem(TestItems.AZURITE_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(TestItems.AZURITE_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateSpear(TestItems.AZURITE_SPEAR.get());
-        itemModels.generateTrimmableItem(TestItems.AZURITE_HELMET.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
-        itemModels.generateTrimmableItem(TestItems.AZURITE_CHESTPLATE.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
-        itemModels.generateTrimmableItem(TestItems.AZURITE_LEGGINGS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
-        itemModels.generateTrimmableItem(TestItems.AZURITE_BOOTS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
+        itemModels.generateDynamicTrimmableArmorSet(
+                TestItems.AZURITE_HELMET.get(),
+                TestItems.AZURITE_CHESTPLATE.get(),
+                TestItems.AZURITE_LEGGINGS.get(),
+                TestItems.AZURITE_BOOTS.get(),
+                null
+        );
+//        itemModels.generateTrimmableItem(TestItems.AZURITE_HELMET.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
+//        itemModels.generateTrimmableItem(TestItems.AZURITE_CHESTPLATE.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
+//        itemModels.generateTrimmableItem(TestItems.AZURITE_LEGGINGS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
+//        itemModels.generateTrimmableItem(TestItems.AZURITE_BOOTS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
         itemModels.generateFlatItem(TestItems.AZURITE_HORSE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
         this.createDataTablet(TestItems.DATA_TABLET.get());
         this.createBow(TestItems.TEST_BOW.get());

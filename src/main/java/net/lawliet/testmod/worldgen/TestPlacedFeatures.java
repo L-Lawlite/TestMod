@@ -5,9 +5,10 @@ import net.lawliet.testmod.worldgen.features.TreeFeatureSets;
 import net.lawliet.testmod.worldgen.features.VegetationFeatureSets;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
 /**
- * Gets {@link net.minecraft.world.level.levelgen.feature.ConfiguredFeature} and determine where/how many it is placed
+ * Gets {@link Feature} and determine where/how many it is placed
  */
 public class TestPlacedFeatures {
 

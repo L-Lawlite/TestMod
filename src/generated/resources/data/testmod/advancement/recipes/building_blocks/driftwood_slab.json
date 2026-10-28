@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:driftwood_slab"
+        "recipes": "testmod:driftwood_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

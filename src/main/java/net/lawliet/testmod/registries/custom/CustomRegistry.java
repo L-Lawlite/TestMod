@@ -7,7 +7,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.registries.NewDatapackRegistryEvent;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 
 
@@ -24,8 +24,8 @@ public class CustomRegistry {
     }
 
     @SubscribeEvent
-    public static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-        event.dataPackRegistry(DODO_VARIANT_KEY, DodoVariant.DIRECT_CODEC, DodoVariant.NETWORK_CODEC);
+    public static void registerDatapackRegistries(NewDatapackRegistryEvent event) {
+        event.worldRegistry(DODO_VARIANT_KEY, DodoVariant.DIRECT_CODEC, DodoVariant.NETWORK_CODEC);
     }
 
 }

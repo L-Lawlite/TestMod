@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:azurite_helmet"
+        "recipes": "testmod:azurite_helmet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:azurite_fence_gate"
+        "recipes": "testmod:azurite_fence_gate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

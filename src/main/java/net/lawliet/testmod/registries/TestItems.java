@@ -23,9 +23,9 @@ public class TestItems {
     public static final DeferredItem<Item> END_FIRE_STARTER = ITEMS.registerSimpleItem("end_fire_starter");
     public static final DeferredItem<Item> AZURITE_SWORD = ITEMS.registerSimpleItem("azurite_sword", properties -> properties.sword(TestToolMaterials.AZURITE, 3, -2.4f));
     public static final DeferredItem<Item> AZURITE_PICKAXE = ITEMS.registerSimpleItem("azurite_pickaxe", properties -> properties.pickaxe(TestToolMaterials.AZURITE, 1, -2.8f));
-    public static final DeferredItem<Item> AZURITE_SHOVEL = ITEMS.registerItem("azurite_shovel", properties -> new ShovelItem( TestToolMaterials.AZURITE, 1.5f, -3f, properties));
-    public static final DeferredItem<Item> AZURITE_AXE = ITEMS.registerItem("azurite_axe", properties -> new AxeItem( TestToolMaterials.AZURITE, 6f, -3.2f, properties));
-    public static final DeferredItem<Item> AZURITE_HOE = ITEMS.registerItem("azurite_hoe", properties -> new HoeItem( TestToolMaterials.AZURITE, 0, -3.8f, properties));
+    public static final DeferredItem<Item> AZURITE_SHOVEL = ITEMS.registerSimpleItem("azurite_shovel", properties -> properties.shovel(TestToolMaterials.AZURITE, 1.5f, -3f));
+    public static final DeferredItem<Item> AZURITE_AXE = ITEMS.registerSimpleItem("azurite_axe", properties -> properties.axe(TestToolMaterials.AZURITE, 6f, -3.2f));
+    public static final DeferredItem<Item> AZURITE_HOE = ITEMS.registerSimpleItem("azurite_hoe", properties -> properties.hoe(TestToolMaterials.AZURITE, 0, -3.8f));
     public static final DeferredItem<Item> AZURITE_SPEAR = ITEMS.registerSimpleItem("azurite_spear", properties -> properties.spear(TestToolMaterials.AZURITE, 0.95f, 0.7f, 0.7f, 3.5f, 13f, 8.5f, 5.1f, 13.37f, 4.67f));
 
     public static final DeferredItem<Item> AZURITE_HELMET = ITEMS.registerSimpleItem("azurite_helmet", properties -> properties.humanoidArmor(TestArmorMaterials.AZURITE, ArmorType.HELMET));

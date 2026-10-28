@@ -23,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:test_bow"
+        "recipes": "testmod:test_bow"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:driftwood_stairs"
+        "recipes": "testmod:driftwood_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

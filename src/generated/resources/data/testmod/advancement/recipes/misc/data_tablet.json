@@ -23,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:data_tablet"
+        "recipes": "testmod:data_tablet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

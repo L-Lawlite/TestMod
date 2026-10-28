@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:crystallizer/end_rod"
+        "recipes": "testmod:crystallizer/end_rod"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

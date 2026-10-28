@@ -14,7 +14,7 @@ public class TestLootTables {
     private static final Set<ResourceKey<LootTable>> LOCATIONS = new HashSet<>();
     private static final Set<ResourceKey<LootTable>> IMMUTABLE_LOCATIONS = Collections.unmodifiableSet(LOCATIONS);
 
-    public static final ResourceKey<LootTable> HARVEST_SWEET_BERRY_BUSH = register("harvest/goji_berry_bush");
+    public static final ResourceKey<LootTable> HARVEST_GOJI_BERRY_BUSH = register("harvest/goji_berry_bush");
 
     private static ResourceKey<LootTable> register(String location) {
         return register(ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath(TestMod.MODID, location)));

@@ -41,7 +41,7 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalBlockEntity
 
         poseStack.translate(0.5D, 1.15D, 0.5D);
         poseStack.scale(0.5F, 0.5F, 0.5F);
-        poseStack.mulPose(Axis.YP.rotationDegrees(state.rotation));
+        poseStack.rotate(Axis.YP.rotationDegrees(state.rotation));
 
         state.itemStackRenderState.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 

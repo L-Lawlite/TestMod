@@ -14,11 +14,10 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.common.util.Lazy;
-import org.lwjgl.glfw.GLFW;
 
 @EventBusSubscriber(modid = TestMod.MODID, value =  Dist.CLIENT)
 public class TestKeyMapping {
-    public static final KeyMappingRegister TEST = KeyMappingRegister.create(new KeyMapping(getKeyTranslate("test"), InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_K, KeyMapping.Category.MISC));
+    public static final KeyMappingRegister TEST = KeyMappingRegister.create(new KeyMapping(getKeyTranslate("test"),  InputConstants.KEY_K, KeyMapping.Category.MISC));
 
 
     private static String getKeyTranslate(String name) {

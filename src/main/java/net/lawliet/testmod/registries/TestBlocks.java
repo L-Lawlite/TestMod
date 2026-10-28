@@ -15,6 +15,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -83,23 +84,23 @@ public class TestBlocks {
             properties.strength(4f)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
                     .forceSolidOn().noCollision()
-                    .pushReaction(PushReaction.DESTROY)
+                    .pushReaction(PushReaction.POPPED)
     ));
     public static final DeferredBlock<Block> AZURITE_BUTTON = registerBlock("azurite_button", properties -> new ButtonBlock(
             BlockSetType.IRON,
             2,
-            properties.noCollision().pushReaction(PushReaction.DESTROY).strength(0.5f)
+            properties.noCollision().pushReaction(PushReaction.POPPED).strength(0.5f)
     ));
     public static final DeferredBlock<Block> AZURITE_FENCE = registerBlock("azurite_fence", FenceBlock::new, properties -> properties.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST).forceSolidOn());
     public static final DeferredBlock<Block> AZURITE_FENCE_GATE = registerBlock("azurite_fence_gate", properties -> new FenceGateBlock(new WoodType("azurite", BlockSetType.IRON), properties.forceSolidOn().strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
     public static final DeferredBlock<Block> AZURITE_WALLS = registerBlock("azurite_walls", WallBlock::new, properties -> properties.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST));
     public static final DeferredBlock<Block> AZURITE_DOOR = registerBlock("azurite_door", properties -> new DoorBlock(
             BlockSetType.IRON,
-            properties.strength(2f).noOcclusion().pushReaction(PushReaction.DESTROY).requiresCorrectToolForDrops()
+            properties.strength(2f).noOcclusion().pushReaction(PushReaction.POPPED).requiresCorrectToolForDrops()
     ));
     public static final DeferredBlock<Block> AZURITE_TRAPDOOR = registerBlock("azurite_trapdoor", properties -> new TrapDoorBlock(
             BlockSetType.IRON,
-            properties.noCollision().pushReaction(PushReaction.DESTROY).strength(2f).requiresCorrectToolForDrops().isValidSpawn(Blocks::never)
+            properties.noCollision().pushReaction(PushReaction.POPPED).strength(2f).requiresCorrectToolForDrops().isValidSpawn(Blocks::never)
     ));
 
     public static final DeferredBlock<Block> AZURITE_LAMP = registerBlock("azurite_lamp", AzuriteLampBlock::new,
@@ -110,10 +111,10 @@ public class TestBlocks {
             properties -> properties.strength(2).requiresCorrectToolForDrops().sound(SoundType.STONE));
 
     public static final DeferredBlock<Block> ONION = BLOCKS.registerBlock("onion_crop", OnionBlock::new,
-            properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.CROP));
+            properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.POPPED).sound(SoundType.CROP));
     public static final DeferredBlock<Block> GOJI_BERRY_BUSH = BLOCKS.registerBlock("goji_berry_bush", GojiBerryBlock::new,
-            properties -> properties.randomTicks().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.SWEET_BERRY_BUSH));
-    public static final DeferredBlock<Block> RICE = BLOCKS.registerBlock("rice_crop", RiceCropBlock::new, properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.DESTROY).sound(SoundType.CROP));
+            properties -> properties.randomTicks().noCollision().pushReaction(PushReaction.POPPED).sound(SoundType.SWEET_BERRY_BUSH));
+    public static final DeferredBlock<Block> RICE = BLOCKS.registerBlock("rice_crop", RiceCropBlock::new, properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.POPPED).sound(SoundType.CROP));
 
     public static final DeferredBlock<Block> CRYSTALLIZER = registerBlock("crystallizer", CrystallizerBlock::new, properties -> properties.strength(2f).requiresCorrectToolForDrops().lightLevel(state -> state.getValue(CrystallizerBlock.LIT) ? 7 : 0));
 
@@ -155,18 +156,18 @@ public class TestBlocks {
                     .ignitedByLava()
                     , 20, 5));
     public static final DeferredBlock<Block> DRIFTWOOD_LEAVES = registerBlock("driftwood_leaves", properties ->
-            new FlammableUntintedParticleLeavesBlock(0.01f, ParticleTypes.CHERRY_LEAVES, properties
+            new UntintedParticleLeavesBlock(0.01f, ParticleTypes.CHERRY_LEAVES, AmbientLeavesBlockSoundPlayer.noAmbientSound(), properties
                     .mapColor(MapColor.COLOR_GREEN)
                     .strength(0.2f)
                     .sound(SoundType.GRASS)
                     .noOcclusion()
                     .isValidSpawn(Blocks::ocelotOrParrot)
                     .isSuffocating(Blocks::never)
-                    .isViewBlocking(Blocks::never)
                     .ignitedByLava()
-                    .pushReaction(PushReaction.DESTROY)
+                    .pushReaction(PushReaction.POPPED)
                     .isRedstoneConductor(Blocks::never)
-                    , 60, 30));
+                    .randomTicks()
+            ));
 
     public static final DeferredBlock<Block> DRIFTWOOD_STAIRS = registerBlock("driftwood_stairs", properties -> new FlammableStairBlock(
             DRIFTWOOD_PLANKS.get().defaultBlockState(),
@@ -196,7 +197,7 @@ public class TestBlocks {
     public static final DeferredBlock<Block> DRIFTWOOD_BUTTON = registerBlock("driftwood_button", properties -> new ButtonBlock(
             TestBlockSetType.DRIFTWOOD,
             2,
-            properties.noCollision().pushReaction(PushReaction.DESTROY).strength(0.5f)
+            properties.noCollision().pushReaction(PushReaction.POPPED).strength(0.5f)
     ));
     public static final DeferredBlock<Block> DRIFTWOOD_FENCE = registerBlock("driftwood_fence", properties -> new FlammableFenceBlock(
             properties.mapColor(MapColor.WOOD)
@@ -227,7 +228,7 @@ public class TestBlocks {
     public static final DeferredBlock<Block> DRIFTWOOD_SAPLING =  registerBlock("driftwood_sapling",
             properties -> new SaplingBlock(TestTreeGrower.DRIFTWOOD,
                     properties.mapColor(MapColor.PLANT)
-                            .noCollision().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)
+                            .noCollision().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.POPPED)
     ));
     public static final DeferredBlock<Block> POTTED_DRIFTWOOD_SAPLING = BLOCKS.registerBlock("potted_driftwood_sapling", properties -> new FlowerPotBlock(
             () -> ((FlowerPotBlock) Blocks.FLOWER_POT), DRIFTWOOD_SAPLING, properties
@@ -235,7 +236,7 @@ public class TestBlocks {
 
 
     private static BlockBehaviour.Properties flowerPotProperties() {
-        return BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY);
+        return BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.POPPED);
     }
 
     public static void register(IEventBus eventBus) {

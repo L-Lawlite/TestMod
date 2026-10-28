@@ -1,6 +1,5 @@
 package net.lawliet.testmod.block;
 
-import com.mojang.serialization.MapCodec;
 import net.lawliet.testmod.block.entity.CrystallizerBlockEntity;
 import net.lawliet.testmod.gui.inferface.ITabbedBlock;
 import net.lawliet.testmod.gui.menu.BaseContainerMenu;
@@ -38,16 +37,10 @@ import org.jspecify.annotations.Nullable;
 public class CrystallizerBlock extends BaseEntityBlock implements ITabbedBlock {
     public static final EnumProperty<Direction>  FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
-    public static final MapCodec<CrystallizerBlock> CODEC = simpleCodec(CrystallizerBlock::new);
 
 
     public CrystallizerBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override

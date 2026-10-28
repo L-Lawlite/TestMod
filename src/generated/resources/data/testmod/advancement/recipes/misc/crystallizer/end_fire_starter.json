@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:crystallizer/end_fire_starter"
+        "recipes": "testmod:crystallizer/end_fire_starter"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

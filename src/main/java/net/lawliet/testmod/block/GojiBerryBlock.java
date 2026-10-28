@@ -33,7 +33,8 @@ public class GojiBerryBlock extends SweetBerryBushBlock {
             if (level instanceof ServerLevel serverLevel) {
                 Block.dropFromBlockInteractLootTable(
                         serverLevel,
-                        TestLootTables.HARVEST_SWEET_BERRY_BUSH,
+                        TestLootTables.HARVEST_GOJI_BERRY_BUSH,
+                        pos,
                         state,
                         level.getBlockEntity(pos),
                         null,

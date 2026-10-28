@@ -1,6 +1,5 @@
 package net.lawliet.testmod.block;
 
-import com.mojang.serialization.MapCodec;
 import net.lawliet.testmod.block.entity.PedestalBlockEntity;
 import net.lawliet.testmod.gui.inferface.ITabbedBlock;
 import net.lawliet.testmod.gui.menu.BaseContainerMenu;
@@ -9,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -29,15 +29,9 @@ import org.jspecify.annotations.Nullable;
 
 public class PedestalBlock extends BaseEntityBlock implements ITabbedBlock {
     public static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
-    public static final MapCodec<PedestalBlock> CODEC = simpleCodec(PedestalBlock::new);
 
     public PedestalBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override
@@ -77,7 +71,7 @@ public class PedestalBlock extends BaseEntityBlock implements ITabbedBlock {
                 ItemStack stack = pedestalBlockEntity.getItem();
                 pedestalBlockEntity.clearContents();
                 if(!player.getInventory().add(stack)) {
-                  player.drop(stack, false);
+                  player.drop(stack, false, Prediction.SERVER_ONLY);
                 }
                 level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 1.0F);
             }

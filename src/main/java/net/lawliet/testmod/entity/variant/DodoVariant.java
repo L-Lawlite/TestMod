@@ -4,10 +4,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.lawliet.testmod.registries.custom.CustomRegistry;
 import net.minecraft.core.ClientAsset;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.codec.RegistryCodecs;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.RegistryFixedCodec;
 import net.minecraft.world.entity.variant.PriorityProvider;
 import net.minecraft.world.entity.variant.SpawnCondition;
 import net.minecraft.world.entity.variant.SpawnContext;
@@ -23,7 +23,7 @@ public record DodoVariant(ClientAsset.ResourceTexture adultAssetInfo, SpawnPrior
             SpawnPrioritySelectors.CODEC.fieldOf("spawn_conditions").forGetter(DodoVariant::spawnConditions)
             ).apply(i, DodoVariant::new));
     public static final Codec<DodoVariant> NETWORK_CODEC = RecordCodecBuilder.create(i -> i.group(ClientAsset.ResourceTexture.DEFAULT_FIELD_CODEC.forGetter(DodoVariant::adultAssetInfo)).apply(i, DodoVariant::new));
-    public static final Codec<Holder<DodoVariant>> CODEC = RegistryFixedCodec.create(CustomRegistry.DODO_VARIANT_KEY);
+    public static final Codec<Holder<DodoVariant>> CODEC = RegistryCodecs.holder(CustomRegistry.DODO_VARIANT_KEY);
     public static final StreamCodec<RegistryFriendlyByteBuf, Holder<DodoVariant>> STREAM_CODEC = ByteBufCodecs.holderRegistry(CustomRegistry.DODO_VARIANT_KEY);
 
     private DodoVariant(ClientAsset.ResourceTexture adultAssetInfo) {

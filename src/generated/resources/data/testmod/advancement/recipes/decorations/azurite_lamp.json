@@ -23,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:azurite_lamp"
+        "recipes": "testmod:azurite_lamp"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -1,7 +1,6 @@
 package net.lawliet.testmod.worldgen.tree.trunk.placer;
 
 import net.lawliet.testmod.TestMod;
-import net.lawliet.testmod.registries.worldgen.tree.SpiralTrunkPlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.neoforged.bus.api.IEventBus;

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:metal_detector"
+        "recipes": "testmod:metal_detector"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

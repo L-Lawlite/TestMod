@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:driftwood_planks"
+        "recipes": "testmod:driftwood_planks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

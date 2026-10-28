@@ -19,80 +19,79 @@ public class TestBlockTagProvider extends BlockTagsProvider {
     }
 
     @Override
-    @SuppressWarnings("NullableProblems")
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-            .add(TestBlocks.AZURITE_BLOCK.getKey())
-            .add(TestBlocks.RAW_AZURITE_BLOCK.getKey())
+            .add(TestBlocks.AZURITE_BLOCK.key())
+            .add(TestBlocks.RAW_AZURITE_BLOCK.key())
             .addTag(TestTags.Blocks.AZURITE_ORES)
-            .add(TestBlocks.MAGIC_BLOCK.getKey())
-            .add(TestBlocks.AZURITE_STAIRS.getKey())
-            .add(TestBlocks.AZURITE_SLAB.getKey())
-            .add(TestBlocks.AZURITE_PRESSURE_PLATE.getKey())
-            .add(TestBlocks.AZURITE_DOOR.getKey())
-            .add(TestBlocks.AZURITE_TRAPDOOR.getKey())
-            .add(TestBlocks.PEDESTAL.getKey())
-            .add(TestBlocks.CRYSTALLIZER.getKey())
+            .add(TestBlocks.MAGIC_BLOCK.key())
+            .add(TestBlocks.AZURITE_STAIRS.key())
+            .add(TestBlocks.AZURITE_SLAB.key())
+            .add(TestBlocks.AZURITE_PRESSURE_PLATE.key())
+            .add(TestBlocks.AZURITE_DOOR.key())
+            .add(TestBlocks.AZURITE_TRAPDOOR.key())
+            .add(TestBlocks.PEDESTAL.key())
+            .add(TestBlocks.CRYSTALLIZER.key())
         ;
 
         tag(BlockTags.NEEDS_IRON_TOOL)
             .addTag(TestTags.Blocks.AZURITE_ORES);
 
         tag(BlockTags.MINEABLE_WITH_AXE)
-            .add(TestBlocks.TEST_SHELF.getKey());
+            .add(TestBlocks.TEST_SHELF.key());
 
         tag(TestTags.Blocks.AZURITE_ORES)
-            .add(TestBlocks.AZURITE_ORE.getKey())
-            .add(TestBlocks.AZURITE_DEEPSLATE_ORE.getKey())
-            .add(TestBlocks.AZURITE_NETHER_ORE.getKey())
-            .add(TestBlocks.AZURITE_END_ORE.getKey())
+            .add(TestBlocks.AZURITE_ORE.key())
+            .add(TestBlocks.AZURITE_DEEPSLATE_ORE.key())
+            .add(TestBlocks.AZURITE_NETHER_ORE.key())
+            .add(TestBlocks.AZURITE_END_ORE.key())
         ;
 
         tag(TestTags.Blocks.METAL_DETECTABLE)
-            .addTag(Tags.Blocks.ORES_IRON)
-            .addTag(Tags.Blocks.BARS_IRON)
-            .addTag(Tags.Blocks.STORAGE_BLOCKS_IRON)
-            .addTag(Tags.Blocks.STORAGE_BLOCKS_RAW_IRON);
+            .addTag(Tags.BlockItems.ORES_IRON.block())
+            .addTag(Tags.BlockItems.BARS_IRON.block())
+            .addTag(Tags.BlockItems.STORAGE_BLOCKS_IRON.block())
+            .addTag(Tags.BlockItems.STORAGE_BLOCKS_RAW_IRON.block());
 
         tag(BlockTags.STAIRS)
-                .add(TestBlocks.AZURITE_STAIRS.getKey())
-                .add(TestBlocks.DRIFTWOOD_STAIRS.getKey())
+                .add(TestBlocks.AZURITE_STAIRS.key())
+                .add(TestBlocks.DRIFTWOOD_STAIRS.key())
         ;
         tag(BlockTags.SLABS)
-            .add(TestBlocks.AZURITE_SLAB.getKey())
-            .add(TestBlocks.DRIFTWOOD_SLAB.getKey())
+            .add(TestBlocks.AZURITE_SLAB.key())
+            .add(TestBlocks.DRIFTWOOD_SLAB.key())
         ;
-        tag(Tags.Blocks.ORES)
+        tag(Tags.BlockItems.ORES.block())
             .addTag(TestTags.Blocks.AZURITE_ORES);
-        tag(Tags.Blocks.STORAGE_BLOCKS)
-            .add(TestBlocks.AZURITE_BLOCK.getKey())
-            .add(TestBlocks.RAW_AZURITE_BLOCK.getKey());
+        tag(Tags.BlockItems.STORAGE_BLOCKS.block())
+            .add(TestBlocks.AZURITE_BLOCK.key())
+            .add(TestBlocks.RAW_AZURITE_BLOCK.key());
         tag(BlockTags.PRESSURE_PLATES)
-            .add(TestBlocks.AZURITE_PRESSURE_PLATE.getKey())
-            .add(TestBlocks.AZURITE_PRESSURE_PLATE.getKey())
+            .add(TestBlocks.AZURITE_PRESSURE_PLATE.key())
+            .add(TestBlocks.AZURITE_PRESSURE_PLATE.key())
         ;
         tag(BlockTags.BUTTONS)
-            .add(TestBlocks.AZURITE_BUTTON.getKey())
-            .add(TestBlocks.DRIFTWOOD_BUTTON.getKey());
+            .add(TestBlocks.AZURITE_BUTTON.key())
+            .add(TestBlocks.DRIFTWOOD_BUTTON.key());
         tag(BlockTags.FENCES)
-            .add(TestBlocks.AZURITE_FENCE.getKey())
-            .add(TestBlocks.DRIFTWOOD_FENCE.getKey())
+            .add(TestBlocks.AZURITE_FENCE.key())
+            .add(TestBlocks.DRIFTWOOD_FENCE.key())
         ;
         tag(BlockTags.FENCE_GATES)
-            .add(TestBlocks.AZURITE_FENCE_GATE.getKey())
-            .add(TestBlocks.DRIFTWOOD_FENCE_GATE.getKey())
+            .add(TestBlocks.AZURITE_FENCE_GATE.key())
+            .add(TestBlocks.DRIFTWOOD_FENCE_GATE.key())
         ;
         tag(BlockTags.WALLS)
-            .add(TestBlocks.AZURITE_WALLS.getKey());
+            .add(TestBlocks.AZURITE_WALLS.key());
 
         tag(BlockTags.DOORS)
-            .add(TestBlocks.AZURITE_DOOR.getKey());
+            .add(TestBlocks.AZURITE_DOOR.key());
 
         tag(BlockTags.TRAPDOORS)
-            .add(TestBlocks.AZURITE_TRAPDOOR.getKey());
+            .add(TestBlocks.AZURITE_TRAPDOOR.key());
 
         tag(TestTags.Blocks.NEED_AZURITE_TOOLS)
-            .add(TestBlocks.MAGIC_BLOCK.getKey())
+            .add(TestBlocks.MAGIC_BLOCK.key())
             .addTag(BlockTags.NEEDS_IRON_TOOL);
 
         tag(TestTags.Blocks.INCORRECT_FOR_AZURITE_TOOL)
@@ -116,18 +115,18 @@ public class TestBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.INCORRECT_FOR_STONE_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL).addTag(TestTags.Blocks.NEED_AZURITE_TOOLS);
 
-        tag(BlockTags.CROPS).add(TestBlocks.ONION.getKey());
+        tag(BlockTags.CROPS).add(TestBlocks.ONION.key());
 
-        tag(BlockTags.LEAVES).add(TestBlocks.DRIFTWOOD_LEAVES.getKey());
-        tag(BlockTags.PLANKS).add(TestBlocks.DRIFTWOOD_PLANKS.getKey());
+        tag(BlockTags.LEAVES).add(TestBlocks.DRIFTWOOD_LEAVES.key());
+        tag(BlockTags.PLANKS).add(TestBlocks.DRIFTWOOD_PLANKS.key());
         tag(TestTags.Blocks.DRIFTWOOD_LOGS)
-            .add(TestBlocks.DRIFTWOOD_LOG.getKey())
-            .add(TestBlocks.DRIFTWOOD_WOOD.getKey())
-            .add(TestBlocks.STRIPPED_DRIFTWOOD_LOG.getKey())
-            .add(TestBlocks.STRIPPED_DRIFTWOOD_WOOD.getKey())
+            .add(TestBlocks.DRIFTWOOD_LOG.key())
+            .add(TestBlocks.DRIFTWOOD_WOOD.key())
+            .add(TestBlocks.STRIPPED_DRIFTWOOD_LOG.key())
+            .add(TestBlocks.STRIPPED_DRIFTWOOD_WOOD.key())
         ;
         tag(BlockItemTags.LOGS_THAT_BURN.block()).addTag(TestTags.Blocks.DRIFTWOOD_LOGS);
-        tag(BlockTags.WOODEN_SHELVES).add(TestBlocks.DRIFTWOOD_SHELF.getKey());
-        tag(BlockTags.FLOWER_POTS).add(TestBlocks.DRIFTWOOD_SAPLING.getKey());
+        tag(BlockTags.WOODEN_SHELVES).add(TestBlocks.DRIFTWOOD_SHELF.key());
+        tag(BlockTags.FLOWER_POTS).add(TestBlocks.DRIFTWOOD_SAPLING.key());
     }
 }

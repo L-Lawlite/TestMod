@@ -2,30 +2,37 @@ package net.lawliet.testmod.datagen;
 
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.registries.TestBlocks;
-import net.lawliet.testmod.datagen.advanced_providers.ModdedRecipeProvider;
 import net.lawliet.testmod.registries.TestItems;
 import net.lawliet.testmod.tags.TestTags;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.MultiRegistryBootstrap;
+import net.minecraft.data.recipes.*;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.lawliet.testmod.recipe.datagen.CrystallizerRecipeBuilder;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.function.BiFunction;
 
-public class TestRecipeProvider extends ModdedRecipeProvider {
-    public TestRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-        super(registries, output, TestMod.MODID);
+public class TestRecipeProvider extends RecipeProvider {
+    private final BrewingProvider brewingProvider = new TestBrewingProvider(this.output);
+
+    protected TestRecipeProvider(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+        super(recipeOutput, advancementOutput, TestMod.MODID);
+    }
+
+    public static MultiRegistryBootstrap create() {
+        return RecipeProvider.asBootstrap(TestRecipeProvider::new);
     }
 
     @Override
@@ -35,7 +42,10 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
                 TestItems.AZURITE.get(),
                 RecipeCategory.BUILDING_BLOCKS,
                 TestBlocks.AZURITE_BLOCK.asItem(),
-                TestMod.MODID
+                getSimpleRecipeName(TestBlocks.AZURITE_BLOCK.get()),
+                null,
+                getSimpleRecipeName(TestItems.AZURITE.get()),
+                null
         );
 
         List<ItemLike> AZURITE_SMELTING = List.of(
@@ -45,8 +55,8 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
                 TestBlocks.AZURITE_NETHER_ORE,
                 TestBlocks.AZURITE_END_ORE
         );
-        oreSmelting(AZURITE_SMELTING, RecipeCategory.MISC, CookingBookCategory.MISC, TestItems.AZURITE, 0.25f, 200, "azurite", TestMod.MODID);
-        oreBlasting(AZURITE_SMELTING, RecipeCategory.MISC, CookingBookCategory.MISC, TestItems.AZURITE, 0.25f, 100, "azurite", TestMod.MODID);
+        oreSmelting(AZURITE_SMELTING, RecipeCategory.MISC, CookingBookCategory.MISC, TestItems.AZURITE, 0.25f, 200, "azurite");
+        oreBlasting(AZURITE_SMELTING, RecipeCategory.MISC, CookingBookCategory.MISC, TestItems.AZURITE, 0.25f, 100, "azurite");
 
         solidStair(RecipeCategory.BUILDING_BLOCKS, TestBlocks.AZURITE_STAIRS, TestBlocks.AZURITE_BLOCK);
         solidSlab(RecipeCategory.BUILDING_BLOCKS, TestBlocks.AZURITE_SLAB, TestBlocks.AZURITE_BLOCK);
@@ -80,14 +90,17 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
         woodFromLogs(TestBlocks.DRIFTWOOD_WOOD, TestBlocks.DRIFTWOOD_LOG);
         woodFromLogs(TestBlocks.STRIPPED_DRIFTWOOD_WOOD, TestBlocks.STRIPPED_DRIFTWOOD_LOG);
         planksFromLog(TestBlocks.DRIFTWOOD_PLANKS, TestTags.Items.DRIFTWOOD_LOGS, 4);
-        solidStair(RecipeCategory.BUILDING_BLOCKS, TestBlocks.DRIFTWOOD_STAIRS, TestBlocks.DRIFTWOOD_PLANKS);
-        solidSlab(RecipeCategory.BUILDING_BLOCKS, TestBlocks.DRIFTWOOD_SLAB, TestBlocks.DRIFTWOOD_PLANKS);
+        createBlockRecipeUsingBuilder(TestBlocks.DRIFTWOOD_STAIRS, TestBlocks.DRIFTWOOD_PLANKS, this::stairBuilder);
+        slab(RecipeCategory.BUILDING_BLOCKS, TestBlocks.DRIFTWOOD_SLAB, TestBlocks.DRIFTWOOD_PLANKS);
         pressurePlate(TestBlocks.DRIFTWOOD_PRESSURE_PLATE, TestBlocks.DRIFTWOOD_PLANKS);
         createBlockRecipeUsingBuilder(TestBlocks.DRIFTWOOD_BUTTON, TestBlocks.DRIFTWOOD_PLANKS, this::buttonBuilder);
         createBlockRecipeUsingBuilder(TestBlocks.DRIFTWOOD_FENCE, TestBlocks.DRIFTWOOD_PLANKS, this::fenceBuilder);
         createBlockRecipeUsingBuilder(TestBlocks.DRIFTWOOD_FENCE_GATE, TestBlocks.DRIFTWOOD_PLANKS, this::fenceGateBuilder);
         shelf(TestBlocks.DRIFTWOOD_SHELF, TestBlocks.STRIPPED_DRIFTWOOD_LOG);
 
+
+
+        brewingProvider.buildRecipes();
     }
 
     private void makeCrystallizerRecipe(RecipeCategory category, ItemLike ingredient, ItemLike result, int count) {
@@ -128,7 +141,7 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
                 .pattern("B  ")
                 .define('S', Items.STICK)
                 .define('I', Tags.Items.INGOTS_IRON)
-                .define('B', Tags.Items.STORAGE_BLOCKS_IRON)
+                .define('B', Tags.BlockItems.STORAGE_BLOCKS_IRON.item())
                 .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
                 .save(output);
     }
@@ -149,7 +162,7 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
 
     private void makeDataTablet() {
         ItemLike item = TestItems.AZURITE;
-        TagKey<Item> glass_pane = Tags.Items.GLASS_PANES;
+        TagKey<Item> glass_pane = Tags.BlockItems.GLASS_PANES.item();
         shaped(RecipeCategory.MISC, TestItems.DATA_TABLET)
                 .pattern(" A ")
                 .pattern("AGA")
@@ -161,22 +174,214 @@ public class TestRecipeProvider extends ModdedRecipeProvider {
                 .save(output);
     }
 
-    public static class Runner extends RecipeProvider.Runner {
+    protected void solidStair(RecipeCategory category, ItemLike stairBlock, ItemLike baseBlock) {
+        solidStair(category, stairBlock, baseBlock, null);
+    }
 
-        public Runner(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
-            super(packOutput, registries);
-        }
+    protected void solidStair(RecipeCategory category, ItemLike stair, ItemLike base, @Nullable String group) {
+        stairBuilder(stair, Ingredient.of(base))
+                .unlockedBy(getHasName(base), has(base))
+                .group(group)
+                .save(output);
+        stonecutterResultFromBase(category, stair, base, 1);
+    }
 
-        @Override
-        @SuppressWarnings("NullableProblems")
-        protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-            return new TestRecipeProvider(registries, output);
-        }
+    protected void solidSlab(RecipeCategory category, ItemLike slab, ItemLike base) {
+        slab(category, slab, base);
+        stonecutterResultFromBase(category, slab, base, 2);
+    }
 
-        @Override
-        @SuppressWarnings("NullableProblems")
-        public String getName() {
-            return "Test Mod Recipes";
-        }
+    protected void fence(ItemLike result, ItemLike base, ItemLike base2, int count) {
+        fenceBuilder(result, base, base2, count).unlockedBy(getHasName(base), has(base)).save(output);
+    }
+
+    protected RecipeBuilder fenceBuilder(ItemLike result, ItemLike base, ItemLike base2, int count) {
+        return this.shaped(RecipeCategory.DECORATIONS, result, count).define('W', base).define('#', base2).pattern("W#W").pattern("W#W");
+    }
+
+    protected void fenceGate(ItemLike result, ItemLike base, ItemLike base2, int count) {
+        fenceGateBuilder(result, base, base2, count).unlockedBy(getHasName(base), has(base)).save(output);
+    }
+
+    protected RecipeBuilder fenceGateBuilder(ItemLike result, ItemLike base, ItemLike base2, int count) {
+        return this.shaped(RecipeCategory.DECORATIONS, result, count).define('W', base).define('#', base2).pattern("#W#").pattern("#W#");
+    }
+
+    protected void createBlockRecipeUsingBuilder(ItemLike result, ItemLike base, BiFunction<ItemLike, Ingredient, ? extends RecipeBuilder> recipeBuilder) {
+        recipeBuilder.apply(result,Ingredient.of(base)).unlockedBy(getHasName(base), has(base)).save(output);
+    }
+
+    protected ShapedRecipeBuilder swordBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("#")
+                .pattern("#")
+                .pattern("S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(base), has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder swordBuilder(ItemLike result, TagKey<Item> base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("#")
+                .pattern("#")
+                .pattern("S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy("has_tool_material",this.has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder pickaxeBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("###")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(base), has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder pickaxeBuilder(ItemLike result, TagKey<Item> base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("###")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy("has_tool_material",this.has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder shovelBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("#")
+                .pattern("S")
+                .pattern("S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(base), has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder shovelBuilder(ItemLike result, TagKey<Item> base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("#")
+                .pattern("S")
+                .pattern("S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy("has_tool_material",this.has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder axeBuilder(ItemLike result, TagKey<Item> base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("##")
+                .pattern("#S")
+                .pattern(" S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy("has_tool_material",this.has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder axeBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("##")
+                .pattern("#S")
+                .pattern(" S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(base), has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder hoeBuilder(ItemLike result, TagKey<Item> base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("##")
+                .pattern(" S")
+                .pattern(" S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy("has_tool_material",this.has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder hoeBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.TOOLS, result)
+                .pattern("##")
+                .pattern(" S")
+                .pattern(" S")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(base), has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder spearBuilder(ItemLike result, TagKey<Item> base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("  #")
+                .pattern(" S ")
+                .pattern("S  ")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy("has_tool_material",this.has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder spearBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("  #")
+                .pattern(" S ")
+                .pattern("S  ")
+                .define('#', base)
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(base), has(base))
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK));
+    }
+
+    protected ShapedRecipeBuilder helmetBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("###")
+                .pattern("# #")
+                .define('#', base)
+                .unlockedBy(getHasName(base),this.has(base));
+    }
+
+    protected ShapedRecipeBuilder chestplateBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .define('#', base)
+                .unlockedBy(getHasName(base),this.has(base));
+    }
+    protected ShapedRecipeBuilder leggingsBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', base)
+                .unlockedBy(getHasName(base),this.has(base));
+    }
+    protected ShapedRecipeBuilder bootsBuilder(ItemLike result, ItemLike base) {
+        return shaped(RecipeCategory.COMBAT, result)
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', base)
+                .unlockedBy(getHasName(base),this.has(base));
+    }
+
+    @Override
+    protected void wall(RecipeCategory category, ItemLike result, ItemLike base) {
+        super.wall(category, result, base);
+        stonecutterResultFromBase(category, result, base, 1);
+    }
+
+    protected static String getSimpleRecipeName(ItemLike itemLike) {
+        return BuiltInRegistries.ITEM.getKey(itemLike.asItem()).toString();
     }
 }

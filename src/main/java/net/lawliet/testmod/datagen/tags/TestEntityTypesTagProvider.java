@@ -15,8 +15,7 @@ public class TestEntityTypesTagProvider extends EntityTypeTagsProvider {
     }
 
     @Override
-    @SuppressWarnings("NullableProblems")
     protected void addTags(HolderLookup.Provider provider) {
-        tag(EntityTypeTags.BOAT).add(TestEntityTypes.DRIFTWOOD_BOAT.getKey());
+        tag(EntityTypeTags.BOAT).add(TestEntityTypes.DRIFTWOOD_BOAT.key());
     }
 }

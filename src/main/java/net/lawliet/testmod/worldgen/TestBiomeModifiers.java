@@ -12,6 +12,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.util.random.Weighted;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -71,8 +72,8 @@ public class TestBiomeModifiers {
         ));
 
         context.register(SPAWN_DODO, BiomeModifiers.AddSpawnsBiomeModifier.singleSpawn(
-                HolderSet.direct(biomes.getOrThrow(Biomes.MEADOW), biomes.getOrThrow(Biomes.FOREST)),
-                new Weighted<>(new MobSpawnSettings.SpawnerData(TestEntityTypes.DODO.get(), 2, 4), 15)
+                HolderSet.direct(biomes.getOrThrow(Biomes.MEADOW), biomes.getOrThrow(Biomes.PLAINS)),
+                new Weighted<>(new MobSpawnSettings.SpawnerData(TestEntityTypes.DODO.get(), UniformInt.of(2, 4)), 15)
         ));
     }
 

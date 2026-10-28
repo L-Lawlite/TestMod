@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "testmod:crystallizer/data_tablet"
+        "recipes": "testmod:crystallizer/data_tablet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
