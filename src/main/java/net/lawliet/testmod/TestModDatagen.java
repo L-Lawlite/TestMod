@@ -68,6 +68,7 @@ public class TestModDatagen {
                         new LootTableProvider.SubProviderEntry(TestEntityLootProvider::new, LootContextParamSets.ENTITY)
                 )))
                 .add(Registries.ADVANCEMENT, TestAdvancementProvider::new)
+                .add(Registries.CONTEXT_INT_PROVIDER, TestContextIntProviders::bootstrap)
                 .add(TestRecipeProvider.create());
     }
 }

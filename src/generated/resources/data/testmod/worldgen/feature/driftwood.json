@@ -38,9 +38,6 @@
     "place_branch_per_log_probability": 0.4
   },
   "trunk_provider": {
-    "id": "testmod:driftwood_log",
-    "properties": {
-      "axis": "y"
-    }
+    "id": "testmod:driftwood_log"
   }
 }

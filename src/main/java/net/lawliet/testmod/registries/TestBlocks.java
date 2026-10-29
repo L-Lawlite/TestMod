@@ -3,7 +3,6 @@ package net.lawliet.testmod.registries;
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.block.*;
 import net.lawliet.testmod.block.crop.RiceCropBlock;
-import net.lawliet.testmod.block.flammable.*;
 import net.lawliet.testmod.block.state.TestBlockStateProperties;
 import net.lawliet.testmod.block.crop.OnionBlock;
 import net.lawliet.testmod.block.type.TestBlockSetType;
@@ -73,7 +72,7 @@ public class TestBlocks {
                     .sound(SoundType.AMETHYST)
             );
 
-    public static final DeferredBlock<Block> TEST_SHELF = registerBlock("test_shelf", ShelfBlock::new, properties -> properties.strength(2f,3f).ignitedByLava().sound(SoundType.SHELF));
+    public static final DeferredBlock<Block> TEST_SHELF = BLOCKS.registerBlock("test_shelf", ShelfBlock::new, properties -> properties.strength(2f,3f).ignitedByLava().sound(SoundType.SHELF));
     public static final DeferredBlock<Block> AZURITE_STAIRS = registerBlock("azurite_stairs", properties -> new StairBlock(
             AZURITE_BLOCK.get().defaultBlockState(),
             properties.strength(4f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)
@@ -118,44 +117,33 @@ public class TestBlocks {
 
     public static final DeferredBlock<Block> CRYSTALLIZER = registerBlock("crystallizer", CrystallizerBlock::new, properties -> properties.strength(2f).requiresCorrectToolForDrops().lightLevel(state -> state.getValue(CrystallizerBlock.LIT) ? 7 : 0));
 
-    public static final DeferredBlock<Block> DRIFTWOOD_LOG = registerBlock("driftwood_log", properties ->
-            new FlammableRotatedPillarBlock(properties
-                    .instrument(NoteBlockInstrument.BASS)
+    public static final DeferredBlock<Block> DRIFTWOOD_LOG = BLOCKS.registerBlock("driftwood_log", RotatedPillarBlock::new, properties ->
+            properties.instrument(NoteBlockInstrument.BASS)
                     .strength(2)
                     .sound(SoundType.CHERRY_WOOD)
                     .ignitedByLava()
-                    , 5, 5));
-    public static final DeferredBlock<Block> DRIFTWOOD_WOOD = registerBlock("driftwood_wood", properties ->
-            new FlammableRotatedPillarBlock(properties
-                    .instrument(NoteBlockInstrument.BASS)
+           );
+    public static final DeferredBlock<Block> DRIFTWOOD_WOOD = BLOCKS.registerBlock("driftwood_wood", RotatedPillarBlock::new, properties ->
+            properties.instrument(NoteBlockInstrument.BASS)
                     .strength(2)
                     .sound(SoundType.CHERRY_WOOD)
-                    .ignitedByLava()
-                    , 5, 5));
-    public static final DeferredBlock<Block> STRIPPED_DRIFTWOOD_LOG = registerBlock("stripped_driftwood_log", properties ->
-            new FlammableRotatedPillarBlock(properties
-                    .instrument(NoteBlockInstrument.BASS)
+                    .ignitedByLava());
+    public static final DeferredBlock<Block> STRIPPED_DRIFTWOOD_LOG = BLOCKS.registerBlock("stripped_driftwood_log", RotatedPillarBlock::new, properties -> properties.instrument(NoteBlockInstrument.BASS)
                     .strength(2)
                     .sound(SoundType.CHERRY_WOOD)
-                    .ignitedByLava()
-                    , 5, 5));
-    public static final DeferredBlock<Block> STRIPPED_DRIFTWOOD_WOOD = registerBlock("stripped_driftwood_wood", properties ->
-            new FlammableRotatedPillarBlock(properties
-                    .instrument(NoteBlockInstrument.BASS)
+                    .ignitedByLava());
+    public static final DeferredBlock<Block> STRIPPED_DRIFTWOOD_WOOD = BLOCKS.registerBlock("stripped_driftwood_wood", RotatedPillarBlock::new, properties -> properties.instrument(NoteBlockInstrument.BASS)
                     .strength(2)
                     .sound(SoundType.CHERRY_WOOD)
-                    .ignitedByLava()
-                    , 5, 5));
+                    .ignitedByLava());
 
-    public static final DeferredBlock<Block> DRIFTWOOD_PLANKS = registerBlock("driftwood_planks", properties ->
-            new FlammableBlock(properties
-                    .mapColor(MapColor.WOOD)
+    public static final DeferredBlock<Block> DRIFTWOOD_PLANKS = BLOCKS.registerSimpleBlock("driftwood_planks", properties -> properties.mapColor(MapColor.WOOD)
                     .instrument(NoteBlockInstrument.BASS)
                     .strength(2, 3)
                     .sound(SoundType.CHERRY_WOOD)
                     .ignitedByLava()
-                    , 20, 5));
-    public static final DeferredBlock<Block> DRIFTWOOD_LEAVES = registerBlock("driftwood_leaves", properties ->
+    );
+    public static final DeferredBlock<Block> DRIFTWOOD_LEAVES = BLOCKS.registerBlock("driftwood_leaves", properties ->
             new UntintedParticleLeavesBlock(0.01f, ParticleTypes.CHERRY_LEAVES, AmbientLeavesBlockSoundPlayer.noAmbientSound(), properties
                     .mapColor(MapColor.COLOR_GREEN)
                     .strength(0.2f)
@@ -169,24 +157,20 @@ public class TestBlocks {
                     .randomTicks()
             ));
 
-    public static final DeferredBlock<Block> DRIFTWOOD_STAIRS = registerBlock("driftwood_stairs", properties -> new FlammableStairBlock(
+    public static final DeferredBlock<Block> DRIFTWOOD_STAIRS = BLOCKS.registerBlock("driftwood_stairs", properties -> new StairBlock(
             DRIFTWOOD_PLANKS.get().defaultBlockState(),
             properties.mapColor(MapColor.WOOD)
                     .instrument(NoteBlockInstrument.BASS)
                     .strength(2, 3)
                     .sound(SoundType.CHERRY_WOOD)
-                    .ignitedByLava()
-            , 20, 5
-    ));
-    public static final DeferredBlock<Block> DRIFTWOOD_SLAB = registerBlock("driftwood_slab", properties -> new FlammableSlabBlock(properties
+                    .ignitedByLava()));
+    public static final DeferredBlock<Block> DRIFTWOOD_SLAB = BLOCKS.registerBlock("driftwood_slab", properties -> new SlabBlock(properties
             .mapColor(MapColor.WOOD)
             .instrument(NoteBlockInstrument.BASS)
             .strength(2, 3)
             .sound(SoundType.CHERRY_WOOD)
-            .ignitedByLava()
-            , 20, 5
-    ));
-    public static final DeferredBlock<Block> DRIFTWOOD_PRESSURE_PLATE = registerBlock("driftwood_pressure_plate", properties -> new PressurePlateBlock(
+            .ignitedByLava()));
+    public static final DeferredBlock<Block> DRIFTWOOD_PRESSURE_PLATE = BLOCKS.registerBlock("driftwood_pressure_plate", properties -> new PressurePlateBlock(
             TestBlockSetType.DRIFTWOOD,
             properties.mapColor(MapColor.WOOD)
                     .instrument(NoteBlockInstrument.BASS)
@@ -194,38 +178,35 @@ public class TestBlocks {
                     .sound(SoundType.CHERRY_WOOD)
                     .ignitedByLava()
     ));
-    public static final DeferredBlock<Block> DRIFTWOOD_BUTTON = registerBlock("driftwood_button", properties -> new ButtonBlock(
+    public static final DeferredBlock<Block> DRIFTWOOD_BUTTON = BLOCKS.registerBlock("driftwood_button", properties -> new ButtonBlock(
             TestBlockSetType.DRIFTWOOD,
             2,
             properties.noCollision().pushReaction(PushReaction.POPPED).strength(0.5f)
     ));
-    public static final DeferredBlock<Block> DRIFTWOOD_FENCE = registerBlock("driftwood_fence", properties -> new FlammableFenceBlock(
+    public static final DeferredBlock<Block> DRIFTWOOD_FENCE = BLOCKS.registerBlock("driftwood_fence", properties -> new FenceBlock(
             properties.mapColor(MapColor.WOOD)
                     .instrument(NoteBlockInstrument.BASS)
                     .strength(2, 3)
                     .sound(SoundType.CHERRY_WOOD)
                     .ignitedByLava()
-            , 20, 5
     ));
-    public static final DeferredBlock<Block> DRIFTWOOD_FENCE_GATE = registerBlock("driftwood_fence_gate", properties -> new FlammableFenceGateBlock(
+    public static final DeferredBlock<Block> DRIFTWOOD_FENCE_GATE = BLOCKS.registerBlock("driftwood_fence_gate", properties -> new FenceGateBlock(
             new WoodType("driftwood", TestBlockSetType.DRIFTWOOD),
             properties.mapColor(MapColor.WOOD)
                 .instrument(NoteBlockInstrument.BASS)
                 .strength(2, 3)
                 .sound(SoundType.CHERRY_WOOD)
-                .ignitedByLava(),
-            20, 5
+                .ignitedByLava()
     ));
-    public static final DeferredBlock<Block> DRIFTWOOD_SHELF = registerBlock("driftwood_shelf", properties -> new FlammableShelfBlock(
+    public static final DeferredBlock<Block> DRIFTWOOD_SHELF = BLOCKS.registerBlock("driftwood_shelf", properties -> new ShelfBlock(
             properties.mapColor(MapColor.WOOD)
                     .instrument(NoteBlockInstrument.BASS)
                     .sound(SoundType.SHELF)
                     .ignitedByLava()
                     .strength(2.0F, 3.0F)
-                    , 30, 20
     ));
 
-    public static final DeferredBlock<Block> DRIFTWOOD_SAPLING =  registerBlock("driftwood_sapling",
+    public static final DeferredBlock<Block> DRIFTWOOD_SAPLING =  BLOCKS.registerBlock("driftwood_sapling",
             properties -> new SaplingBlock(TestTreeGrower.DRIFTWOOD,
                     properties.mapColor(MapColor.PLANT)
                             .noCollision().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.POPPED)
@@ -245,7 +226,7 @@ public class TestBlocks {
 
 
     public static void addToTestBlockTab(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
-        output.accept(AZURITE_BLOCK.get());
+        output.accept(AZURITE_BLOCK);
         output.accept(RAW_AZURITE_BLOCK);
         output.accept(AZURITE_ORE);
         output.accept(AZURITE_DEEPSLATE_ORE);
@@ -278,6 +259,7 @@ public class TestBlocks {
         output.accept(DRIFTWOOD_FENCE_GATE);
         output.accept(DRIFTWOOD_LEAVES);
         output.accept(DRIFTWOOD_SAPLING);
+        output.accept(DRIFTWOOD_SHELF);
     }
 
     // Registry Helpers

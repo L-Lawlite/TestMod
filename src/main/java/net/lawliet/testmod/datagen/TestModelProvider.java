@@ -50,12 +50,11 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateFlatItem(TestItems.AZURITE_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(TestItems.AZURITE_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateSpear(TestItems.AZURITE_SPEAR.get());
-        itemModels.generateDynamicTrimmableArmorSet(
+        generateArmorSet(
                 TestItems.AZURITE_HELMET.get(),
                 TestItems.AZURITE_CHESTPLATE.get(),
                 TestItems.AZURITE_LEGGINGS.get(),
-                TestItems.AZURITE_BOOTS.get(),
-                null
+                TestItems.AZURITE_BOOTS.get()
         );
 //        itemModels.generateTrimmableItem(TestItems.AZURITE_HELMET.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
 //        itemModels.generateTrimmableItem(TestItems.AZURITE_CHESTPLATE.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
@@ -146,5 +145,25 @@ public class TestModelProvider extends ModelProvider {
     @SuppressWarnings("unused")
     public void createLamp(Block block) {
         createLamp(block, BlockStateProperties.LIT);
+    }
+
+    private void generateArmorSet(
+            Item helmet,
+            Item chestplate,
+            Item leggings,
+            Item boots
+    ) {
+        itemModels.createFlatItemModel(helmet, ModelTemplates.FLAT_ITEM);
+        itemModels.createFlatItemModel(chestplate, ModelTemplates.FLAT_ITEM);
+        itemModels.createFlatItemModel(leggings, ModelTemplates.FLAT_ITEM);
+        itemModels.createFlatItemModel(boots, ModelTemplates.FLAT_ITEM);
+
+        itemModels.generateDynamicTrimmableArmorSet(
+                helmet,
+                chestplate,
+                leggings,
+                boots,
+                null
+        );
     }
 }
