@@ -56,10 +56,6 @@ public class TestModelProvider extends ModelProvider {
                 TestItems.AZURITE_LEGGINGS.get(),
                 TestItems.AZURITE_BOOTS.get()
         );
-//        itemModels.generateTrimmableItem(TestItems.AZURITE_HELMET.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
-//        itemModels.generateTrimmableItem(TestItems.AZURITE_CHESTPLATE.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
-//        itemModels.generateTrimmableItem(TestItems.AZURITE_LEGGINGS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
-//        itemModels.generateTrimmableItem(TestItems.AZURITE_BOOTS.get(), TestEquipmentAssets.AZURITE, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
         itemModels.generateFlatItem(TestItems.AZURITE_HORSE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
         this.createDataTablet(TestItems.DATA_TABLET.get());
         this.createBow(TestItems.TEST_BOW.get());
@@ -103,7 +99,6 @@ public class TestModelProvider extends ModelProvider {
                 .logWithHorizontal(TestBlocks.STRIPPED_DRIFTWOOD_LOG.get())
                 .wood(TestBlocks.STRIPPED_DRIFTWOOD_WOOD.get())
         ;
-//        blockModels.createTrivialCube(TestBlocks.DRIFTWOOD_PLANKS.get());
         blockModels.createTintedLeaves(TestBlocks.DRIFTWOOD_LEAVES.get(), TexturedModel.LEAVES, 14994345);
         blockModels.family(TestBlocks.DRIFTWOOD_PLANKS.get())
                 .stairs(TestBlocks.DRIFTWOOD_STAIRS.get())
