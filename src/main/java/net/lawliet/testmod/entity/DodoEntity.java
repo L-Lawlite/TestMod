@@ -27,6 +27,7 @@ import net.minecraft.world.entity.variant.VariantUtils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import org.jspecify.annotations.NonNull;
@@ -40,6 +41,9 @@ public class DodoEntity extends Animal {
 
     public DodoEntity(EntityType<? extends Animal> type, Level level) {
         super(type, level);
+        this.setPathfindingMalus(PathType.LAVA, -1f);
+        this.setPathfindingMalus(PathType.DAMAGING, -1f);
+        this.setPathfindingMalus(PathType.DAMAGING_IN_NEIGHBOR, 16f);
     }
 
 

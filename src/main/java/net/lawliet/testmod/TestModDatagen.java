@@ -38,12 +38,13 @@ public class TestModDatagen {
     @SubscribeEvent
     public static void gatherClientData(GatherDataEvent.Client event) {
         event.createProvider(TestModelProvider::new);
+        event.createProvider(TestEquipmentAssetProvider::new);
+        event.createProvider(TestSoundsProvider::new);
+
         event.createBlockAndItemTags(TestBlockTagProvider::new, TestItemTagProvider::new);
         event.createProvider(TestEntityTypesTagProvider::new);
         event.createProvider(TestDataMapProvider::new);
-        event.createProvider(TestEquipmentAssetProvider::new);
         event.createProvider(TestPaintingTagsProvider::new);
-        event.createProvider(TestSoundsProvider::new);
         event.createProvider(TestVillagerTradeTags::new);
         event.createProvider(TestPoiTags::new);
         event.createProvider(TestGLMProvider::new);
