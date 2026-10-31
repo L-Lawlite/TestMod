@@ -63,6 +63,7 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateFlatItem(TestItems.RADIATION_STAFF.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(TestItems.DRIFTWOOD_BOAT.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.DODO_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(TestItems.WAR_TURTLE_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
 
         itemModels.declareCustomModelItem(TestItems.BLIZZARD_STAFF.get());
 

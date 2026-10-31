@@ -40,6 +40,12 @@ public class TestEntityLootProvider extends EntityLootSubProvider {
                         ).when(LootItemKilledByPlayerCondition.killedByPlayer())
                 )
         );
+
+        noLootTable(TestEntityTypes.WAR_TURTLE.get());
+    }
+
+    private void noLootTable(EntityType<?> entityType) {
+        add(entityType, LootTable.lootTable());
     }
 
     @Override

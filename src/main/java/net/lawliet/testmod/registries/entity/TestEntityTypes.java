@@ -2,6 +2,7 @@ package net.lawliet.testmod.registries.entity;
 
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.entity.DodoEntity;
+import net.lawliet.testmod.entity.WarTurtleEntity;
 import net.lawliet.testmod.registries.TestItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -28,6 +29,10 @@ public class TestEntityTypes {
             EntityType.Builder.of(DodoEntity::new, MobCategory.CREATURE)
                     .sized(1, 2.5f)
     );
+
+    public static final DeferredHolder<EntityType<?>, EntityType<WarTurtleEntity>> WAR_TURTLE =  registerEntityType("war_turtle",
+            EntityType.Builder.of(WarTurtleEntity::new, MobCategory.CREATURE).sized(2.5f, 1.5f)
+            );
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

@@ -67,6 +67,7 @@ public class TestItems {
 
 
     public static final DeferredItem<Item> DODO_SPAWN_EGG = ITEMS.registerItem("dodo_spawn_egg", SpawnEggItem::new, properties -> properties.spawnEgg(TestEntityTypes.DODO.get()));
+    public static final DeferredItem<Item> WAR_TURTLE_SPAWN_EGG = ITEMS.registerItem("war_turtle_spawn_egg", SpawnEggItem::new, properties -> properties.spawnEgg(TestEntityTypes.WAR_TURTLE.get()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -12,6 +12,7 @@ public class TestModelLayers {
 
     public static final ModelLayerLocation DRIFTWOOD_BOAT = register("boat/driftwood");
     public static final ModelLayerLocation DODO =  register("dodo");
+    public static final ModelLayerLocation WAR_TURTLE = register("war_turtle");
 
     private static ModelLayerLocation register(String name) {
         return register(name, "main");
