@@ -1,6 +1,9 @@
 package net.lawliet.testmod.entity;
 
+import com.mojang.datafixers.util.Pair;
+import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.entity.client.warturtle.WarTurtleRenderState;
+import net.lawliet.testmod.gui.menu.WarTurtleMenu;
 import net.lawliet.testmod.registries.TestItems;
 import net.lawliet.testmod.registries.entity.TestEntityTypes;
 import net.minecraft.core.particles.ParticleTypes;
@@ -8,16 +11,18 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerListener;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -29,16 +34,37 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 
-public class WarTurtleEntity extends TamableAnimal {
+import java.util.List;
+
+public class WarTurtleEntity extends TamableAnimal implements ContainerListener, HasCustomInventoryScreen {
     public final WarTurtleRenderState state = new WarTurtleRenderState();
     private int idleAnimationTimeout = 0;
 
 
     private static final String LAST_POSE_TICK_KEY = "LastPoseTick";
-    private static final EntityDataAccessor<Long> LAST_POSE_TICK = SynchedEntityData.defineId(WarTurtleEntity.class, EntityDataSerializers.LONG);
+    public static final EntityDataAccessor<Long> LAST_POSE_TICK = SynchedEntityData.defineId(WarTurtleEntity.class, EntityDataSerializers.LONG);
+
+    public static final EntityDataAccessor<Boolean> HAS_TIER_1_CHEST = SynchedEntityData.defineId(WarTurtleEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Boolean> HAS_TIER_2_CHEST = SynchedEntityData.defineId(WarTurtleEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Boolean> HAS_TIER_3_CHEST = SynchedEntityData.defineId(WarTurtleEntity.class, EntityDataSerializers.BOOLEAN);
+
+    protected SimpleContainer inventory;
+    private final int TIER_1_CHEST_SLOT = 2;
+    private final int TIER_2_CHEST_SLOT = 3;
+    private final int TIER_3_CHEST_SLOT = 4;
+    private final List<Integer> TIER_1_SLOT_RANGE = List.of(5,6,7,8);
+    private final List<Integer> TIER_2_SLOT_RANGE = List.of(9,10,11,12);
+    private final List<Integer> TIER_3_SLOT_RANGE = List.of(13,14,15,16);
+
+    private final List<Pair<Integer, EntityDataAccessor<Boolean>>> TIER_PAIR = List.of(
+            Pair.of(TIER_1_CHEST_SLOT, HAS_TIER_1_CHEST),
+            Pair.of(TIER_2_CHEST_SLOT, HAS_TIER_2_CHEST),
+            Pair.of(TIER_3_CHEST_SLOT, HAS_TIER_3_CHEST)
+    );
 
     public WarTurtleEntity(EntityType<? extends TamableAnimal> type, Level level) {
         super(type, level);
+        this.createInventory();
     }
 
     @Override
@@ -125,12 +151,24 @@ public class WarTurtleEntity extends TamableAnimal {
     protected void defineSynchedData(SynchedEntityData.Builder entityData) {
         super.defineSynchedData(entityData);
         entityData.define(LAST_POSE_TICK, 0L);
+
+        entityData.define(HAS_TIER_1_CHEST, false);
+        entityData.define(HAS_TIER_2_CHEST, false);
+        entityData.define(HAS_TIER_3_CHEST, false);
     }
 
     @Override
     protected void addAdditionalSaveData(ValueOutput output) {
         super.addAdditionalSaveData(output);
         output.putLong(LAST_POSE_TICK_KEY, this.entityData.get(LAST_POSE_TICK));
+
+        ValueOutput.TypedOutputList<ItemStackWithSlot> items = output.list("Items", ItemStackWithSlot.CODEC);
+        for (int i = 0; i < this.inventory.getContainerSize(); i++) {
+            ItemStack stack = this.inventory.getItem(i);
+            if (!stack.isEmpty()) {
+                items.add(new ItemStackWithSlot(i, stack));
+            }
+        }
     }
 
     @Override
@@ -141,6 +179,19 @@ public class WarTurtleEntity extends TamableAnimal {
             this.setPose(Pose.SITTING);
         }
         this.setLastPoseTick(poseTick);
+
+        this.createInventory();
+        for (ItemStackWithSlot item: input.listOrEmpty("Items", ItemStackWithSlot.CODEC)) {
+            if (item.isValidInContainer(this.inventory.getContainerSize())) {
+                this.inventory.setItem(item.slot(), item.stack());
+            }
+        }
+
+        TIER_PAIR.forEach(pair -> {
+            if (this.inventory.getItem(pair.getFirst()).is(Items.CHEST) && !hasTierChest(pair.getSecond())) {
+                setChest(pair.getFirst(), true);
+            }
+        });
     }
 
     ///Sitting
@@ -213,10 +264,15 @@ public class WarTurtleEntity extends TamableAnimal {
             return this.feedFood(player, itemStack);
         }
 
-        if (this.isTame() && hand == InteractionHand.MAIN_HAND && !isFood(itemStack))  {
-            toggleSitting();
+        if(this.isTame()) {
+            if (hand == InteractionHand.MAIN_HAND && !isFood(itemStack) && !player.isSecondaryUseActive())  {
+                toggleSitting();
+            } else {
+                this.openCustomInventoryScreen(player);
+            }
             return InteractionResult.SUCCESS;
         }
+
         return super.mobInteract(player, hand);
     }
 
@@ -286,4 +342,100 @@ public class WarTurtleEntity extends TamableAnimal {
         return null;
     }
 
+
+    /// Inventory
+    @Override
+    public void slotChanged(AbstractContainerMenu container, int slotIndex, ItemStack itemStack) {
+
+        for (var pair : TIER_PAIR) {
+            if (slotIndex != pair.getFirst()) {
+                continue;
+            }
+            if (container.getSlot(pair.getFirst()).getItem().is(Items.CHEST) && !hasTierChest(pair.getSecond())) {
+                setChest(pair.getFirst(), true);
+            } else if (!container.getSlot(pair.getFirst()).getItem().is(Items.CHEST) && hasTierChest(pair.getSecond())) {
+                setChest(pair.getFirst(), false);
+                dropChestInventory(pair.getFirst());
+            }
+        }
+    }
+
+    @Override
+    public void dataChanged(AbstractContainerMenu container, int id, int value) {
+
+    }
+
+    @Override
+    protected void dropEquipment(ServerLevel level) {
+        super.dropEquipment(level);
+        Containers.dropContents(level(), this.blockPosition().above(1), inventory);
+    }
+
+    private void dropChestInventory(int slot) {
+        switch (slot) {
+            case TIER_1_CHEST_SLOT -> TIER_1_SLOT_RANGE.forEach(this::dropChestSlotContent);
+            case TIER_2_CHEST_SLOT -> TIER_2_SLOT_RANGE.forEach(this::dropChestSlotContent);
+            case TIER_3_CHEST_SLOT -> TIER_3_SLOT_RANGE.forEach(this::dropChestSlotContent);
+        }
+    }
+
+    private void dropChestSlotContent(int slot) {
+        Containers.dropItemStack(this.level(), this.getX(), this.getY() + 1, this.getZ(), inventory.removeItem(slot, inventory.getItem(slot).getCount()));
+    }
+
+    public void setChest(int slot, boolean chested) {
+        switch (slot) {
+            case TIER_1_CHEST_SLOT -> this.entityData.set(HAS_TIER_1_CHEST, chested);
+            case TIER_2_CHEST_SLOT -> this.entityData.set(HAS_TIER_2_CHEST, chested);
+            case TIER_3_CHEST_SLOT -> this.entityData.set(HAS_TIER_3_CHEST, chested);
+            default -> TestMod.LOGGER.error("Can't give chest to a Slot that does not exist!");
+        }
+    }
+
+    public boolean hasTierChest(EntityDataAccessor<Boolean> tierAccessor) {
+        return this.entityData.get(tierAccessor);
+    }
+
+    public final int getInventorySize() {
+        return getInventorySize(4);
+    }
+
+    public static int getInventorySize(int columns) {
+        return columns * 3 + 5;
+    }
+
+    protected void createInventory() {
+        SimpleContainer simpleContainer = this.inventory;
+        this.inventory = new SimpleContainer(this.getInventorySize());
+        if (simpleContainer != null) {
+            int i = Math.min(simpleContainer.getContainerSize(), this.inventory.getContainerSize());
+
+            for (int j = 0; j < i; ++j) {
+                ItemStack itemStack = simpleContainer.getItem(j);
+                if (!itemStack.isEmpty()) {
+                    this.inventory.setItem(j, itemStack.copy());
+                }
+            }
+        }
+    }
+
+    public boolean hasInventoryChanged(Container inventory) {
+        return this.inventory != inventory;
+    }
+
+    @Override
+    public void openCustomInventoryScreen(Player player) {
+        if (!this.level().isClientSide() && isTame()) {
+            ServerPlayer serverPlayer = (ServerPlayer) player;
+            if (serverPlayer.containerMenu != serverPlayer.inventoryMenu) {
+                serverPlayer.closeContainer();
+            }
+
+            serverPlayer.openMenu(new SimpleMenuProvider( (index, playerInventory, _) -> {
+               AbstractContainerMenu menu = new WarTurtleMenu(index, playerInventory, this.inventory, this, 4);
+               menu.addSlotListener(WarTurtleEntity.this);
+               return menu;
+            }, this.getDisplayName()), buf -> buf.writeUUID(getUUID()));
+        }
+    }
 }
