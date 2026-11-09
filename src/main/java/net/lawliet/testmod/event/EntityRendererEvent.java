@@ -3,6 +3,7 @@ package net.lawliet.testmod.event;
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.entity.client.dodo.DodoModel;
 import net.lawliet.testmod.entity.client.dodo.DodoRenderer;
+import net.lawliet.testmod.entity.client.geckolib.babyman.BabyManRenderer;
 import net.lawliet.testmod.entity.client.warturtle.WarTurtleModel;
 import net.lawliet.testmod.entity.client.warturtle.WarTurtleRenderer;
 import net.lawliet.testmod.registries.entity.client.TestModelLayers;
@@ -22,6 +23,7 @@ public class EntityRendererEvent {
         event.registerEntityRenderer(TestEntityTypes.DRIFTWOOD_BOAT.get(), context -> new BoatRenderer(context, TestModelLayers.DRIFTWOOD_BOAT));
         event.registerEntityRenderer(TestEntityTypes.DODO.get(), DodoRenderer::new);
         event.registerEntityRenderer(TestEntityTypes.WAR_TURTLE.get(), WarTurtleRenderer::new);
+        event.registerEntityRenderer(TestEntityTypes.BABY_MAN.get(), BabyManRenderer::new);
     }
 
     @SubscribeEvent

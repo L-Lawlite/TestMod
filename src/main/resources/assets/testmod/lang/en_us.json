@@ -26,6 +26,7 @@
 
   "item.testmod.dodo_spawn_egg": "Dodo Spawn Egg",
   "item.testmod.war_turtle_spawn_egg": "War Turtle Spawn Egg",
+  "item.testmod.baby_man_spawn_egg": "Baby Man Spawn Egg",
 
   "item.minecraft.potion.effect.stinky_potion": "Stinky Potion",
   "item.minecraft.splash_potion.effect.stinky_potion": "Stinky Splash Potion",
@@ -124,5 +125,6 @@
 
   "entity.testmod.driftwood_boat": "Driftwood Boat",
   "entity.testmod.dodo": "Dodo",
-  "entity.testmod.war_turtle": "War Turtle"
+  "entity.testmod.war_turtle": "War Turtle",
+  "entity.testmod.baby_man": "Baby Man"
 }

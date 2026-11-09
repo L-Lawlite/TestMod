@@ -42,6 +42,7 @@ public class TestEntityLootProvider extends EntityLootSubProvider {
         );
 
         noLootTable(TestEntityTypes.WAR_TURTLE.get());
+        noLootTable(TestEntityTypes.BABY_MAN.get());
     }
 
     private void noLootTable(EntityType<?> entityType) {
