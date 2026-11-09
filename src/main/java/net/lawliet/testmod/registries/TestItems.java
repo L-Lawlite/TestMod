@@ -18,8 +18,11 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+@SuppressWarnings("unused")
 public class TestItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TestMod.MODID);
+    public static final DeferredRegister.Items NON_CREATIVE_ITEMS = DeferredRegister.createItems(TestMod.MODID);
+    public static final DeferredRegister.Items OPERATOR_ITEMS = DeferredRegister.createItems(TestMod.MODID);
 
     public static final DeferredItem<Item> AZURITE = ITEMS.registerSimpleItem("azurite");
     public static final DeferredItem<Item> RAW_AZURITE = ITEMS.registerSimpleItem("raw_azurite");
@@ -49,21 +52,21 @@ public class TestItems {
     public static final DeferredItem<BlockItem> GOJI_BERRIES = ITEMS.registerItem("goji_berries", properties -> new BlockItem(TestBlocks.GOJI_BERRY_BUSH.get(), properties.food(TestFoods.GOJI_BERRY).compostable(ContextIntProviders.COMPOSTABLE_LOW)));
     public static final DeferredItem<BlockItem> RICE = ITEMS.registerItem("rice", properties -> new PlaceOnShallowWaterBlockItem(TestBlocks.RICE.get(), properties.compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), TestTags.Blocks.RICE_FARMLAND));
     public static final DeferredItem<Item> DRIFTWOOD_BOAT = ITEMS.registerItem("driftwood_boat", properties -> new BoatItem(TestEntityTypes.DRIFTWOOD_BOAT.get(), properties.stacksTo(1).cookingFuel(ContextIntProviders.COOKING_TIME_BOATS)));
-    public static final DeferredItem<BlockItem> TEST_SHELF = ITEMS.registerSimpleBlockItem(TestBlocks.TEST_SHELF, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
-    public static final DeferredItem<BlockItem> DRIFTWOOD_LOG = ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_LOG, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
-    public static final DeferredItem<BlockItem> DRIFTWOOD_WOOD = ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_WOOD, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
-    public static final DeferredItem<BlockItem> STRIPPED_DRIFTWOOD_LOG = ITEMS.registerSimpleBlockItem(TestBlocks.STRIPPED_DRIFTWOOD_LOG, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
-    public static final DeferredItem<BlockItem> STRIPPED_DRIFTWOOD_WOOD = ITEMS.registerSimpleBlockItem(TestBlocks.STRIPPED_DRIFTWOOD_WOOD, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
-    public static final DeferredItem<BlockItem> DRIFTWOOD_PLANKS = ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_PLANKS, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
-    public static final DeferredItem<BlockItem> DRIFTWOOD_STAIRS = ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_STAIRS, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
-    public static final DeferredItem<BlockItem> DRIFTWOOD_SLAB = ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_SLAB, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_SLABS));
-    public static final DeferredItem<BlockItem> DRIFTWOOD_PRESSURE_PLATE = ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_PRESSURE_PLATE, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
-    public static final DeferredItem<BlockItem> DRIFTWOOD_BUTTON = ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_BUTTON, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_EXTRA_SMALL));
-    public static final DeferredItem<BlockItem> DRIFTWOOD_FENCE = ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_FENCE, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
-    public static final DeferredItem<BlockItem> DRIFTWOOD_FENCE_GATE = ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_FENCE_GATE, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
-    public static final DeferredItem<BlockItem> DRIFTWOOD_SHELF = ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_SHELF, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
-    public static final DeferredItem<BlockItem> DRIFTWOOD_SAPLING = ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_SAPLING, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_DRY_PLANTS).compostable(ContextIntProviders.COMPOSTABLE_LOW));
-    public static final DeferredItem<BlockItem> DRIFTWOOD_LEAVES = ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_LEAVES, properties -> properties.compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final DeferredItem<BlockItem> TEST_SHELF = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.TEST_SHELF, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
+    public static final DeferredItem<BlockItem> DRIFTWOOD_LOG = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_LOG, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final DeferredItem<BlockItem> DRIFTWOOD_WOOD = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_WOOD, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final DeferredItem<BlockItem> STRIPPED_DRIFTWOOD_LOG = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.STRIPPED_DRIFTWOOD_LOG, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final DeferredItem<BlockItem> STRIPPED_DRIFTWOOD_WOOD = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.STRIPPED_DRIFTWOOD_WOOD, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final DeferredItem<BlockItem> DRIFTWOOD_PLANKS = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_PLANKS, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final DeferredItem<BlockItem> DRIFTWOOD_STAIRS = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_STAIRS, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final DeferredItem<BlockItem> DRIFTWOOD_SLAB = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_SLAB, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_SLABS));
+    public static final DeferredItem<BlockItem> DRIFTWOOD_PRESSURE_PLATE = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_PRESSURE_PLATE, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final DeferredItem<BlockItem> DRIFTWOOD_BUTTON = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_BUTTON, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_EXTRA_SMALL));
+    public static final DeferredItem<BlockItem> DRIFTWOOD_FENCE = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_FENCE, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final DeferredItem<BlockItem> DRIFTWOOD_FENCE_GATE = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_FENCE_GATE, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final DeferredItem<BlockItem> DRIFTWOOD_SHELF = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_SHELF, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
+    public static final DeferredItem<BlockItem> DRIFTWOOD_SAPLING = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_SAPLING, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_DRY_PLANTS).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final DeferredItem<BlockItem> DRIFTWOOD_LEAVES = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_LEAVES, properties -> properties.compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
 
     public static final DeferredItem<Item> DODO_SPAWN_EGG = ITEMS.registerItem("dodo_spawn_egg", SpawnEggItem::new, properties -> properties.spawnEgg(TestEntityTypes.DODO.get()));
@@ -71,6 +74,8 @@ public class TestItems {
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
+        NON_CREATIVE_ITEMS.register(eventBus);
+        OPERATOR_ITEMS.register(eventBus);
         eventBus.addListener(TestItems::addCreative);
     }
 
@@ -79,30 +84,8 @@ public class TestItems {
     }
 
     public static void addToTestItemTab(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
-        output.accept(AZURITE);
-        output.accept(RAW_AZURITE);
-        output.accept(ONION);
-        output.accept(METAL_DETECTOR);
-        output.accept(END_FIRE_STARTER);
-        output.accept(AZURITE_SWORD);
-        output.accept(AZURITE_PICKAXE);
-        output.accept(AZURITE_SHOVEL);
-        output.accept(AZURITE_AXE);
-        output.accept(AZURITE_SPEAR);
-        output.accept(AZURITE_HOE);
-        output.accept(AZURITE_HELMET);
-        output.accept(AZURITE_CHESTPLATE);
-        output.accept(AZURITE_LEGGINGS);
-        output.accept(AZURITE_BOOTS);
-        output.accept(AZURITE_HORSE_ARMOR);
-        output.accept(DATA_TABLET);
-        output.accept(TEST_BOW);
-        output.accept(BLIZZARD_STAFF);
-        output.accept(GOJI_BERRIES);
-        output.accept(RICE);
-        output.accept(BAR_BRAWL_MUSIC_DISC);
-        output.accept(RADIATION_STAFF);
-        output.accept(DRIFTWOOD_BOAT);
-        output.accept(DODO_SPAWN_EGG);
+        for (var item: ITEMS.getEntries()) {
+            output.accept(item.get());
+        }
     }
 }

@@ -12,6 +12,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -27,6 +29,7 @@ import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntPr
 import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class TestBlockLootProvider extends BlockLootSubProvider {
     private final HolderGetter<Enchantment> enchantments;
@@ -91,6 +94,10 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
         makeOnionLootTable();
         makeGojiBushLootTable();
         makeRiceCropLootTable();
+//        add(
+//                TestBlocks.AZURITE_END_ORE.get(),
+//                test(TestBlocks.AZURITE_END_ORE.get(), TestItems.AZURITE.get(), Items.RAW_IRON, ContextIntProviders.between(2,3), ContextIntProviders.between(1,5))
+//        );
 
     }
 
@@ -124,6 +131,25 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
         this.add(rice, createCropDrops(rice, rice.asItem(), rice.asItem(), isCropMaxAge));
     }
 
+    protected LootTable.Builder test(Block original, Item drop1, Item drop2, Holder<ContextIntProvider> count1, Holder<ContextIntProvider> count2) {
+        LootTable nonFortuneLootTable = LootTable.lootTable().withPool(
+                        LootPool.lootPool().setRolls(ContextIntProviders.exactly(1))
+                                .add(LootItem.lootTableItem(drop1))
+                                .apply(SetItemCountFunction.setCount(count1))
+                ).withPool(
+                        LootPool.lootPool().setRolls(ContextIntProviders.exactly(1))
+                                .add(LootItem.lootTableItem(drop2))
+                                .apply(SetItemCountFunction.setCount(count2))
+                )
+                .build();
+        return this.createSilkTouchDispatchTable(
+                original,
+                this.applyExplosionDecay(
+                        original,
+                        NestedLootTable.inlineLootTable(nonFortuneLootTable)
+                ).apply(ApplyBonusCount.addOreBonusCount(this.enchantments.getOrThrow(Enchantments.FORTUNE))));
+    }
+
     private void makeOnionLootTable() {
         Block onion = TestBlocks.ONION.get();
         LootItemCondition.Builder isCropMaxAge = MatchBlock.blockMatches(this.blocks, onion,
@@ -155,6 +181,8 @@ public class TestBlockLootProvider extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return TestBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
+            return Stream.concat(
+                    TestBlocks.BLOCKS.getEntries().stream(),
+                    TestBlocks.NON_CREATIVE_BLOCKS.getEntries().stream()).map(Holder::value)::iterator;
     }
 }

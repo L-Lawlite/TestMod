@@ -30,10 +30,11 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
-import static net.lawliet.testmod.registries.TestItems.ITEMS;
+import static net.lawliet.testmod.registries.TestItems.NON_CREATIVE_ITEMS;
 
 public class TestBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TestMod.MODID);
+    public static final DeferredRegister.Blocks NON_CREATIVE_BLOCKS = DeferredRegister.createBlocks(TestMod.MODID);
 
     public static final DeferredBlock<Block> AZURITE_BLOCK = registerSimpleBlock("azurite_block", properties -> properties
             .strength(4f)
@@ -109,11 +110,11 @@ public class TestBlocks {
     public static final DeferredBlock<Block> PEDESTAL = registerBlock("pedestal", PedestalBlock::new,
             properties -> properties.strength(2).requiresCorrectToolForDrops().sound(SoundType.STONE));
 
-    public static final DeferredBlock<Block> ONION = BLOCKS.registerBlock("onion_crop", OnionBlock::new,
+    public static final DeferredBlock<Block> ONION = NON_CREATIVE_BLOCKS.registerBlock("onion_crop", OnionBlock::new,
             properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.POPPED).sound(SoundType.CROP));
-    public static final DeferredBlock<Block> GOJI_BERRY_BUSH = BLOCKS.registerBlock("goji_berry_bush", GojiBerryBlock::new,
+    public static final DeferredBlock<Block> GOJI_BERRY_BUSH = NON_CREATIVE_BLOCKS.registerBlock("goji_berry_bush", GojiBerryBlock::new,
             properties -> properties.randomTicks().noCollision().pushReaction(PushReaction.POPPED).sound(SoundType.SWEET_BERRY_BUSH));
-    public static final DeferredBlock<Block> RICE = BLOCKS.registerBlock("rice_crop", RiceCropBlock::new, properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.POPPED).sound(SoundType.CROP));
+    public static final DeferredBlock<Block> RICE = NON_CREATIVE_BLOCKS.registerBlock("rice_crop", RiceCropBlock::new, properties -> properties.randomTicks().instabreak().noCollision().pushReaction(PushReaction.POPPED).sound(SoundType.CROP));
 
     public static final DeferredBlock<Block> CRYSTALLIZER = registerBlock("crystallizer", CrystallizerBlock::new, properties -> properties.strength(2f).requiresCorrectToolForDrops().lightLevel(state -> state.getValue(CrystallizerBlock.LIT) ? 7 : 0));
 
@@ -211,7 +212,7 @@ public class TestBlocks {
                     properties.mapColor(MapColor.PLANT)
                             .noCollision().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.POPPED)
     ));
-    public static final DeferredBlock<Block> POTTED_DRIFTWOOD_SAPLING = BLOCKS.registerBlock("potted_driftwood_sapling", properties -> new FlowerPotBlock(
+    public static final DeferredBlock<Block> POTTED_DRIFTWOOD_SAPLING = NON_CREATIVE_BLOCKS.registerBlock("potted_driftwood_sapling", properties -> new FlowerPotBlock(
             () -> ((FlowerPotBlock) Blocks.FLOWER_POT), DRIFTWOOD_SAPLING, properties
     ), TestBlocks::flowerPotProperties);
 
@@ -222,127 +223,85 @@ public class TestBlocks {
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
+        NON_CREATIVE_BLOCKS.register(eventBus);
     }
 
 
     public static void addToTestBlockTab(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
-        output.accept(AZURITE_BLOCK);
-        output.accept(RAW_AZURITE_BLOCK);
-        output.accept(AZURITE_ORE);
-        output.accept(AZURITE_DEEPSLATE_ORE);
-        output.accept(AZURITE_NETHER_ORE);
-        output.accept(AZURITE_END_ORE);
-        output.accept(MAGIC_BLOCK);
-        output.accept(TEST_SHELF);
-        output.accept(AZURITE_STAIRS);
-        output.accept(AZURITE_SLAB);
-        output.accept(AZURITE_PRESSURE_PLATE);
-        output.accept(AZURITE_BUTTON);
-        output.accept(AZURITE_FENCE);
-        output.accept(AZURITE_FENCE_GATE);
-        output.accept(AZURITE_WALLS);
-        output.accept(AZURITE_DOOR);
-        output.accept(AZURITE_TRAPDOOR);
-        output.accept(AZURITE_LAMP);
-        output.accept(PEDESTAL);
-        output.accept(CRYSTALLIZER);
-        output.accept(DRIFTWOOD_LOG);
-        output.accept(DRIFTWOOD_WOOD);
-        output.accept(STRIPPED_DRIFTWOOD_LOG);
-        output.accept(STRIPPED_DRIFTWOOD_WOOD);
-        output.accept(DRIFTWOOD_PLANKS);
-        output.accept(DRIFTWOOD_STAIRS);
-        output.accept(DRIFTWOOD_SLAB);
-        output.accept(DRIFTWOOD_BUTTON);
-        output.accept(DRIFTWOOD_PRESSURE_PLATE);
-        output.accept(DRIFTWOOD_FENCE);
-        output.accept(DRIFTWOOD_FENCE_GATE);
-        output.accept(DRIFTWOOD_LEAVES);
-        output.accept(DRIFTWOOD_SAPLING);
-        output.accept(DRIFTWOOD_SHELF);
+        for (var blocks: BLOCKS.getEntries()) {
+            output.accept(blocks.get());
+        }
     }
 
     // Registry Helpers
-    /**
-     * Adds a new simple {@link Block} with the given {@link net.minecraft.world.level.block.state.BlockBehaviour.Properties properties} to the list of entries to be registered and returns a {@link net.neoforged.neoforge.registries.DeferredHolder} that will be populated with the created block automatically. Also creates a simple {@link BlockItem} for that block.
-     *
-     * @param name       The new block's name. It will automatically have the {@linkplain DeferredRegister#getNamespace() namespace} prefixed.
-     * @param properties The unary operator, which is passed a new {@link BlockBehaviour.Properties} for the created block.
-     * @return A {@link DeferredHolder} that will track updates from the registry for this block.
-     **/
+    /// Adds a new simple [Block] with the given [`properties`][BlockBehaviour.Properties] to the list of entries to be registered and returns a [DeferredHolder] that will be populated with the created block automatically. Also creates a simple [BlockItem] for that block.
+    ///
+    /// @param name       The new block's name. It will automatically have the [namespace][DeferredRegister#getNamespace()] prefixed.
+    /// @param properties The unary operator, which is passed a new [BlockBehaviour.Properties] for the created block.
+    /// @return A [DeferredHolder] that will track updates from the registry for this block.
     public static DeferredBlock<Block> registerSimpleBlock(String name, UnaryOperator<BlockBehaviour.Properties> properties) {
         return registerBlock(name, Block::new, properties);
     }
 
-    /**
-     * Adds a new simple {@link Block} with the given {@link BlockBehaviour.Properties properties} to the list of entries to be registered and returns a {@link DeferredHolder} that will be populated with the created block automatically. Also creates a simple {@link BlockItem} for that block. Also creates a simple {@link BlockItem} for that block.
-     *
-     * @param name       The new block's name. It will automatically have the {@linkplain DeferredRegister#getNamespace() namespace} prefixed.
-     * @param properties The supplied properties for the created block.
-     * @return A {@link DeferredHolder} that will track updates from the registry for this block.
-     */
+    /// Adds a new simple [Block] with the given [`properties`][BlockBehaviour.Properties] to the list of entries to be registered and returns a [DeferredHolder] that will be populated with the created block automatically. Also creates a simple [BlockItem] for that block. Also creates a simple [BlockItem] for that block.
+    ///
+    /// @param name       The new block's name. It will automatically have the [namespace][DeferredRegister#getNamespace()] prefixed.
+    /// @param properties The supplied properties for the created block.
+    /// @return A [DeferredHolder] that will track updates from the registry for this block.
     @SuppressWarnings("unused")
     public static DeferredBlock<Block> registerSimpleBlock(String name, Supplier<BlockBehaviour.Properties> properties) {
         return registerBlock(name, Block::new, properties);
     }
 
 
-    /**
-     * Adds a new simple {@link Block} with the default {@link BlockBehaviour.Properties properties} to the list of entries to be registered and returns a {@link DeferredHolder} that will be populated with the created block automatically. Also creates a simple {@link BlockItem} for that block. Also creates a simple {@link BlockItem} for that block.
-     *
-     * @param name The new block's name. It will automatically have the {@linkplain DeferredRegister#getNamespace() namespace} prefixed.
-     * @return A {@link DeferredHolder} that will track updates from the registry for this block.
-     */
+    /// Adds a new simple [Block] with the default [`properties`][BlockBehaviour.Properties] to the list of entries to be registered and returns a [DeferredHolder] that will be populated with the created block automatically. Also creates a simple [BlockItem] for that block. Also creates a simple [BlockItem] for that block.
+    ///
+    /// @param name The new block's name. It will automatically have the [namespace][DeferredRegister#getNamespace()] prefixed.
+    /// @return A [DeferredHolder] that will track updates from the registry for this block.
     @SuppressWarnings("unused")
     public static DeferredBlock<Block> registerSimpleBlock(String name) {
         return registerSimpleBlock(name, UnaryOperator.identity());
     }
 
-    /**
-     * Adds a new block to the list of entries to be registered and returns a {@link DeferredHolder} that will be populated with the created block automatically. Also creates a simple {@link BlockItem} for that block.
-     *
-     * @param name       The new block's name. It will automatically have the {@linkplain DeferredRegister#getNamespace() namespace} prefixed.
-     * @param func       A factory for the new block. The factory should not cache the created block.
-     * @param properties The unary operator, which is passed a new {@link BlockBehaviour.Properties} for the created block.
-     * @return A {@link DeferredHolder} that will track updates from the registry for this block.
-     * @see #registerBlock(String, Function, Supplier)
-     * @see #registerBlock(String, Function)
-     * @see #registerSimpleBlock(String, Supplier)
-     * @see #registerSimpleBlock(String, UnaryOperator)
-     * @see #registerSimpleBlock(String)
-     */
+    /// Adds a new block to the list of entries to be registered and returns a [DeferredHolder] that will be populated with the created block automatically. Also creates a simple [BlockItem] for that block.
+    ///
+    /// @param name       The new block's name. It will automatically have the [namespace][DeferredRegister#getNamespace()] prefixed.
+    /// @param func       A factory for the new block. The factory should not cache the created block.
+    /// @param properties The unary operator, which is passed a new [BlockBehaviour.Properties] for the created block.
+    /// @return A [DeferredHolder] that will track updates from the registry for this block.
+    /// @see #registerBlock(String, Function, Supplier)
+    /// @see #registerBlock(String, Function)
+    /// @see #registerSimpleBlock(String, Supplier)
+    /// @see #registerSimpleBlock(String, UnaryOperator)
+    /// @see #registerSimpleBlock(String)
     public static <B extends Block> DeferredBlock<B> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends B> func, UnaryOperator<BlockBehaviour.Properties> properties) {
         return registerBlock(name, func, () -> properties.apply(BlockBehaviour.Properties.of()));
     }
 
-    /**
-     * Adds a new block to the list of entries to be registered and returns a {@link DeferredHolder} that will be populated with the created block automatically. Also creates a simple {@link BlockItem} for that block.
-     * This method uses the default {@link BlockBehaviour.Properties}.
-     *
-     * @param name The new block's name. It will automatically have the {@linkplain DeferredRegister#getNamespace() namespace} prefixed.
-     * @param func A factory for the new block. The factory should not cache the created block.
-     * @return A {@link DeferredHolder} that will track updates from the registry for this block.
-     * @see #registerBlock(String, Function, Supplier)
-     * @see #registerBlock(String, Function, UnaryOperator)
-     * @see #registerSimpleBlock(String, Supplier)
-     * @see #registerSimpleBlock(String, UnaryOperator)
-     * @see #registerSimpleBlock(String)
-     */
+    /// Adds a new block to the list of entries to be registered and returns a [DeferredHolder] that will be populated with the created block automatically. Also creates a simple [BlockItem] for that block.
+    /// This method uses the default [BlockBehaviour.Properties].
+    ///
+    /// @param name The new block's name. It will automatically have the [namespace][DeferredRegister#getNamespace()] prefixed.
+    /// @param func A factory for the new block. The factory should not cache the created block.
+    /// @return A [DeferredHolder] that will track updates from the registry for this block.
+    /// @see #registerBlock(String, Function, Supplier)
+    /// @see #registerBlock(String, Function, UnaryOperator)
+    /// @see #registerSimpleBlock(String, Supplier)
+    /// @see #registerSimpleBlock(String, UnaryOperator)
+    /// @see #registerSimpleBlock(String)
     public static <B extends Block> DeferredBlock<B> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends B> func) {
         return registerBlock(name, func, UnaryOperator.identity());
     }
 
-    /**
-     * Adds a new block to the list of entries to be registered and returns a {@link DeferredHolder} that will be populated with the created block automatically. Also creates a simple {@link BlockItem} for that block.
-     *
-     * @param name       The new block's name. It will automatically have the {@linkplain DeferredRegister#getNamespace() namespace} prefixed.
-     * @param func       A factory for the new block. The factory should not cache the created block.
-     * @param properties The supplied properties for the created block.
-     * @return A {@link DeferredHolder} that will track updates from the registry for this block.
-     **/
+    /// Adds a new block to the list of entries to be registered and returns a [DeferredHolder] that will be populated with the created block automatically. Also creates a simple [BlockItem] for that block.
+    ///
+    /// @param name       The new block's name. It will automatically have the [namespace][DeferredRegister#getNamespace()] prefixed.
+    /// @param func       A factory for the new block. The factory should not cache the created block.
+    /// @param properties The supplied properties for the created block.
+    /// @return A [DeferredHolder] that will track updates from the registry for this block.
     public static <B extends Block> DeferredBlock<B> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends B> func, Supplier<BlockBehaviour.Properties> properties) {
         DeferredBlock<B> block = BLOCKS.register(name, key -> func.apply(properties.get().setId(ResourceKey.create(Registries.BLOCK, key))));
-        ITEMS.registerSimpleBlockItem(block);
+        NON_CREATIVE_ITEMS.registerSimpleBlockItem(block);
         return block;
     }
 
