@@ -6,7 +6,6 @@ import net.lawliet.testmod.registries.TestItems;
 import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.MultiRegistryBootstrap;
 import net.minecraft.data.recipes.*;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.tags.TagKey;
@@ -27,12 +26,8 @@ import java.util.function.BiFunction;
 public class TestRecipeProvider extends RecipeProvider {
     private final BrewingProvider brewingProvider = new TestBrewingProvider(this.output);
 
-    protected TestRecipeProvider(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+    public TestRecipeProvider(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
         super(recipeOutput, advancementOutput, TestMod.MODID);
-    }
-
-    public static MultiRegistryBootstrap create() {
-        return RecipeProvider.asBootstrap(TestRecipeProvider::new);
     }
 
     @Override

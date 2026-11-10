@@ -2,6 +2,7 @@ package net.lawliet.testmod;
 
 import net.lawliet.testmod.datagen.*;
 import net.lawliet.testmod.datagen.TestDataMapProvider;
+import net.lawliet.testmod.datagen.advacnement.sub_provider.TestAdvancements;
 import net.lawliet.testmod.datagen.damagesource.TestDamageTypes;
 import net.lawliet.testmod.datagen.loot.sub_providers.TestBlockInteractionLootProvider;
 import net.lawliet.testmod.datagen.loot.sub_providers.TestBlockLootProvider;
@@ -29,9 +30,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.data.event.GatherDataRegistryEntriesEvent;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-
-import java.util.List;
-import java.util.Set;
 
 @EventBusSubscriber(modid = TestMod.MODID)
 public class TestModDatagen {
@@ -62,14 +60,16 @@ public class TestModDatagen {
                 .add(Registries.PLACED_FEATURE, TestPlacedFeatures::bootstrap)
                 .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, TestBiomeModifiers::bootstrap)
                 .add(CustomRegistry.DODO_VARIANT_KEY, DodoVariants::bootstrap)
-                .add(Registries.LOOT_TABLE, new LootTableProvider(Set.of(), List.of(
+                .lootTable(
                         new LootTableProvider.SubProviderEntry(TestBlockLootProvider::new, LootContextParamSets.BLOCK),
                         new LootTableProvider.SubProviderEntry(TestBlockInteractionLootProvider::new, LootContextParamSets.BLOCK_INTERACT),
                         new LootTableProvider.SubProviderEntry(TestExtraLootProvider::new, LootContextParamSets.ALL_PARAMS),
                         new LootTableProvider.SubProviderEntry(TestEntityLootProvider::new, LootContextParamSets.ENTITY)
-                )))
-                .add(Registries.ADVANCEMENT, TestAdvancementProvider::new)
+                )
+                .advancement(
+                        TestAdvancements::new
+                )
                 .add(Registries.CONTEXT_INT_PROVIDER, TestContextIntProviders::bootstrap)
-                .add(TestRecipeProvider.create());
+                .recipe(TestRecipeProvider::new);
     }
 }
