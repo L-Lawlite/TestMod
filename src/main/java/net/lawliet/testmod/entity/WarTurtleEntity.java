@@ -15,6 +15,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.*;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -358,6 +359,13 @@ public class WarTurtleEntity extends TamableAnimal implements ContainerListener,
                 dropChestInventory(pair.getFirst());
             }
         }
+
+        ItemStack armorStack = container.getSlot(0).getItem();
+        if (this.isEquippableInSlot(armorStack, EquipmentSlot.BODY)) {
+            this.setItemSlotAndDropWhenKilled(EquipmentSlot.BODY, armorStack);
+        } else if (armorStack.isEmpty() && isWearingBodyArmor()) {
+            this.setItemSlot(EquipmentSlot.BODY, ItemStack.EMPTY);
+        }
     }
 
     @Override
@@ -435,7 +443,29 @@ public class WarTurtleEntity extends TamableAnimal implements ContainerListener,
                AbstractContainerMenu menu = new WarTurtleMenu(index, playerInventory, this.inventory, this, 4);
                menu.addSlotListener(WarTurtleEntity.this);
                return menu;
-            }, this.getDisplayName()), buf -> buf.writeUUID(getUUID()));
+            }, this.getDisplayName()), buf -> buf.writeInt(this.getId()));
         }
+    }
+
+    /// Armor
+    @Override
+    protected void actuallyHurt(ServerLevel level, DamageSource source, float dmg) {
+        super.actuallyHurt(level, source, dmg);
+    }
+
+    public void equipBodyArmor(LivingEntity player, ItemStack itemStack) {
+        if (this.isEquippableInSlot(itemStack, EquipmentSlot.BODY)) {
+            this.setItemSlotAndDropWhenKilled(EquipmentSlot.BODY, itemStack.consumeAndReturn(1, player));
+        }
+    }
+
+    @Override
+    public boolean canUseSlot(EquipmentSlot slot) {
+        return slot != EquipmentSlot.SADDLE ? super.canUseSlot(slot) : this.isAlive() && !this.isBaby() && this.isTame();
+    }
+
+    @Override
+    protected boolean canDispenserEquipIntoSlot(EquipmentSlot slot) {
+        return (slot == EquipmentSlot.BODY || slot == EquipmentSlot.SADDLE) && this.isTame() || super.canDispenserEquipIntoSlot(slot);
     }
 }

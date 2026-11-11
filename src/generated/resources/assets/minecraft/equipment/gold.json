@@ -1,0 +1,9 @@
+{
+  "layers": {
+    "testmod/war_turtle_body": [
+      {
+        "texture": "testmod:gold"
+      }
+    ]
+  }
+}

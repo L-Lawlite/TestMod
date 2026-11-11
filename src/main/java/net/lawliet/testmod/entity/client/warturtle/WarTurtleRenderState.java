@@ -2,6 +2,7 @@ package net.lawliet.testmod.entity.client.warturtle;
 
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.item.ItemStack;
 
 public class WarTurtleRenderState extends LivingEntityRenderState {
     public final AnimationState idleAnimationState =  new AnimationState();
@@ -12,4 +13,6 @@ public class WarTurtleRenderState extends LivingEntityRenderState {
     public boolean hasTier1Chest = false;
     public boolean hasTier2Chest = false;
     public boolean hasTier3Chest = false;
+
+    public ItemStack bodyItem = ItemStack.EMPTY;
 }

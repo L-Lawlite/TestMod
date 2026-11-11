@@ -21,6 +21,7 @@ public class EntityRendererEvent {
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(TestEntityTypes.DRIFTWOOD_BOAT.get(), context -> new BoatRenderer(context, TestModelLayers.DRIFTWOOD_BOAT));
+        event.registerEntityRenderer(TestEntityTypes.DRIFTWOOD_CHEST_BOAT.get(), context -> new BoatRenderer(context, TestModelLayers.DRIFTWOOD_CHEST_BOAT));
         event.registerEntityRenderer(TestEntityTypes.DODO.get(), DodoRenderer::new);
         event.registerEntityRenderer(TestEntityTypes.WAR_TURTLE.get(), WarTurtleRenderer::new);
         event.registerEntityRenderer(TestEntityTypes.BABY_MAN.get(), BabyManRenderer::new);
@@ -29,8 +30,11 @@ public class EntityRendererEvent {
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(TestModelLayers.DRIFTWOOD_BOAT, BoatModel::createBoatModel);
+        event.registerLayerDefinition(TestModelLayers.DRIFTWOOD_CHEST_BOAT, BoatModel::createChestBoatModel);
         event.registerLayerDefinition(TestModelLayers.DODO, DodoModel::createBodyLayer);
         event.registerLayerDefinition(TestModelLayers.WAR_TURTLE, WarTurtleModel::createBodyLayer);
+        event.registerLayerDefinition(TestModelLayers.WAR_TURTLE_ARMOR, WarTurtleModel::createBodyLayer);
+
     }
 
 

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "testmod:item/gold_war_turtle_armor"
+  }
+}

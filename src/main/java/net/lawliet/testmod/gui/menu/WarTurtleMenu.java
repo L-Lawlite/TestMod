@@ -3,10 +3,13 @@ package net.lawliet.testmod.gui.menu;
 import net.lawliet.testmod.entity.WarTurtleEntity;
 import net.lawliet.testmod.registries.gui.TestMenu;
 import net.lawliet.testmod.tags.TestTags;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +18,7 @@ import net.minecraft.world.inventory.ArmorSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 
 import java.util.List;
 import java.util.UUID;
@@ -28,11 +32,11 @@ public class WarTurtleMenu extends AbstractContainerMenu {
     private static final int SLOTS_PER_ROW = 4;
     private static final Identifier ARMOR_SLOT_SPRITE = Identifier.withDefaultNamespace("container/slot/horse_armor");
 
-    public static WarTurtleMenu create(int i, Inventory inventory, FriendlyByteBuf extraData) {
-        UUID uuid = extraData.readUUID();
-        List<WarTurtleEntity> turtles = inventory.player.level().getEntitiesOfClass(WarTurtleEntity.class, inventory.player.getBoundingBox().inflate(16), test -> test.getUUID().equals(uuid));
-        WarTurtleEntity entity = turtles.isEmpty() ? null : turtles.getFirst();
-        return new WarTurtleMenu(i, inventory, new SimpleContainer(5 + MAX_ROWS * SLOTS_PER_ROW), entity, SLOTS_PER_ROW);
+    public static WarTurtleMenu create(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
+            Level level = inventory.player.level();
+            Entity entity = level.getEntity(extraData.getInt(0));
+            WarTurtleEntity warTurtleEntity = entity != null && entity instanceof WarTurtleEntity warTurtle? warTurtle : null;
+            return new WarTurtleMenu(containerId, inventory, new SimpleContainer(5 + MAX_ROWS * SLOTS_PER_ROW), warTurtleEntity, SLOTS_PER_ROW);
     }
 
     public WarTurtleMenu(int containerId, Inventory inventory, Container entityContainer, final WarTurtleEntity entity, int columns) {

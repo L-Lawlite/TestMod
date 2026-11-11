@@ -6,6 +6,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.trading.VillagerTrade;
 import net.minecraft.world.level.block.Block;
@@ -45,6 +46,14 @@ public class TestTags {
 
         private static TagKey<VillagerTrade> createTag(String name) {
             return TagKey.create(Registries.VILLAGER_TRADE, Identifier.fromNamespaceAndPath(TestMod.MODID, name));
+        }
+    }
+
+    public static class EntityTypes {
+        public static final TagKey<EntityType<?>> CAN_WEAR_TURTLE_ARMOR = createTag("can_wear_turtle_armor");
+
+        private static TagKey<EntityType<?>> createTag(String name) {
+            return TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(TestMod.MODID, name));
         }
     }
 }

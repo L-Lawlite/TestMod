@@ -62,9 +62,15 @@ public class TestModelProvider extends ModelProvider {
         itemModels.generateFlatItem(TestItems.BAR_BRAWL_MUSIC_DISC.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.RADIATION_STAFF.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(TestItems.DRIFTWOOD_BOAT.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(TestItems.DRIFTWOOD_CHEST_BOAT.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.DODO_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.WAR_TURTLE_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(TestItems.BABY_MAN_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(TestItems.IRON_WAR_TURTLE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(TestItems.GOLD_WAR_TURTLE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(TestItems.DIAMOND_WAR_TURTLE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(TestItems.NETHERITE_WAR_TURTLE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(TestItems.AZURITE_WAR_TURTLE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
 
         itemModels.declareCustomModelItem(TestItems.BLIZZARD_STAFF.get());
 

@@ -7,10 +7,18 @@ import net.lawliet.testmod.food.TestFoods;
 import net.lawliet.testmod.item.*;
 import net.lawliet.testmod.registries.entity.TestEntityTypes;
 import net.lawliet.testmod.tags.TestTags;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemContainerContents;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorMaterials;
 import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.Tags;
@@ -52,6 +60,8 @@ public class TestItems {
     public static final DeferredItem<BlockItem> GOJI_BERRIES = ITEMS.registerItem("goji_berries", properties -> new BlockItem(TestBlocks.GOJI_BERRY_BUSH.get(), properties.food(TestFoods.GOJI_BERRY).compostable(ContextIntProviders.COMPOSTABLE_LOW)));
     public static final DeferredItem<BlockItem> RICE = ITEMS.registerItem("rice", properties -> new PlaceOnShallowWaterBlockItem(TestBlocks.RICE.get(), properties.compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), TestTags.Blocks.RICE_FARMLAND));
     public static final DeferredItem<Item> DRIFTWOOD_BOAT = ITEMS.registerItem("driftwood_boat", properties -> new BoatItem(TestEntityTypes.DRIFTWOOD_BOAT.get(), properties.stacksTo(1).cookingFuel(ContextIntProviders.COOKING_TIME_BOATS)));
+    public static final DeferredItem<Item> DRIFTWOOD_CHEST_BOAT = ITEMS.registerItem("driftwood_chest_boat", properties -> new BoatItem(TestEntityTypes.DRIFTWOOD_CHEST_BOAT.get(), properties.cookingFuel(ContextIntProviders.COOKING_TIME_BOATS).stacksTo(1)));
+
     public static final DeferredItem<BlockItem> TEST_SHELF = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.TEST_SHELF, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY));
     public static final DeferredItem<BlockItem> DRIFTWOOD_LOG = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_LOG, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
     public static final DeferredItem<BlockItem> DRIFTWOOD_WOOD = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_WOOD, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
@@ -68,6 +78,11 @@ public class TestItems {
     public static final DeferredItem<BlockItem> DRIFTWOOD_SAPLING = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_SAPLING, properties -> properties.cookingFuel(ContextIntProviders.COOKING_TIME_DRY_PLANTS).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final DeferredItem<BlockItem> DRIFTWOOD_LEAVES = NON_CREATIVE_ITEMS.registerSimpleBlockItem(TestBlocks.DRIFTWOOD_LEAVES, properties -> properties.compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
+    public static final DeferredItem<Item> IRON_WAR_TURTLE_ARMOR = ITEMS.registerSimpleItem("iron_war_turtle_armor", properties -> Properties.turtleArmor(properties, ArmorMaterials.COPPER));
+    public static final DeferredItem<Item> GOLD_WAR_TURTLE_ARMOR = ITEMS.registerSimpleItem("gold_war_turtle_armor", properties -> Properties.turtleArmor(properties, ArmorMaterials.GOLD));
+    public static final DeferredItem<Item> DIAMOND_WAR_TURTLE_ARMOR = ITEMS.registerSimpleItem("diamond_war_turtle_armor", properties -> Properties.turtleArmor(properties, ArmorMaterials.DIAMOND));
+    public static final DeferredItem<Item> NETHERITE_WAR_TURTLE_ARMOR = ITEMS.registerSimpleItem("netherite_war_turtle_armor", properties -> Properties.turtleArmor(properties, ArmorMaterials.NETHERITE));
+    public static final DeferredItem<Item> AZURITE_WAR_TURTLE_ARMOR = ITEMS.registerSimpleItem("azurite_war_turtle_armor", properties -> Properties.turtleArmor(properties, TestArmorMaterials.AZURITE));
 
     public static final DeferredItem<Item> DODO_SPAWN_EGG = ITEMS.registerItem("dodo_spawn_egg", SpawnEggItem::new, properties -> properties.spawnEgg(TestEntityTypes.DODO.get()));
     public static final DeferredItem<Item> WAR_TURTLE_SPAWN_EGG = ITEMS.registerItem("war_turtle_spawn_egg", SpawnEggItem::new, properties -> properties.spawnEgg(TestEntityTypes.WAR_TURTLE.get()));
@@ -87,6 +102,29 @@ public class TestItems {
     public static void addToTestItemTab(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
         for (var item: ITEMS.getEntries()) {
             output.accept(item.get());
+        }
+    }
+
+    public static class Properties {
+
+        public static Item.Properties turtleArmor(Item.Properties properties, ArmorMaterial material) {
+            HolderGetter<EntityType<?>> entityGetter = BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.ENTITY_TYPE);
+            return properties.attributes(material.createAttributes(ArmorType.BODY))
+                    .stacksTo(1)
+                    .durability(material.durability())
+                    .component(
+                            DataComponents.EQUIPPABLE,
+                            Equippable.builder(EquipmentSlot.BODY)
+                                    .setEquipSound(SoundEvents.HORSE_ARMOR)
+                                    .setAsset(material.assetId())
+                                    .setAllowedEntities(entityGetter.getOrThrow(TestTags.EntityTypes.CAN_WEAR_TURTLE_ARMOR))
+                                    .setDamageOnHurt(true)
+                                    .setCanBeSheared(false)
+                                    .setShearingSound(SoundEvents.HORSE_ARMOR_UNEQUIP)
+                                    .setDispensable(true)
+                                    .build()
+                    );
+
         }
     }
 }

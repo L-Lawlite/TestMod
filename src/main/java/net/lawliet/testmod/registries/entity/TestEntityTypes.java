@@ -11,6 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.vehicle.boat.Boat;
+import net.minecraft.world.entity.vehicle.boat.ChestBoat;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -26,6 +27,13 @@ public class TestEntityTypes {
                     .noLootTable()
                     .sized(1.375F, 0.5625F).eyeHeight(0.5625F).clientTrackingRange(10)
     );
+    public static final DeferredHolder<EntityType<?>, EntityType<ChestBoat>> DRIFTWOOD_CHEST_BOAT = registerEntityType("driftwood_chest_boat",
+            EntityType.Builder.of(chestBoatFactory(TestItems.DRIFTWOOD_CHEST_BOAT), MobCategory.MISC)
+                    .noLootTable()
+                    .sized(1.375F, 0.5625F).eyeHeight(0.5625F).clientTrackingRange(10)
+    );
+
+
     public static final DeferredHolder<EntityType<?>, EntityType<DodoEntity>> DODO = registerEntityType("dodo",
             EntityType.Builder.of(DodoEntity::new, MobCategory.CREATURE)
                     .sized(1, 2.5f)
@@ -51,5 +59,9 @@ public class TestEntityTypes {
 
     public static EntityType.EntityFactory<Boat> boatFactory(Supplier<Item> boatItem) {
         return (entityType, level) -> new Boat(entityType, level, boatItem);
+    }
+
+    private static EntityType.EntityFactory<ChestBoat> chestBoatFactory(Supplier<Item> dropItem) {
+        return (entityType, level) -> new ChestBoat(entityType, level, dropItem);
     }
 }

@@ -11,8 +11,10 @@ public class TestModelLayers {
     private static final Set<ModelLayerLocation> ALL_MODELS = Sets.newHashSet();
 
     public static final ModelLayerLocation DRIFTWOOD_BOAT = register("boat/driftwood");
+    public static final ModelLayerLocation DRIFTWOOD_CHEST_BOAT = register("chest_boat/driftwood");
     public static final ModelLayerLocation DODO =  register("dodo");
     public static final ModelLayerLocation WAR_TURTLE = register("war_turtle");
+    public static final ModelLayerLocation WAR_TURTLE_ARMOR = register("war_turtle", "armor");
 
     private static ModelLayerLocation register(String name) {
         return register(name, "main");

@@ -2,6 +2,7 @@ package net.lawliet.testmod.datagen.tags;
 
 import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.registries.entity.TestEntityTypes;
+import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
@@ -17,5 +18,6 @@ public class TestEntityTypesTagProvider extends EntityTypeTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(EntityTypeTags.BOAT).add(TestEntityTypes.DRIFTWOOD_BOAT.key());
+        tag(TestTags.EntityTypes.CAN_WEAR_TURTLE_ARMOR).add(TestEntityTypes.WAR_TURTLE.key());
     }
 }

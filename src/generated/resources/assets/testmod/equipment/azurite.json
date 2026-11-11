@@ -19,6 +19,11 @@
       {
         "texture": "testmod:azurite"
       }
+    ],
+    "testmod/war_turtle_body": [
+      {
+        "texture": "testmod:azurite"
+      }
     ]
   }
 }

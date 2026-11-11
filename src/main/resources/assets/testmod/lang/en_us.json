@@ -23,6 +23,12 @@
   "item.testmod.bar_brawl_music_disc": "Bar Brawl Music Disc",
   "item.testmod.radiation_staff": "Radiation Staff",
   "item.testmod.driftwood_boat": "Driftwood Boat",
+  "item.testmod.driftwood_chest_boat": "Driftwood Boat",
+  "item.testmod.iron_war_turtle_armor": "Iron War Turtle Armor",
+  "item.testmod.gold_war_turtle_armor": "Gold War Turtle Armor",
+  "item.testmod.diamond_war_turtle_armor": "Diamond War Turtle Armor",
+  "item.testmod.netherite_war_turtle_armor": "Netherite War Turtle Armor",
+  "item.testmod.azurite_war_turtle_armor": "Azurite War Turtle Armor",
 
   "item.testmod.dodo_spawn_egg": "Dodo Spawn Egg",
   "item.testmod.war_turtle_spawn_egg": "War Turtle Spawn Egg",
@@ -124,6 +130,7 @@
   "advancement.testmod.metal_detector.description": "Try using metal detector to find valuables",
 
   "entity.testmod.driftwood_boat": "Driftwood Boat",
+  "entity.testmod.driftwood_chest_boat": "Driftwood Boat",
   "entity.testmod.dodo": "Dodo",
   "entity.testmod.war_turtle": "War Turtle",
   "entity.testmod.baby_man": "Baby Man"

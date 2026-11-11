@@ -1,0 +1,51 @@
+{
+  "parent": "testmod:testmod/root",
+  "criteria": {
+    "berries": {
+      "conditions": {
+        "location": {
+          "type": "minecraft:match_block",
+          "blocks": "testmod:goji_berry_bush"
+        }
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "onion": {
+      "conditions": {
+        "location": {
+          "type": "minecraft:match_block",
+          "blocks": "testmod:onion_crop"
+        }
+      },
+      "trigger": "minecraft:placed_block"
+    },
+    "rice": {
+      "conditions": {
+        "location": {
+          "type": "minecraft:match_block",
+          "blocks": "testmod:rice_crop"
+        }
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.testmod.plant_custom.description"
+    },
+    "icon": {
+      "id": "testmod:rice"
+    },
+    "title": {
+      "translate": "advancement.testmod.plant_custom.title"
+    }
+  },
+  "requirements": [
+    [
+      "berries",
+      "rice",
+      "onion"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

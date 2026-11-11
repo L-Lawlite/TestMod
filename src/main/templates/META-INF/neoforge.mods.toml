@@ -25,6 +25,8 @@ description='''
 Test Mod
 '''
 
+enumExtensions="META-INF/enumextensions.json"
+
 [[mixins]]
 config="${mod_id}.mixins.json"
 
