@@ -1,7 +1,6 @@
 package net.lawliet.testmod.entity.client.warturtle;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.registries.entity.client.TestModelLayers;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.SubmitNodeCollector;

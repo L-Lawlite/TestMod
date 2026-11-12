@@ -3,8 +3,6 @@ package net.lawliet.testmod.gui.menu;
 import net.lawliet.testmod.entity.WarTurtleEntity;
 import net.lawliet.testmod.registries.gui.TestMenu;
 import net.lawliet.testmod.tags.TestTags;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.Container;
@@ -19,9 +17,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-
-import java.util.List;
-import java.util.UUID;
 
 public class WarTurtleMenu extends AbstractContainerMenu {
     private final Container entityContainer;

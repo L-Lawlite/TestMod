@@ -250,6 +250,7 @@ public class WarTurtleEntity extends TamableAnimal implements ContainerListener,
     /// Right Clicking
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        syncBodySlot();
         ItemStack itemStack = player.getItemInHand(hand);
 
         Item itemForTaming = Items.APPLE;
@@ -360,7 +361,7 @@ public class WarTurtleEntity extends TamableAnimal implements ContainerListener,
             }
         }
 
-        ItemStack armorStack = container.getSlot(0).getItem();
+        ItemStack armorStack = this.inventory.getItem(0);
         if (this.isEquippableInSlot(armorStack, EquipmentSlot.BODY)) {
             this.setItemSlotAndDropWhenKilled(EquipmentSlot.BODY, armorStack);
         } else if (armorStack.isEmpty() && isWearingBodyArmor()) {
@@ -467,5 +468,18 @@ public class WarTurtleEntity extends TamableAnimal implements ContainerListener,
     @Override
     protected boolean canDispenserEquipIntoSlot(EquipmentSlot slot) {
         return (slot == EquipmentSlot.BODY || slot == EquipmentSlot.SADDLE) && this.isTame() || super.canDispenserEquipIntoSlot(slot);
+    }
+
+    @Override
+    protected void hurtArmor(DamageSource damageSource, float damage) {
+        this.doHurtEquipment(damageSource, damage, EquipmentSlot.BODY);
+    }
+
+    private void syncBodySlot() {
+        ItemStack bodyItem = this.getItemBySlot(EquipmentSlot.BODY);
+        if (this.inventory.getItem(0) != bodyItem) {
+            this.inventory.setItem(0, bodyItem);
+            this.inventory.setChanged();
+        }
     }
 }
