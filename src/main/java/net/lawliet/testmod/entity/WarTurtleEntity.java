@@ -24,11 +24,14 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerListener;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.WoolCarpetBlock;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -48,6 +51,8 @@ public class WarTurtleEntity extends TamableAnimal implements ContainerListener,
     public static final EntityDataAccessor<Boolean> HAS_TIER_1_CHEST = SynchedEntityData.defineId(WarTurtleEntity.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Boolean> HAS_TIER_2_CHEST = SynchedEntityData.defineId(WarTurtleEntity.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Boolean> HAS_TIER_3_CHEST = SynchedEntityData.defineId(WarTurtleEntity.class, EntityDataSerializers.BOOLEAN);
+
+    public static final EntityDataAccessor<ItemStack> DYE_STACK = SynchedEntityData.defineId(WarTurtleEntity.class, EntityDataSerializers.ITEM_STACK);
 
     protected SimpleContainer inventory;
     private final int TIER_1_CHEST_SLOT = 2;
@@ -156,6 +161,8 @@ public class WarTurtleEntity extends TamableAnimal implements ContainerListener,
         entityData.define(HAS_TIER_1_CHEST, false);
         entityData.define(HAS_TIER_2_CHEST, false);
         entityData.define(HAS_TIER_3_CHEST, false);
+
+        entityData.define(DYE_STACK, ItemStack.EMPTY);
     }
 
     @Override
@@ -163,6 +170,7 @@ public class WarTurtleEntity extends TamableAnimal implements ContainerListener,
         super.addAdditionalSaveData(output);
         output.putLong(LAST_POSE_TICK_KEY, this.entityData.get(LAST_POSE_TICK));
 
+        syncBodySlot();
         ValueOutput.TypedOutputList<ItemStackWithSlot> items = output.list("Items", ItemStackWithSlot.CODEC);
         for (int i = 0; i < this.inventory.getContainerSize(); i++) {
             ItemStack stack = this.inventory.getItem(i);
@@ -193,6 +201,8 @@ public class WarTurtleEntity extends TamableAnimal implements ContainerListener,
                 setChest(pair.getFirst(), true);
             }
         });
+
+        this.entityData.set(DYE_STACK, this.inventory.getItem(1));
     }
 
     ///Sitting
@@ -361,12 +371,15 @@ public class WarTurtleEntity extends TamableAnimal implements ContainerListener,
             }
         }
 
-        ItemStack armorStack = this.inventory.getItem(0);
+        ItemStack armorStack = container.getSlot(0).getItem();
         if (this.isEquippableInSlot(armorStack, EquipmentSlot.BODY)) {
             this.setItemSlotAndDropWhenKilled(EquipmentSlot.BODY, armorStack);
         } else if (armorStack.isEmpty() && isWearingBodyArmor()) {
             this.setItemSlot(EquipmentSlot.BODY, ItemStack.EMPTY);
         }
+
+        ItemStack dyeStack = container.getSlot(1).getItem();
+        this.entityData.set(DYE_STACK, dyeStack.isEmpty() ? ItemStack.EMPTY : dyeStack);
     }
 
     @Override
@@ -481,5 +494,20 @@ public class WarTurtleEntity extends TamableAnimal implements ContainerListener,
             this.inventory.setItem(0, bodyItem);
             this.inventory.setChanged();
         }
+    }
+
+    /// DYEABLE
+    @Nullable
+    private static DyeColor getDyeColor(ItemStack stack) {
+        Block block = Block.byItem(stack.getItem());
+        if (block instanceof WoolCarpetBlock woolCarpetBlock) {
+            return woolCarpetBlock.getColor();
+        }
+        return null;
+    }
+
+    @Nullable
+    public DyeColor getSwag() {
+        return getDyeColor(this.entityData.get(DYE_STACK));
     }
 }

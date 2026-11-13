@@ -34,6 +34,7 @@ public class EntityRendererEvent {
         event.registerLayerDefinition(TestModelLayers.DODO, DodoModel::createBodyLayer);
         event.registerLayerDefinition(TestModelLayers.WAR_TURTLE, WarTurtleModel::createBodyLayer);
         event.registerLayerDefinition(TestModelLayers.WAR_TURTLE_ARMOR, WarTurtleModel::createBodyLayer);
+        event.registerLayerDefinition(TestModelLayers.WAR_TURTLE_ARMOR_DYE, WarTurtleModel::createBodyLayer);
 
     }
 

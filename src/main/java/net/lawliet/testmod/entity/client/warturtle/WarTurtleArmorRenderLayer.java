@@ -1,33 +1,37 @@
 package net.lawliet.testmod.entity.client.warturtle;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.lawliet.testmod.TestMod;
 import net.lawliet.testmod.registries.entity.client.TestModelLayers;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.Equippable;
 
+import java.util.stream.Stream;
+
 public class WarTurtleArmorRenderLayer extends RenderLayer<WarTurtleRenderState, WarTurtleModel> {
     private final WarTurtleModel model;
+    private final WarTurtleModel dyeModel;
     private final EquipmentLayerRenderer equipmentRenderer;
 
-//    private static final Map<Item, Identifier> ARMOR_MAP = Map.of(
-//            TestItems.IRON_WAR_TURTLE_ARMOR.get(), TestMod.createIdentifier("textures/entity/war_turtle/armor/iron_war_turtle.png"),
-//            TestItems.GOLD_WAR_TURTLE_ARMOR.get(), TestMod.createIdentifier("textures/entity/war_turtle/armor/gold_war_turtle.png"),
-//            TestItems.DIAMOND_WAR_TURTLE_ARMOR.get(), TestMod.createIdentifier("textures/entity/war_turtle/armor/diamond_war_turtle.png"),
-//            TestItems.NETHERITE_WAR_TURTLE_ARMOR.get(), TestMod.createIdentifier("textures/entity/war_turtle/armor/netherite_war_turtle.png"),
-//            TestItems.AZURITE_WAR_TURTLE_ARMOR.get(), TestMod.createIdentifier("textures/entity/war_turtle/armor/azurite_war_turtle.png")
-//    );
+    private static final Identifier[] DYE_LOCATION = Stream.of(DyeColor.values()).map(WarTurtleArmorRenderLayer::getDyeLocation).toArray(Identifier[]::new);
+
     public WarTurtleArmorRenderLayer(RenderLayerParent<WarTurtleRenderState, WarTurtleModel> renderer, EntityModelSet modelSet, EquipmentLayerRenderer equipmentRenderer) {
         super(renderer);
         this.model = new WarTurtleModel(modelSet.bakeLayer(TestModelLayers.WAR_TURTLE_ARMOR));
+        this.dyeModel = new WarTurtleModel(modelSet.bakeLayer(TestModelLayers.WAR_TURTLE_ARMOR_DYE));
         this.equipmentRenderer = equipmentRenderer;
     }
 
@@ -37,6 +41,12 @@ public class WarTurtleArmorRenderLayer extends RenderLayer<WarTurtleRenderState,
         Equippable equippable = bodyItem.get(DataComponents.EQUIPPABLE);
         if (equippable != null && equippable.assetId().isPresent() && !state.isBaby) {
             this.renderEquipment(poseStack, submitNodeCollector, state, bodyItem, equippable.assetId().get(), lightCoords);
+        }
+
+        if (state.dyeColor != null) {
+            DyeColor dyeColor = state.dyeColor;
+            Identifier identifier = DYE_LOCATION[dyeColor.getId()];
+            submitNodeCollector.order(2).submitModel(this.dyeModel, state, poseStack, RenderTypes.entityCutout(identifier), lightCoords, OverlayTexture.NO_OVERLAY, 0);
         }
     }
 
@@ -53,5 +63,9 @@ public class WarTurtleArmorRenderLayer extends RenderLayer<WarTurtleRenderState,
                 lightCoords,
                 state.outlineColor
         );
+    }
+
+    private static Identifier getDyeLocation(DyeColor dyeColor) {
+        return Identifier.fromNamespaceAndPath(TestMod.MODID, "textures/entity/war_turtle/armor/blankies/%s.png".formatted(dyeColor.getName()));
     }
 }

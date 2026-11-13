@@ -2,7 +2,9 @@ package net.lawliet.testmod.entity.client.warturtle;
 
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
+import org.jspecify.annotations.Nullable;
 
 public class WarTurtleRenderState extends LivingEntityRenderState {
     public final AnimationState idleAnimationState =  new AnimationState();
@@ -15,4 +17,6 @@ public class WarTurtleRenderState extends LivingEntityRenderState {
     public boolean hasTier3Chest = false;
 
     public ItemStack bodyItem = ItemStack.EMPTY;
+    @Nullable
+    public DyeColor dyeColor;
 }

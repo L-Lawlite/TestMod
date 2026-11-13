@@ -5,6 +5,7 @@ import net.lawliet.testmod.registries.gui.TestMenu;
 import net.lawliet.testmod.tags.TestTags;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.Entity;
@@ -46,7 +47,17 @@ public class WarTurtleMenu extends AbstractContainerMenu {
                 return entity.canUseSlot(EquipmentSlot.BODY) && entity.is(TestTags.EntityTypes.CAN_WEAR_TURTLE_ARMOR);
             }
         });
-        addSlot(new Slot(entityContainer, 1, 44, 63));
+        addSlot(new Slot(entityContainer, 1, 44, 63) {
+            @Override
+            public boolean mayPlace(ItemStack itemStack) {
+                return itemStack.is(ItemTags.WOOL_CARPETS) && entity.isWearingBodyArmor();
+            }
+
+            @Override
+            public int getMaxStackSize() {
+                return 1;
+            }
+        });
         // Chest slot tier 1
         addSlot(new Slot(entityContainer, 2, 72, 27) {
             @Override
@@ -144,7 +155,7 @@ public class WarTurtleMenu extends AbstractContainerMenu {
         if (slot.hasItem()) {
             ItemStack stack = slot.getItem();
             clicked = stack.copy();
-            int playerContainerStart = this.entityContainer.getContainerSize() + 1;
+            int playerContainerStart = this.entityContainer.getContainerSize();
             int extraInventoryEnd = this.extraInventoryRows() * 4 + 5;
             if (index < playerContainerStart) {
                 if (!this.moveItemStackTo(stack, playerContainerStart, this.slots.size(), true)) {
